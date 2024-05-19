@@ -91,69 +91,70 @@ console.log(a+b) //second expression
 
 // EXERCISE 5
 
+
 typeof(15)
 // Prediction: number
-// Actual:
+// Actual: number
 
 typeof(5.5)
 // Prediction: number
-// Actual:
+// Actual: number
 
 typeof(NaN)
 // Prediction: NaN
-// Actual:
+// Actual: number (NaN is a special numeric value)
 
 typeof("hello")
 // Prediction: string
-// Actual:
+// Actual: string
 
 typeof(true)
 // Prediction: boolean
-// Actual:
+// Actual: boolean
 
 typeof(1 != 2)
 // Prediction: true
-// Actual:
+// Actual: boolean (typeof checks the type, not the value)
 
 "hamburger" + "s"
 // Prediction: string
-// Actual:
+// Actual: hamburger + "s" => "hamburgers" (result is a string)
 
 "hamburgers" - "s"
 // Prediction: error
-// Actual:
+// Actual: NaN (invalid subtraction operation)
 
 "1" + "3"
 // Prediction: string
-// Actual:
+// Actual: "1" + "3" => "13" (result is a string)
 
 "1" - "3"
 // Prediction: string
-// Actual:
+// Actual: -2 (coercion converts strings to numbers for subtraction)
 
 "johnny" + 5
 // Prediction: string
-// Actual:
+// Actual: "johnny5" (result is a string)
 
 "johnny" - 5
 // Prediction: string
-// Actual:
+// Actual: NaN (invalid subtraction operation)
 
 99 * "hello"
 // Prediction: string
-// Actual:
+// Actual: NaN (invalid multiplication operation)
 
 1 != 1
 // Prediction: false
-// Actual:
+// Actual: false
 
 1 == "1"
 // Prediction: true
-// Actual:
+// Actual: true (loose equality with type coercion)
 
 1 === "1"
 // Prediction: false
-// Actual:
+// Actual: false (strict equality without type coercion)
 
 
 
@@ -163,48 +164,48 @@ typeof(1 != 2)
 
 5 + "34"
 // Prediction: string
-// Actual:
+// Actual: "534" (result is a string)
 
 5 - "4"
 // Prediction: number
-// Actual:
+// Actual: 1 (coercion converts strings to numbers for subtraction)
 
 10 % 5
 // Prediction: 0
-// Actual:
+// Actual: 0 (remainder of 10 divided by 5 is 0)
 
 5 % 10
 // Prediction: 0.5
-// Actual:
+// Actual: 5 (remainder of 5 divided by 10 is 5)
 
 " " + " "
-// Prediction:"  "
-// Actual:
+// Prediction: "  "
+// Actual: "  " (result is a string with two spaces)
 
 " " + 0
 // Prediction: " 0"
-// Actual:
+// Actual: " 0" (result is a string)
 
 true + true
-// Prediction:
-// Actual: true
+// Prediction: 2 (true coerced to 1, 1 + 1 = 2)
+// Actual: 2
 
 true + false
-// Prediction:
-// Actual: false
+// Prediction: 1 (true coerced to 1, false to 0, 1 + 0 = 1)
+// Actual: 1
 
 false + true
-// Prediction:
-// Actual:
+// Prediction: 1 (false coerced to 0, true to 1, 0 + 1 = 1)
+// Actual: 1
 
 false - true
-// Prediction: false
-// Actual: 
+// Prediction: -1 (false coerced to 0, true to 1, 0 - 1 = -1)
+// Actual: -1
 
 !true
 // Prediction: false
-// Actual: 
+// Actual: false (negation of true is false)
 
 3 - 4
 // Prediction: -1
-// Actual:
+// Actual: -1
