@@ -1,0 +1,12 @@
+.row > div {
+    margin-bottom: 10px;
+}
+
+
+.demo-content {
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+    border: solid black 2px;
+    background-color: grey;
+}

@@ -1,0 +1,93 @@
+* {
+    text-decoration: none;
+    list-style: none;
+    font-family: Calibri, Helvetica, sans-serif;
+}
+
+.wrap {
+    max-width: 1200px;
+    margin: auto;
+    background-color: aliceblue;
+    box-sizing: border-box;
+    background-image: url("thor.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(33, 33, 33);
+    padding: 20px;
+}
+.nav a {
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-bar {
+
+    display: none;
+}
+h1 {
+    text-align: center;
+}
+.main {
+    padding: 30px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+
+
+
+
+
+@media screen and (max-width: 992px) {
+    .nav {
+        background-color: red;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .nav {
+        background-color: lightgreen;
+    }
+    .nav a {
+        color: black;
+    }
+
+    .main {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav-links {
+        display: none;
+    }
+    .nav-bar {
+        display: block;
+        color: black;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 36px;
+    }
+    .nav {
+        background-color: yellow;
+    }
+    .nav a {
+        color: black;
+    }
+    .main {
+        font-size: 36px;
+    }
+}

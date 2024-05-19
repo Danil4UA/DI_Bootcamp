@@ -1,0 +1,18 @@
+.wrap {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.nav a {
+    padding: 25px;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+}

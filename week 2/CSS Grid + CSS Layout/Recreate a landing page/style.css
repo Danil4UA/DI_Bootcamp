@@ -1,0 +1,128 @@
+* {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image: url("123.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrap {
+    max-width: 1600px;
+    margin: auto;
+    
+}
+header {
+    box-sizing: content-box;
+    padding: 40px 0px;
+}
+header h1{ 
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header-users {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.header-users-color {
+    font-size: 36px;
+    font-weight: bold;
+    color: dodgerblue;
+    padding: 20px 30px;
+}
+
+.header-users > div { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+main {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.review-1, .review-2, .review-3 {
+position: relative;
+}
+
+.review-1 {
+    top: 50px;
+}
+.review-2 {
+    top: 150px;
+}
+
+.review-3{
+    top: 100px;
+}
+.review {
+    width: 350px;
+    box-sizing: border-box;
+    font-size: 16px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.review-top {
+    padding: 30px 20px 60px 20px;
+    color: grey;
+    background-color: white;
+}
+.review-bottom {
+
+    text-align: center;
+    padding: 60px 40px 40px 40px;
+    background-color: lightcoral;
+    color: white;
+    font-weight: bold;
+    position: relative;
+}
+
+.review-photo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: -30%;
+    left: 40%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .review-1, .review-2, .review-3 {
+        position: static;
+    }
+    main {
+        padding-top: 40px;
+        gap: 3rem;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+}
