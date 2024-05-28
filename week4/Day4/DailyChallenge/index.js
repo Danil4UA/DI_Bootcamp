@@ -21,63 +21,81 @@ const planets = [
     "Neptune"
 ];
 
+const colors = [
+    "red",
+    "yellow",
+    "grey",
+    "rose",
+    "blue",
+    "lightblue",
+    "green",
+    "lightgreen"
+]
 
-let createDiv1 = document.createElement("div")
-createDiv1.classList.add("planet" , "Mercury")
-createDiv1.style.backgroundColor = "red"
+for(let i = 0; i < planets.length; i ++ ){
+    let createDiv = document.createElement("div")
+    createDiv.classList.add("planet" , planets[i])
+    createDiv.style.backgroundColor = colors[i]
 
+    document.querySelector(".listPlanets").appendChild(createDiv)
+}
 
-let createDiv2 = document.createElement("div")
-createDiv2.classList.add("planet" , "Venus")
-createDiv2.style.backgroundColor = "yellow"
-
-let createDiv3 = document.createElement("div")
-createDiv3.classList.add("planet" , "Earth")
-createDiv3.style.backgroundColor = "blue"
-
-let createDiv4 = document.createElement("div")
-createDiv4.classList.add("planet" , "Mars")
-createDiv4.style.backgroundColor = "grey"
-
-let createDiv5 = document.createElement("div")
-createDiv5.classList.add("planet" , "Jupiter")
-createDiv5.style.backgroundColor = "orange"
-
-let createDiv6 = document.createElement("div")
-createDiv6.classList.add("planet" , "Saturn")
-createDiv6.style.backgroundColor = "green"
-
-let createDiv7 = document.createElement("div")
-createDiv7.classList.add("planet" , "Uranus")
-createDiv7.style.backgroundColor = "lightgrey"
-
-let createDiv8 = document.createElement("div")
-createDiv8.classList.add("planet" , "Neptune")
-createDiv8.style.backgroundColor = "lightblue"
+// let createDiv1 = document.createElement("div")
+// createDiv1.classList.add("planet" , "Mercury")
+// createDiv1.style.backgroundColor = "red"
 
 
-document.querySelector(".listPlanets").appendChild(
-    createDiv1
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv2
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv3
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv4
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv5
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv6
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv7
-);
-document.querySelector(".listPlanets").appendChild(
-    createDiv8
-);
+// let createDiv2 = document.createElement("div")
+// createDiv2.classList.add("planet" , "Venus")
+// createDiv2.style.backgroundColor = "yellow"
+
+// let createDiv3 = document.createElement("div")
+// createDiv3.classList.add("planet" , "Earth")
+// createDiv3.style.backgroundColor = "blue"
+
+// let createDiv4 = document.createElement("div")
+// createDiv4.classList.add("planet" , "Mars")
+// createDiv4.style.backgroundColor = "grey"
+
+// let createDiv5 = document.createElement("div")
+// createDiv5.classList.add("planet" , "Jupiter")
+// createDiv5.style.backgroundColor = "orange"
+
+// let createDiv6 = document.createElement("div")
+// createDiv6.classList.add("planet" , "Saturn")
+// createDiv6.style.backgroundColor = "green"
+
+// let createDiv7 = document.createElement("div")
+// createDiv7.classList.add("planet" , "Uranus")
+// createDiv7.style.backgroundColor = "lightgrey"
+
+// let createDiv8 = document.createElement("div")
+// createDiv8.classList.add("planet" , "Neptune")
+// createDiv8.style.backgroundColor = "lightblue"
+
+
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv1
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv2
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv3
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv4
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv5
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv6
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv7
+// );
+// document.querySelector(".listPlanets").appendChild(
+//     createDiv8
+// );
 
