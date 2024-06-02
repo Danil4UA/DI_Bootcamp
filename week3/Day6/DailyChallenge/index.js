@@ -15,8 +15,8 @@ for(let a = 0; a < 6; a++){
 
 // using one loop
 
-for(let i = 1; i <= 6; i ++){
-    console.log(" * ".repeat(i))
+for(let i = 1; i <= 20; i ++){
+    console.log("*".repeat(i))
 }
 
 

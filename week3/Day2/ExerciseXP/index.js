@@ -91,7 +91,6 @@ console.log(a+b) //second expression
 
 // EXERCISE 5
 
-
 typeof(15)
 // Prediction: number
 // Actual: number

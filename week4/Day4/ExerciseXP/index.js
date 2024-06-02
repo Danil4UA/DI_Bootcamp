@@ -23,7 +23,7 @@
 // console.log(document.getElementById("container"))
 
 
-// console.log(document.body.children[1].children[1].textContent = "Richard")
+// document.body.children[1].children[1].textContent = "Richard"
 
 
 // document.body.children[2].children[1].remove()
@@ -111,7 +111,7 @@
 // console.log(document.body)
 
 
-// const createLi = document.createElement('li') //.textContent = "new li"
+// const createLi = document.createElement('li')
 
 // document.body.children[0].children[0].appendChild(createLi)
 // createLi.textContent = "Logout"

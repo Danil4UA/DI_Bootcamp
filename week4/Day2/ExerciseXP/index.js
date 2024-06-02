@@ -47,15 +47,18 @@ infoAboutPerson("David", 45, "blue")
 
 function calculateTip(){
     let billAmount = 30;
-    if (typeof(billAmount) !== "number"){
+    if (!billAmount !== isNaN){
         console.log("not valid number try again")
         return "not valid number try again"
     }
     if(billAmount <= 50){
+        billAmount = billAmount * 1.2
         console.log(`tip 20%`)
     }else if(billAmount > 50 && billAmount <= 200){
+        billAmount = billAmount * 1.15
         console.log(`tip 15%`)
     }else {
+        billAmount = billAmount * 1.1
         console.log(`tip 10%`)
     }
 }
@@ -218,6 +221,8 @@ changeEnough(4.25, [25, 20, 5, 0])
 
 
 
+
+
 function hotelCost(numerOfNights){
     if(typeof numerOfNights !== "number" || isNaN(numerOfNights) || numerOfNights <= 0){
         return ("try again. you did smth wrong")
@@ -253,29 +258,29 @@ function rentalCarCost(numberOfDays){
 }
 
 
-function totalVacationCost(){
-    const numNights = parseInt(prompt("Enter the number of nights you will stay in the hotel:"));
-    const destination = prompt("Enter your destination:");
-    const numDays = parseInt(prompt("Enter the number of days you will rent the car:"));
+// function totalVacationCost(){
+    // const numNights = parseInt(prompt("Enter the number of nights you will stay in the hotel:"));
+    // const destination = prompt("Enter your destination:");
+    // const numDays = parseInt(prompt("Enter the number of days you will rent the car:"));
 
 
-    const hotelTotal = hotelCost(numNights);
-    const planeTotal = planeRideCost(destination);
-    const carTotal = rentalCarCost(numDays);
+    // const hotelTotal = hotelCost(numNights);
+    // const planeTotal = planeRideCost(destination);
+    // const carTotal = rentalCarCost(numDays);
 
-    if (typeof hotelTotal === "string") {
-        return hotelTotal;
-    }
-    if (typeof planeTotal === "string") {
-        return planeTotal; 
-    }
-    if (typeof carTotal === "string") {
-        return carTotal; 
-    }
+//     if (typeof hotelTotal === "string") {
+//         return hotelTotal;
+//     }
+//     if (typeof planeTotal === "string") {
+//         return planeTotal; 
+//     }
+//     if (typeof carTotal === "string") {
+//         return carTotal; 
+//     }
 
-    const totalCost = hotelTotal + planeTotal + carTotal;
-    console.log(`The car cost: $${carTotal}, the hotel cost: $${hotelTotal}, the plane tickets cost: $${planeTotal}`);
-    return `Total vacation cost: $${totalCost}`;
-}
+//     const totalCost = hotelTotal + planeTotal + carTotal;
+//     console.log(`The car cost: $${carTotal}, the hotel cost: $${hotelTotal}, the plane tickets cost: $${planeTotal}`);
+//     return `Total vacation cost: $${totalCost}`;
+// }
 
-console.log(totalVacationCost())
+// console.log(totalVacationCost())

@@ -1,6 +1,7 @@
-let str = " Hello, World, in, a, frame"
+let str = " Hello, World, in, a, frame" 
 
-let strArr = str.split(",").map((element)=>element.trim())
+let strArr = str.split(",")
+    .map((element)=>element.trim())
 
 console.log(strArr)
 

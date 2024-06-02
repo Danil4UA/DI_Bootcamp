@@ -174,3 +174,13 @@ for(let i = 0; i < names.length; i++){
 }
 
 console.log(result.sort().join(""))
+
+function trickyScope (){
+    for(var i = 0; i< 3; i++){
+        setTimeout(()=>{
+            console.log(i)
+        }, 1000)
+    }
+}
+
+trickyScope()
