@@ -78,5 +78,6 @@
 //                 animateDiv.style.left = left + 'px';
 //             }
 //         }, 1);
-
+ 
 //     })
+//
