@@ -1,0 +1,24 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    height: 100vh;
+    background-image: url("./img/nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+div {
+    text-align: center;
+    border: solid grey 1px;
+    font-size: 48px;
+    min-width: 100px;
+    padding: 25px 0;
+    text-transform: uppercase;
+    color: white;
+    background-color: black;
+    border: yellow solid 3px;
+}
+
+
