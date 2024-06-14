@@ -1,0 +1,22 @@
+.wrap {
+    width: 800px;
+    margin: auto;
+    background-color: silver;
+    padding-top: 20px;
+}
+.header > div {
+    height: 150px;
+    margin: 20px;
+    background-color: plum;
+}
+
+.content {
+    display: flex;
+}
+
+.content > div {
+    margin: 20px;
+    height: 400px;
+    width: 33%;
+    background-color: brown;
+}

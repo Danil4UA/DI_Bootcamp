@@ -1,0 +1,10 @@
+
+.wrap {
+    width: 1200px;
+    margin: auto;
+    background-color: rgb(208, 208, 208);
+}
+
+.header {
+    text-align: center;
+}

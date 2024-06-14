@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+i {
+    font-size: 50px;
+}
+
+.wrap {
+    width: 1200px;
+    margin: auto;
+    background-color: lightgrey;
+}
+a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: black;
+}
+#sign-in {
+    color: white;
+    padding: 10px 20px;
+    background-color: blue;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 50px;
+
+}
+
+.main {
+    background-image: url("sea.jpeg");
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.section {
+    width: 600px;
+    font-weight: bold;
+    margin: auto;
+    color: white;
+    font-size: 30px;
+}
+#data {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+#email {
+ width: 300px;
+ height: 30px;
+ margin-right: 20px;
+}
+
+#submit {
+    width: 100px;
+    color: white;
+    background-color:blue;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer > div {
+    margin: 40px 20px;
+    max-width: 300px;
+    text-align: center;
+}

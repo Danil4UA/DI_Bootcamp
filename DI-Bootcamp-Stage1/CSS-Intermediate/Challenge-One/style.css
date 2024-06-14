@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(53, 53, 128);
+}
+
+#wrap {
+    display: flex;
+    width: 800px;
+    margin: auto;
+}
+
+#nav {
+    background-color: skyblue;
+    padding: 20px;
+}
+
+#content {
+    width: 500px;
+    background-color: rgb(97, 97, 191);
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+#content > ul {
+    list-style: none;
+    text-align: center;
+}
+.copyright {
+    position: absolute;
+    bottom: 250px;
+    right: 500px;
+}

@@ -1,0 +1,25 @@
+.wrap {
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    box-sizing: content-box;
+}
+.header > div {
+    height: 150px;
+    background-color: greenyellow;
+    margin: 10px;
+    border: 2px solid black;
+
+}
+img {
+    width: 30%;
+    border: 2px solid black;
+    margin: 10px;
+
+}
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+

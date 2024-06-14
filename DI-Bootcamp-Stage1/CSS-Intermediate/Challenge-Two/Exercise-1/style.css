@@ -1,0 +1,43 @@
+body {
+
+}
+.header > p {
+    border-bottom: 5px solid black;
+    padding-bottom: 15px;
+}
+.wrap {
+    background-color: aliceblue;
+    width: 800px;
+    margin: auto;
+    border: 5px solid black;
+}
+
+.main {
+    display: flex;
+
+}
+
+.nav > div {
+    width: 150px;
+    height: 150px;
+    background-color: lightcoral;
+    margin: 20px;
+    border: 5px solid black;
+}
+.nav{
+   
+}
+
+.content > div {
+    height: 150px;
+    width: 550px;
+    background-color: skyblue;
+    margin: 20px;
+    border: 5px solid black;
+}
+.footer > div {
+    height: 150px;
+    background-color: rgb(244, 185, 74);
+    margin: 20px;
+    border: 5px solid black;
+}
