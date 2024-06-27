@@ -286,8 +286,6 @@ function addQuote (content, author) {
     )
 }
 
-
-
 button.addEventListener("click", (e)=>{
     e.preventDefault()
     console.log("you made a click")
@@ -310,7 +308,11 @@ function filterQuotesByAuthor(author){
             `<p>${item.quote}</p>`
         )
     })
-    container.innerHTML = result.join("")
+    if(result.length < 1){
+        container.innerHTML = "The qoute is not found in the data base. Please genereta the random quote or add a new author"
+    }else{
+        container.innerHTML = result.join("")
+    }
 
 }
 
