@@ -1,4 +1,3 @@
-
 // Elements: 
 const button = document.getElementById("generate")
 const container = document.querySelector(".container")
@@ -287,11 +286,15 @@ function addQuote (content, author) {
     )
 }
 
-function calculateCharacters (){
-    const amountOfCharacters = container.querySelector(".quote-content")
-    console.log(amountOfCharacters)
 
-}
+
+button.addEventListener("click", (e)=>{
+    e.preventDefault()
+    console.log("you made a click")
+    container.innerHTML = ""
+    container.innerHTML = getRandomQuote()
+})
+
 
 formToAddQuote.addEventListener("submit", (e)=>{
     e.preventDefault()
