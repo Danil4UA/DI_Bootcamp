@@ -3,7 +3,8 @@
 const button = document.getElementById("generate")
 const container = document.querySelector(".container")
 const formToAddQuote = document.getElementById("form-add")
-const calculateCharacters = document.querySelector(".calculate-characters")
+const calculateButton = document.querySelector(".calculate-characters")
+const filterFrom = document.getElementById("filter-form")
 
 const quotes = [
     {
@@ -29,12 +30,12 @@ const quotes = [
     {
       id: 5,
       quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.",
-      author: "Brian Tracy"
+      author: "Stephen Kin"
     },
     {
       id: 6,
       quote: "Believe you can and you're halfway there.",
-      author: "Theodore Roosevelt"
+      author: "Stephen Kin Roosevelt"
     },
     {
       id: 7,
@@ -131,6 +132,12 @@ function addQuote (content, author) {
     )
 }
 
+function calculateCharacters (){
+    const amountOfCharacters = document.getElementById("add-quote").value.trim().length
+    return (`<p>
+            Total amount of characters: ${amountOfCharacters}
+        </p>`)
+}
 
 button.addEventListener("click", (e)=>{
     e.preventDefault()
@@ -148,6 +155,20 @@ formToAddQuote.addEventListener("submit", (e)=>{
 
 })
 
-calculateCharacters.addEventListener("click", (e)=>{
+function filterQuotesByAuthor(author){
+    const result =  quotes.filter((item)=>item.author.includes(author)).map(item=>item.quote)
+
+   return result
+
+}
+
+filterFrom.addEventListener("submit", (e)=>{
     e.preventDefault()
+    const authorName = document.getElementById("filter-author").value.trim()
+    container.innerHTML = filterQuotesByAuthor(authorName)
 })
+// calculateButton.addEventListener("click", (e)=>{
+//     e.preventDefault()
+    
+//     container.appendChild(calculateCharacters())
+// })
