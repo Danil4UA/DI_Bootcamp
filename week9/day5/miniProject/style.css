@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.root {
+    background-color: rgb(107, 6, 208);
+}
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: greenyellow;
+    padding: 20px 0;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1400px;
+    margin: auto;
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+#card {
+    width: 300px;
+    height: 400px;
+    box-sizing: content-box;
+    text-align: center;
+    background-color:rgb(27, 216, 220);
+    border-radius: 7px;
+    padding: 10px 0;
+}
+
+#card img {
+    width: 250px;
+    background-color: plum;
+    border-radius: 50%;
+}
