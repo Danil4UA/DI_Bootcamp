@@ -1,39 +1,67 @@
 body {
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
 }
 
 .root {
     background-color: rgb(107, 6, 208);
+    background-image: url("./Assets/main-background.png");
+    background-repeat: repeat;
 }
 header {
     display: flex;
     position: fixed;
+    justify-content: center;
     top: 0;
     width: 100%;
-    background-color: greenyellow;
+    background-color: rgba(60, 232, 89, 0.851);
     padding: 20px 0;
 }
 
+.logo {
+    font-size: 36px;
+    position: absolute;
+    left: 20px;
+    font-family: 'SEGA LOGO FONT', sans-serif;
+    letter-spacing: 3px;
+}
+#name-to-search {
+    width: 700px;
+}
+#name-to-search, #search-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+}
+
+#search-button:hover {
+    color: rgb(161, 159, 159);
+}
 main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  
     max-width: 1400px;
     margin: auto;
-    padding-top: 100px;
+    padding-top: 150px;
     min-height: 100vh;
+}
+#container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1400px;
 }
 
 #card {
     width: 300px;
-    height: 400px;
+    height: 350px;
     box-sizing: content-box;
     text-align: center;
     background-color:rgb(27, 216, 220);
     border-radius: 7px;
-    padding: 10px 0;
+    padding: 20px 0;
+    background-image: url("./Assets/card-pattern.png");
 }
 
 #card img {

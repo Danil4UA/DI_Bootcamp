@@ -74,11 +74,10 @@ const robots = [
 
 
 //Elements
-const main = document.querySelector("main")
 const form = document.querySelector("form")
 const nameToSearch = document.getElementById("name-to-search")
 const search = document.getElementById("search-button")
-
+const container = document.getElementById("container")
 function createRobotsCards (arr){
 
     const allCards = arr.map((item)=>{
@@ -90,7 +89,7 @@ function createRobotsCards (arr){
             </div>`
         )
     })
-   return main.innerHTML = allCards.join("")
+   return container.innerHTML = allCards.join("")
 }
 
 createRobotsCards(robots)
@@ -101,7 +100,7 @@ form.addEventListener("submit", (e)=>{
     const userData = nameToSearch.value.toLowerCase().trim()
     const filterRobots = robots.filter(item=>(item.name.toLowerCase()).includes(userData))
     
-    main.innerHTML = ""
+    container.innerHTML = ""
     createRobotsCards(filterRobots)
     console.log(filterRobots)
 
