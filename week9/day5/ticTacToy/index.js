@@ -1,50 +1,13 @@
-const buttonX = document.getElementById("x")
-const buttonO = document.getElementById("o")
-const container = document.getElementById("container")
-const allBlocks = document.querySelectorAll("#item")
-
-let blockClicked = false;
+const container = document.getElementById("container");
+const buttonX = document.getElementById("x");
+const buttonO = document.getElementById("o");
 
 let countMoves = 0;
+let availableBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let player1 = [];
+let player2 = [];
 
-
-let availableBlocks = [0,1,2,3,4,5,6,7,8]
-
-
-let user1 = []
-let user2 = []
-
-
-function logic (user, item, i, color){
-    if(!user.includes(i) && availableBlocks.includes(i)){
-        item.style.backgroundColor = color
-        user.push(i)
-        countMoves += 1
-        availableBlocks = availableBlocks.filter(item=>item!==i)
-    }
-
-    let ifWon = winCombos.some(item=>{
-        return item.every(item=>user.includes(item))
-    })
-
-    if(ifWon){
-        console.log(`Victory!`)
-    }
-}
-
-
-allBlocks.forEach((item, i)=>{
-    item.addEventListener("click", ()=>{
-        if(countMoves % 2 === 0){
-            logic(user1, item, i, "blue")
-
-        }else{
-            logic(user2, item, i, "yellow")
-        }
-    })
-})
-
-const winCombos = [
+const WIN_COMBOS = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -53,7 +16,82 @@ const winCombos = [
     [2, 5, 8],
     [0, 4, 8],
     [6, 4, 2]
-]
+];
+
+const COLORS = {
+    player1: "blue",
+    player2: "yellow"
+};
+
+function createGrid() {
+    return `
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    `;
+}
+
+function startGame() {
+    container.innerHTML = createGrid();
+    console.log(container)
+    const allBlocks = document.querySelectorAll(".item");
+    allBlocks.forEach((block, index) => {
+        block.addEventListener("click", () => handleMove(block, index));
+    });
+}
+
+function handleMove(block, index) {
+    if (!availableBlocks.includes(index)) return;
+
+    const currentPlayer = countMoves % 2 === 0 ? player1 : player2;
+    const currentColor = countMoves % 2 === 0 ? COLORS.player1 : COLORS.player2;
+
+    makeMove(currentPlayer, block, index, currentColor);
+
+    if (checkWin(currentPlayer)) {
+        endGame(currentPlayer);
+    } else if (countMoves === 9) {
+        endGame(null); // Draw
+    }
+}
+
+function makeMove(player, block, index, color) {
+    block.style.backgroundColor = color;
+    player.push(index);
+    countMoves++;
+    availableBlocks = availableBlocks.filter(block => block !== index);
+}
+
+function checkWin(player) {
+    return WIN_COMBOS.some(combo => combo.every(index => player.includes(index)));
+}
 
 
+function endGame(player) {
+    if (player) {
+        alert(`The game is over! ${player === player1 ? "Player 1" : "Player 2"} has won!`);
+    } else {
+        alert("The game is over! It's a draw!");
+    }
+    resetGame();
+}
 
+function resetGame() {
+    container.innerHTML = "";
+    countMoves = 0;
+    availableBlocks = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    player1 = [];
+    player2 = [];
+}
+
+buttonX.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("i was clicked")
+    startGame();
+});
