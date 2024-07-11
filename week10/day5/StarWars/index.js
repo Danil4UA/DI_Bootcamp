@@ -12,18 +12,27 @@ button.addEventListener("click",(e)=>{
 async function getPersen(){
     try{
         container.innerHTML = `<i class="fa-solid fa-spinner fa-spin-pulse"></i>`
-        const randomPersonId = Math.floor(Math.random() * 83)
+        const randomPersonId = Math.floor(Math.random() * 83 + 1)
         let url = `https://www.swapi.tech/api/people/${randomPersonId}`
 
         const res = await fetch(url)
         const data = await res.json()
         const result = await data.result
 
+        if (!result) {
+            throw new Error("Character not found");
+        }
+        
         const {name, height, gender, birth_year, homeworld} = result.properties
         
         const homeRes = await fetch(homeworld)
         const homeData = await homeRes.json()
         const homeResult =  await homeData.result
+
+        if (!homeResult) {
+            throw new Error("Home world not found");
+        }
+
         const homeName = await homeResult.properties.name
 
         const dataBlock = `<div id="info">
@@ -37,5 +46,6 @@ async function getPersen(){
         
     }catch(e){
         console.log("Error=> ", e)
+        container.innerHTML = `<p>Error fetching data. Please try again.</p>`;
     }
 }
