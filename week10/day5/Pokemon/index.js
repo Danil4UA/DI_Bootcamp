@@ -54,13 +54,7 @@ async function getRandomPokemon(){
         clearPokemonInfo()
 
         const randomPokemon = Math.floor(Math.random()* 541 + 1);
-
-        const url = `https://pokeapi.co/api/v2/pokemon/${randomPokemon}`
-        const res = await fetch(url)
-        if(!res.ok) throw new Error("Cannot acces the api")
-        const data = await res.json()
-
-        createPokemonHtml(data)
+        await getPokemon(randomPokemon)
     }catch(err){
         console.log("Error=> ", err)
     }
