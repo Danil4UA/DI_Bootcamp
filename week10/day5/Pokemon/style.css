@@ -1,0 +1,59 @@
+#root {
+    height: 100vh;
+}
+
+
+.container {
+background-image: url("./pokedex.png");
+background-repeat: no-repeat;
+height: 700px;
+width: 900px;
+position: relative;
+margin: auto;
+}
+
+#pokemon-info {
+    position: absolute;
+    top: 380px;
+    left: 380px;
+    font-size: 20px;
+}
+#pokemon-image{
+    position: absolute;
+    top: 10px;
+    left: 300px;
+}
+#pokemon-image img{
+    width: 280px;
+}
+
+#button-random {
+    position: absolute;
+    padding: 40px;
+    background-color: green;
+    border-radius: 50%;
+    border: none;
+    right: 85px;
+    top: 440px;
+}
+
+#button-next, #button-previous {
+    background-color: none;
+    border: none;
+    padding: 10px 20px;
+    position: absolute;
+    background-color: grey;
+    border-radius: 5px;
+}
+
+#button-next{
+    top: 470px;
+    left: 210px;
+}
+#button-previous{
+    top: 470px;
+    left: 150px;
+}
+#button-random:hover{
+    cursor: pointer;
+}
