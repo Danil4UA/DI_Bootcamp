@@ -51,11 +51,11 @@ SELECT title, replacement_cost FROM film ORDER BY replacement_cost ASC OFFSET 10
 
 -- Bonus: Try to not use LIMIT.
 
-Write a query which will join the data in the customer table and the payment table. You want to get the first name and last name from the curstomer table, as well as the amount and the date of every payment made by a customer, ordered by their id (from 1 to…).
+-- Write a query which will join the data in the customer table and the payment table. You want to get the first name and last name from the curstomer table, as well as the amount and the date of every payment made by a customer, ordered by their id (from 1 to…).
 
--- SELECT customer.first_name, customer.last_name, payment.amount, payment.payment_date
--- FROM customer, payment
--- WHERE customer.customer_id = payment.customer_id 
+SELECT customer.first_name, customer.last_name, payment.amount, payment.payment_date
+FROM customer, payment
+WHERE customer.customer_id = payment.customer_id 
 	
 You need to check your inventory. Write a query to get all the movies which are not in inventory.
 

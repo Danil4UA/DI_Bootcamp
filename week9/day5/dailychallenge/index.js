@@ -18,6 +18,7 @@ function isAnagram(str1, str2){
 
     const sortedStr1 = str1.toLowerCase().split("").filter(item=>item !== " ").sort().join("")
     const sortedStr2 = str2.toLowerCase().split("").filter(item=>item !== " ").sort().join("")
+    console.log(sortedStr1, sortedStr2)
 
     return sortedStr1 === sortedStr2
 }

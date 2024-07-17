@@ -31,7 +31,7 @@ displayGroceries()
 const cloneGroceries = () => {
     let user = client;
     client = "Betty"
-    // we not gonna have any ,modification in iser variable because we assigned a value before we chenge it. the changes will affect only the variable client.
+    // we not gonna have any ,modification in iser variable because we assigned a value before we change it. the changes will affect only the variable client.
     let shopping = groceries
 
     groceries.totalPrice = "35$"

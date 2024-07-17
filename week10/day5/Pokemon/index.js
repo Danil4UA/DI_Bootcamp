@@ -9,7 +9,7 @@ buttonRandom.addEventListener("click", (e)=>{
     e.preventDefault()
     getRandomPokemon()
 })
-buttonNext.addEventListener("click", async (e)=>{
+buttonNext.addEventListener("click", (e)=>{
     e.preventDefault()
     navigatePokemon(1);
 })
@@ -19,7 +19,6 @@ buttonPrevious.addEventListener("click", (e)=>{
 })
 
 function createPokemonHtml(data){
-
     const {name, id, height, weight} = data
     const image = data.sprites.front_default
 
@@ -30,7 +29,6 @@ function createPokemonHtml(data){
                         <p>Height: ${height}</p>
                         <p>Weight: ${weight}</p>
                     </div>`
-
     pokemonInfo.innerHTML = htmlInfo
     pokemonImage.innerHTML = htmlImage
 }
@@ -52,14 +50,12 @@ async function getPokemon(pokemonId){
 async function getRandomPokemon(){
     try{
         clearPokemonInfo()
-
         const randomPokemon = Math.floor(Math.random()* 541 + 1);
         await getPokemon(randomPokemon)
     }catch(err){
         console.log("Error=> ", err)
     }
 }
-
 
 async function navigatePokemon(offset) {
     try {

@@ -13,12 +13,7 @@
 // Think of the best data structure to save this information within the array.
 // Bonus: Loop through the array to instantiate those instances.
 const videoData = [
-    {
-        id: 1,
-        title: "my title",
-        time: 10,
-        uploade: "Daniel"
-    },
+
 ]
 class Video {
     constructor(title, uploader, time){

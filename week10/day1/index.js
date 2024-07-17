@@ -137,9 +137,62 @@
 // }
 // )
 
+/** 
+* 1. getDataFromServer function return a Promise with data as  
+   Array of objects from server as json
+  
+ * Simulate successful completion after 2 seconds
+ *
+ * 2. Call this function and log the data as an Array datatype
+ *
+ * 3. Simulate an error
+ * 
+ * 4. return to step 2, and create render function that will 
+ * display the users on the page
+*/
 
 const arr = [
     { username: "aaa", email: "aaa@gmail.com" },
     { username: "bbb", email: "bbb@gmail.com" },
     { username: "ccc", email: "ccc@gmail.com" },
   ];
+
+  function getDataFromServer(arr){
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            const dataJson = JSON.stringify(arr)
+            if(JSON.parse(dataJson).length !== 0){
+                res(dataJson)
+            }else{
+                rej("false")
+            }
+        },2000)
+    })
+  }
+  function render(arr){
+    const html = arr.map(item=>{
+        return (`<div>
+                ${item.username}
+            </div>`
+        )
+    })
+    return html.join("")
+  }
+
+
+
+getDataFromServer(arr)
+  .then((result)=>{
+    document.body.innerHTML = render(JSON.parse(result))
+    console.log(result)
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+
+  function a (){
+    return `<h1>Hello</h1>`
+  }
+
+
+  document.body.innerHTML = a()

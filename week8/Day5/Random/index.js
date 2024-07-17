@@ -265,7 +265,7 @@ function getRandomQuote (){
             <p class="quote-content">${quotes[randomNumber].quote}</p>
             <p class="quote-author">${quotes[randomNumber].author}</p>
         </div>
-        <button class="calculate-characters">Calculate characters</button>`
+        `
     )
 }
 
@@ -282,8 +282,22 @@ function addQuote (content, author) {
             <p class="quote-content">${content}</p>
             <p class="quote-author">${author}</p>
         </div>
-        <button class="calculate-characters">Calculate characters</button>`
+       `
     )
+}
+
+function filterQuotesByAuthor(author){
+  const result = quotes.filter((item)=>item.author.includes(author)).map(item=>{
+      return (
+          `<p>${item.quote}</p>`
+      )
+  })
+  if(result.length < 1){
+      container.innerHTML = "The qoute is not found in the data base. Please genereta the random quote or add a new author"
+  }else{
+      container.innerHTML = result.join("")
+  }
+
 }
 
 button.addEventListener("click", (e)=>{
@@ -302,19 +316,6 @@ formToAddQuote.addEventListener("submit", (e)=>{
     container.innerHTML = addQuote(addQuoteContent, addQuoteAuthor)
 })
 
-function filterQuotesByAuthor(author){
-    const result = quotes.filter((item)=>item.author.includes(author)).map(item=>{
-        return (
-            `<p>${item.quote}</p>`
-        )
-    })
-    if(result.length < 1){
-        container.innerHTML = "The qoute is not found in the data base. Please genereta the random quote or add a new author"
-    }else{
-        container.innerHTML = result.join("")
-    }
-
-}
 
 filterFrom.addEventListener("submit", (e)=>{
     e.preventDefault()

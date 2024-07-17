@@ -69,7 +69,14 @@ const robots = [
       username: 'Moriah.Stanton',
       email: 'Rey.Padberg@karina.biz',
       image:'https://robohash.org/10?200x200'
-    }
+    },
+    {
+      id: 11,
+      name: 'Glenna Reichert',
+      username: 'Delphine',
+      email: 'Chaim_McDermott@dana.io',
+      image:'https://robohash.org/9?200x200'
+    },
     ];
 
 
@@ -78,14 +85,15 @@ const form = document.querySelector("form")
 const nameToSearch = document.getElementById("name-to-search")
 const search = document.getElementById("search-button")
 const container = document.getElementById("container")
-function createRobotsCards (arr){
 
-    const allCards = arr.map((item)=>{
+function createRobotsCards (arr){
+  const allCards = arr.map((item)=>{
+      const {id, name, email, image} = item
         return (
-            `<div id="card" class="card-${item.id}">
-                <img src="${item.image}"></img>
-                <p id="card-name">${item.name}</p>
-                <p id="card-email">${item.email}</p>
+            `<div id="card" class="card-${id}">
+                <img src="${image}"></img>
+                <p id="card-name">${name}</p>
+                <p id="card-email">${email}</p>
             </div>`
         )
     })
@@ -99,9 +107,6 @@ form.addEventListener("submit", (e)=>{
     e.preventDefault()
     const userData = nameToSearch.value.toLowerCase().trim()
     const filterRobots = robots.filter(item=>(item.name.toLowerCase()).includes(userData))
-    
     container.innerHTML = ""
     createRobotsCards(filterRobots)
-    console.log(filterRobots)
-
 })
