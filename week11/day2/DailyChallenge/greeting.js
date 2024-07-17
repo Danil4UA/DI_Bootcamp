@@ -2,9 +2,9 @@ export function greet (name){
     return `Hello, ${name}`
 }
 
-export const hello = ()=>{
-    return `Hello`
-}
+// export const hello = ()=>{
+//     return `Hello`
+// }
 
 
 // function greet (name){
