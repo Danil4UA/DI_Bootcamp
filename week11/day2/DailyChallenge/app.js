@@ -1,9 +1,9 @@
 // common js 
 import {greet} from "./greeting.js"
-import {makeColorful} from "./colorful-message.js"
+import { makeColorful } from "./colorful-message.js"
 
 console.log(
-    greet("Daniel")
+    greet("John")
 )
 
 console.log(makeColorful("This is my red text"))
