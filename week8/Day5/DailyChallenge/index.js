@@ -7,8 +7,9 @@
 
 
 function allTruthy (...params) {
-    let allParams  = [...params]
-    return allParams.every((element)=> element)
+    return params.every((element)=> element)
 }
 
-allTruthy(5, 4, 3, 2, 1, 0);
+console.log(
+    allTruthy(true, true, false) 
+)
