@@ -9,3 +9,7 @@ export async function fetchPosts(url) {
         throw error; // Re-throw the error to handle it in the route handler
     }
 }
+
+const a = () =>{
+    
+}
