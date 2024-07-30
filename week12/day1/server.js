@@ -10,13 +10,34 @@ app.listen(port, ()=>{
     console.log(`server running on port ${port}...`)
 })
 
-app.use("/", productsRouter)
+app.use("/products", productsRouter)
 app.use("/users", usersRouter)
+
+// logger
+// const logger = (req, res, next) => {
+//     console.log(req.url, req.method)
+//     next()
+// }
+
+// app.use("/users") // only for users / if we dont specify route we do middleware for every route.
 
 
 app.get("*", (req,res)=>{
     res.send("The page doesn't exist")
 })
+
+/**
+ * routes - router
+ * controllers
+ * config
+ * module
+ * 
+ * middleware 
+ * middleware - ites a function. its coming between request and response 
+ * request -> middleware -> response
+ */
+
+
 /**
  * server.js
  *  |_config - connections to database
