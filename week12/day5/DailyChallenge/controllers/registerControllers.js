@@ -4,7 +4,10 @@ const {users} = require("../config/users.js")
 async function registerUser(req,res){
     try {
         const {username, password} = req.body
-        console.log(username,password)
+        const ifIndexExist = users.findIndex(user=>user.username === username)
+        if(ifIndexExist !== -1){
+            return res.json({message: "user already exist"})
+        }
         const saltRounds = 5
         const salt = bcrypt.genSaltSync(saltRounds)
         const hash = bcrypt.hashSync(password, salt)
