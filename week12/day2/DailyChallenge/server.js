@@ -13,21 +13,15 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(express.static('public'));  
 
-// app.get("/questions", (req,res)=>{
-//     res.json(triviaQuestions)
-// })
-
-// app.get("/quiz/:id", (req,res)=>{
-//     const {id} = req.params
-//     const question = triviaQuestions[id].question
-//     const answer = triviaQuestions[id].answer
-//     res.json({question, answer})
-// })
-
-app.post("/quiz", (req,res)=>{
-
+app.get("/quiz", (req,res)=>{
+    res.json(triviaQuestions)
 })
 
-app.get("/quiz/score", (req,res)=>{
-    
-})
+app.post("/quiz", (req, res) => {
+    const response = { ...req.body };
+    if (response.data.quizAnswer === response.correctFinal.answer) {
+        return res.json({ message: "Correct" });
+    }
+    res.json({ message: "Not correct" });
+    console.log(response);
+});

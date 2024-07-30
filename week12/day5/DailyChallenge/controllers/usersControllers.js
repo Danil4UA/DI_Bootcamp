@@ -27,18 +27,24 @@ async function getUserById(req,res){
 async function updateUserById(req,res) {
     try {
         const {id} = req.params;
-        const {username, password} = req.body
-
-        const salt = bcrypt.genSaltSync(saltRounds)
-        const hash = bcrypt.hashSync(password, salt)
-
         const index = users.findIndex(user=>user.id == id);
         if(index === -1)res.json({message: "User not found"})
-        users[index] = {username, password: hash}
-        res.json(users[index]).status(200)
+
+        const {username, password} = req.body;
+        
+        if(password){
+            const saltRounds = 5
+            const salt = bcrypt.genSaltSync(saltRounds)
+            const hash = bcrypt.hashSync(password, salt)
+            users[index] = {...users[index], username: username || users[index].username, password: hash}
+        }else {
+            users[index] = { ...users[index], username: username || users[index].username };
+        }
+
+        res.status(200).json(users[index]);
     } catch (error) {
         console.log(error)
-        res.status(404).json({error})
+        res.status(500).json({ error: 'An error occurred while updating the user' })
     }
 }
 

@@ -1,4 +1,4 @@
-const express = require("express");
+
 const {tasks} = require("../config/tasks.js");
 
 async function getAllTaks (req, res){
