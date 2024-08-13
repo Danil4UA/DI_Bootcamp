@@ -1,0 +1,8 @@
+.userstyle {
+    border: 1px solid black;
+    margin: 25px;
+    padding: 20px;
+    background-color: lightgreen;
+    width: 300px;
+    min-height: 500px;
+}
