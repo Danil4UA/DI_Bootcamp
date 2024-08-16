@@ -1,5 +1,5 @@
 const Footer = () => {
-    const year = new Date().getFullYear()
+    c 
     return (
         <>
             <footer>
