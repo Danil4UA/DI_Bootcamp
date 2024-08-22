@@ -1,0 +1,31 @@
+img {
+  width: 200px;
+  height: 250px;
+}
+#root {
+  width: 1200px;
+  margin: auto;
+}
+nav {
+  padding: 20px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  font-size: 34px;
+  display: flex;
+  justify-content: flex-end;
+}
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid black;
+}
+h1 {
+  text-align: center;
+}

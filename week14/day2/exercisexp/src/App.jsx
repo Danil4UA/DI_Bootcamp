@@ -1,7 +1,7 @@
 
 import './App.css'
 import Car from "./Components/Car.jsx"
-import Events from './Components/Events.jsx';
+import Phone from './Components/Phone.jsx';
 const carinfo = {name: "Ford", model: "Mustang"};
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Car model={carinfo.model}></Car>
-      <Events></Events>
+      <Phone></Phone>
     </>
   )
 }
