@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <h2>Daily Planner Application using React-Redux</h2>
-      <Planner></Planner>
+        <Planner></Planner>
     </>
   )
 }

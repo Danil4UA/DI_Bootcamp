@@ -1,6 +1,7 @@
 import { selectGenres} from "./state/selectors"
 import {useSelector, useDispatch} from "react-redux"
 import {filterBooks} from "./state/slice"
+
 const BooksSelectGenre = () => {
     const dispatch = useDispatch()
     const genres = useSelector(selectGenres)

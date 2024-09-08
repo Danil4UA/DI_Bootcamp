@@ -1,4 +1,4 @@
-
+import Users from './features/users/Users.jsx'
 import './App.css'
 import Counter from "./features/counter/Counter.jsx"
 
@@ -10,6 +10,7 @@ function App() {
         <h2>Redux Toolkit - RTK</h2>
         <Counter></Counter>
       </div>
+      <Users></Users>
     </>
   )
 }

@@ -1,8 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 
 const initialState = {
     count: 0,
 }
+// 1 param is a type 
+
+export const delaytIncrementThunk = createAsyncThunk("counter/delay", ()=>{
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            rej(5)
+        }, 5000)
+    })
+})
 
 export const counterSlice = createSlice({
     name: "counter",
@@ -31,6 +40,15 @@ export const counterSlice = createSlice({
             console.log(result)
             state.count = state.count + result
         },
+        // addFive: (state) => {
+        //     // setTimeout(()=>{
+        //     //     state.count += 5
+        //     // },5000)
+        //    setTimeout(()=>{
+        //     state.count = state.count + 5
+        //    },5000)
+         
+        // },
         incrementWithPrepare: {
             // we still have payload as one param but we preparing and overwriting it below. we can send a prepared action
             reducer(state, action){
@@ -42,6 +60,15 @@ export const counterSlice = createSlice({
                 };
             }
         }
+    },
+    extraReducers(builder){
+        builder
+            .addCase(delaytIncrementThunk.fulfilled, (state, action)=>{
+                state.count += action.payload 
+            })
+            .addCase(delaytIncrementThunk.rejected, (state, action)=>{
+                console.log(action)
+            })
     }
 })
 
