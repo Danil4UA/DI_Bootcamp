@@ -9,13 +9,13 @@ import Favorites from './components/Favorites'
 function App() {
 
   return (
-<>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/favorites' element={<Favorites />} />
-        </Routes>
-</>
+          <>
+                  <Header />
+                  <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/favorites' element={<Favorites />} />
+                  </Routes>
+          </>
      
 
   )

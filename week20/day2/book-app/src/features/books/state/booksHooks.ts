@@ -15,7 +15,6 @@ export const useSelectStatus = () => {
 export const useFetchBooks = (searchTerm:string) => {
     console.log("fetching data...")
     const dispatch = useDispatch<AppDispatch>()
-
     useEffect(()=>{
         dispatch(fetchBooks(searchTerm))
     }, [dispatch])

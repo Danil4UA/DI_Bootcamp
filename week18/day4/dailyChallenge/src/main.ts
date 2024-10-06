@@ -44,7 +44,7 @@ type User = {
 //       }
 //     return "Invalid data"
 //   })
- 
+
  }
 
  console.log(

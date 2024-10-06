@@ -12,7 +12,8 @@ const DataFetcher = () => {
     useEffect(() => {
       dispatch(fetchData());
     }, [dispatch]);
-  
+
+    
     return (
       <>
         <h1>Data Fetcher</h1>

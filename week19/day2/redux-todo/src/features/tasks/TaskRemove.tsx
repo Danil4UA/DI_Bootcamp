@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from "./state/tasksHooks"
 import { removeTask } from "./state/tasksSlice"
 
 interface TaskRemoveProps {
@@ -7,8 +7,8 @@ interface TaskRemoveProps {
 const TaskRemove = (props: TaskRemoveProps) => {
     const {id} = props
 
-    const dispatch = useDispatch()
-    
+    const dispatch = useAppDispatch()
+
     const handleRemove = () => {
         dispatch(removeTask(id))
     }

@@ -1,6 +1,6 @@
 import BookList from './features/books/ BookList'
-import Header from './features/books/state/Header'
-import Book from './features/books/state/Book'
+import Header from './features/books/Header'
+import Book from './features/books/Book'
 import './App.css'
 
 function App() {

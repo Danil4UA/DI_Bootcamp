@@ -6,9 +6,10 @@
 // you’ll ensure the application is type-safe and maintainable. 
 // The exercise will also introduce you to organizing projects with Vite.
 
+// root Element
+const app = document.getElementById("app") as HTMLDivElement
 
 // Types & Interfaces
-
 interface Task {
   id: number
   task: string
@@ -17,11 +18,19 @@ interface Task {
 type AllTask = Task[]
 
 
-
+// Initial array of tasks
 const tasks: AllTask = []
 
 
-const app = document.getElementById("app") as HTMLDivElement
+// function to creacte task
+const createTask = (value: string) => {
+  const newTask: Task = {
+    id: tasks.length,
+    task: value,
+    isCompleted: false
+  }
+  tasks.push(newTask)
+}
 
 
 // Function to Delete the task By Id
@@ -45,7 +54,6 @@ const displayTasks = () => {
   container.innerHTML = tasksHTML.join("")
   const deleteButtons = document.querySelectorAll(".delete-task")
 
-
   // Logic to add an event listenerres to the delete buttons
   deleteButtons.forEach((item)=>{
     item.addEventListener("click", (e)=>{
@@ -56,18 +64,6 @@ const displayTasks = () => {
   })
   
 }
-
-// function to creacte task
-const createTask = (value: string) => {
-  const newTask: Task = {
-    id: tasks.length,
-    task: value,
-    isCompleted: false
-  }
-  tasks.push(newTask)
-}
-
-
 
 const eventsListeners = () => {
   const input = document.getElementById("input") as HTMLInputElement
@@ -88,10 +84,8 @@ const eventsListeners = () => {
 }
 
 const createTodo = (): void => {
-
   const createContainer = document.createElement("div")
   createContainer.className = "container"
-
   createContainer.innerHTML = 
   
   `

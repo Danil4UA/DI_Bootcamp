@@ -1,6 +1,6 @@
 
 import './App.css'
-import DataFetcher from "./features/data/DataFetcher.tsx"
+import DataFetcher from "./features/data/dataFetcher.tsx"
 
 function App() {
 

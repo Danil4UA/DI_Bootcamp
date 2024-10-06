@@ -1,8 +1,8 @@
-import { useFetchBooks } from "./booksHooks";
+import { useFetchBooks } from "./state/booksHooks";
 import { useRef } from "react";
 import { useDispatch } from "react-redux"; 
-import { AppDispatch } from "../../../app/store";
-import { fetchBooks } from "./booksSlice"; 
+import { AppDispatch } from "../../app/store";
+import { fetchBooks } from "./state/booksSlice"; 
 
 const Book = (): JSX.Element => {
     useFetchBooks("*");

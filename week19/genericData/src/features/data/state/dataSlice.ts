@@ -5,6 +5,7 @@ import axios from "axios"
 
 
 const KEY: string = "bf51406349mshad5cf8ef34071cap1dbf10jsn531183fd29d8"
+const HOST = 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
 const URL: string = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=vegetarian%2Cdessert&number=1';
 
 
@@ -21,7 +22,7 @@ export const fetchData = createAsyncThunk("data/fetchdata", async () => {
     const response = await axios.get(URL, {
         headers: {
             'x-rapidapi-key': KEY,
-            'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+            'x-rapidapi-host': HOST,
         }
     } )
     return response.data
