@@ -12,15 +12,17 @@ const verifyAccessToken = (req, res, next) => {
     if (!token) {
         res.status(401).json({ message: "unauthorized" });
     }
-    jsonwebtoken_1.default.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
-        if (err) {
-            res.status(403).json({ message: "Forbidden", error: err.message });
-        }
-        const { userid, email } = decoded;
-        // validation 
-        req.body.userid = userid;
-        req.body.email = email;
-        next();
-    });
+    else {
+        jsonwebtoken_1.default.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
+            if (err) {
+                res.status(403).json({ message: "Forbidden", error: err.message });
+            }
+            const { userid, email } = decoded;
+            // validation 
+            req.body.userid = userid;
+            req.body.email = email;
+            next();
+        });
+    }
 };
 exports.verifyAccessToken = verifyAccessToken;
