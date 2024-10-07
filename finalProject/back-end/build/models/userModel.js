@@ -32,6 +32,12 @@ exports.userModules = {
             throw error;
         }
     }),
+    getUserByEmail: (...args_1) => __awaiter(void 0, [...args_1], void 0, function* (email = "") {
+        return yield (0, db_1.db)("authusers")
+            .select("id", "email", "password")
+            .where({ email })
+            .first();
+    }),
     getUsers: () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             return yield (0, db_1.db)("authusers")

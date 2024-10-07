@@ -1,6 +1,7 @@
 import { db } from "../config/db";
 import bcrypt from "bcrypt"
 
+
 interface UserInfo {
     email: string
     password: string
@@ -26,6 +27,12 @@ export const userModules = {
             console.log(error)
             throw error
         }
+    },
+    getUserByEmail: async (email: string = "") => {
+        return await db("authusers")
+                .select("id", "email", "password")
+                .where({email})
+                .first()
     },
     getUsers: async()=>{
         try {
