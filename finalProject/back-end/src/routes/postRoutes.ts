@@ -4,6 +4,8 @@ import {postControllers} from "../controllers/postControllers"
 
 const router = express.Router()
 
-router.post("/create", verifyAccessToken,postControllers.createPost)
+router.get("/all", verifyAccessToken, postControllers.getAllPosts)
+router.get("/:id", verifyAccessToken, postControllers.getPostById)
+router.post("/create", verifyAccessToken, postControllers.createPost)
 
 export default router

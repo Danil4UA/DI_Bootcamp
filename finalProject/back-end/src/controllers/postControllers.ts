@@ -21,5 +21,35 @@ export const postControllers = {
             console.error("Error creating post: ", error);
             res.status(500).json({ message: "Internal server error" });
         }
+    },
+    getAllPosts: async (req: Request, res: Response) => {
+        try {
+            const posts = await postModels.getAllPosts()
+            res.status(200).json({
+                message: "Posts are fetched successfully",
+                posts
+            })
+        } catch (error) {
+            console.error("Error fetching posts: ", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    },
+    getPostById: async (req: Request, res: Response) => {
+        try {
+            const {id} = req.params
+            const post = await postModels.getPostById(id)
+            if (post.length === 0) {
+                res.status(404).json({ message: "Post not found" });
+            }else{
+                res.status(200).json({
+                    message: "Post fetched success",
+                    post
+                })
+            }
+
+        } catch (error) {
+            console.error("Error fetching post: ", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
     }
 }   

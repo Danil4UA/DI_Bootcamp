@@ -16,11 +16,9 @@ interface PostInfo {
 }
 export const postModels = {
     createPost: async(postInfo: PostInfo) => {
-
-
     function convertPostToSentence(content: Content): string {
         const emojiText = content.emojis ? "with emojis" : "without emojis";
-        
+
         const parts = [
             `Create a ${content.size} post for "${content.request}"`,
             `in ${content.language} language`,
@@ -57,6 +55,29 @@ export const postModels = {
 
         } catch (error) {
             await trx.rollback()
+            console.log(error)
+            throw error
+        }
+    },
+
+    getAllPosts: async ()=>{
+        try {
+            return await db("posts")
+                .select("id","user_id", "content", "status",)
+        } catch (error) {
+
+            console.log(error)
+            throw error
+        }
+    },
+
+    getPostById: async (id: string) => {
+        try {
+            return await db("posts")
+                .select("id","user_id", "content", "status")
+                .where({"id": id})
+            
+        } catch (error) {
             console.log(error)
             throw error
         }
