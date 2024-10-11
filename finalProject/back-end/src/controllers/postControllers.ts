@@ -6,6 +6,7 @@ export const postControllers = {
 
     createPost: async (req: Request, res: Response) => {
         const { content, userid } = req.body;
+        console.log(content, userid)
         // need to add this to the type 
 
         // const {userid} = req.userinfo

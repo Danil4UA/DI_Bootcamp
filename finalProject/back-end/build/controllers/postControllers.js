@@ -14,6 +14,7 @@ const postModel_1 = require("../models/postModel");
 exports.postControllers = {
     createPost: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { content, userid } = req.body;
+        console.log(content, userid);
         // need to add this to the type 
         // const {userid} = req.userinfo
         if (!content || content.length === 0) {

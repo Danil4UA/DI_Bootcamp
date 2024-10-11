@@ -1,20 +1,23 @@
 interface SelectInputProps {
     size?: string[]
     language?: string[]
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectInput = ({size, language}:SelectInputProps): JSX.Element => {
-    const selectedProps = size || language
-    if(!selectedProps) return <>Props not found</>
+
+const SelectInput = ({ size, language, onChange }: SelectInputProps): JSX.Element => {
+    const selectedProps = size || language;
+    if (!selectedProps) return <>Props not found</>;
+    
     return (
-        <>
-            <select>
-                {selectedProps.map((item)=>{
-                    return <option key={item}>{item}</option>
-                })} 
-            </select>
-        </>
-    )
+        <select onChange={onChange}>
+            {selectedProps.map((item) => (
+                <option key={item} value={item}>
+                    {item}
+                </option>
+            ))}
+        </select>
+    );
 }
 
 

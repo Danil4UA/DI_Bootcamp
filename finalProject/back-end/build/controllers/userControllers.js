@@ -42,32 +42,33 @@ exports.userControllers = {
             res.status(500).json({ message: "Internal server error" });
         }
     }),
+    // put any response because return doesnt work withou it.
+    // ask ziv why
     loginUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { email, password } = req.body;
         try {
             const user = yield userModel_1.userModules.getUserByEmail(email);
             if (!user) {
-                res.status(404).json({ message: "user not found" });
+                return res.status(404).json({ message: "User not found" });
             }
             const passwordMatch = yield bcrypt_1.default.compare(password + "", user.password);
             if (!passwordMatch) {
-                res.status(401).json({ message: "auth failed" });
+                return res.status(401).json({ message: "Auth failed" });
             }
-            // Generate token
             const accessToken = jsonwebtoken_1.default.sign({ userid: user.id, email: user.email }, ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
-                maxAge: 60 * 1000,
+                maxAge: 60 * 60 * 1000,
             });
-            res.status(200).json({
+            return res.status(200).json({
                 message: "Login success",
                 user: { userid: user.id, email: user.email },
                 accessToken: accessToken,
             });
         }
         catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "internal server error" });
+            console.error(error);
+            return res.status(500).json({ message: "Internal server error" });
         }
     }),
     getUsers: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -82,24 +83,31 @@ exports.userControllers = {
             console.log(error);
         }
     }),
-    // verifyAuth: (req: any, res: Response) => {
-    //     if (!req.userid || !req.email) {
-    //         res.status(400).json({ message: "Invalid data" });
-    //     }else{
-    //         const accessToken = jwt.sign(
-    //             { userid: req.userid, email: req.email },
-    //             ACCESS_TOKEN_SECRET,
-    //             { expiresIn: "60s" }
-    //         );
-    //         res.cookie("accessToken", accessToken, {
-    //             httpOnly: true,
-    //             maxAge: 60 * 1000
-    //         });
-    //         res.json({
-    //             message: "Auth success",
-    //             user: { userid: req.userid, email: req.email },
-    //             accessToken
-    //         });
-    //     }
-    // }
+    verifyAuth: (req, res) => {
+        // req any type because i didn't add useid to the interface 
+        // res any type because without it i cannot use return . it throws an error
+        if (!req.body.userid || !req.body.email) {
+            res.status(400).json({ message: "Invalid data" });
+        }
+        else {
+            const accessToken = jsonwebtoken_1.default.sign({ userid: req.body.userid, email: req.body.email }, ACCESS_TOKEN_SECRET, { expiresIn: "60s" });
+            res.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                maxAge: 60 * 1000
+            });
+            res.json({
+                message: "Auth success",
+                user: { userid: req.userid, email: req.email },
+                accessToken
+            });
+        }
+    },
+    logoutUser: (req, res) => {
+        res.clearCookie("accessToken", {
+            httpOnly: true,
+            secure: true, // Make sure you set secure flag in production
+            sameSite: "strict" // To avoid CSRF attacks
+        });
+        res.status(200).json({ message: "Logout successful" });
+    }
 };

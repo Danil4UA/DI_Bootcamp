@@ -27,12 +27,14 @@ export const createPost = createAsyncThunk(
         try {
             const response = await axios.post(`${URL}/posts/create`, {
                 content: content
-            });
-            console.log("Slice create Post response => ", response)
-            console.log("Slice create Post response data => ", response.data)
+            },
+            {
+                withCredentials: true
+            }
+        );
             return response.data;
         } catch (error) {
-            console.log(error)
+            console.log("error => ", error)
         }
        
     }

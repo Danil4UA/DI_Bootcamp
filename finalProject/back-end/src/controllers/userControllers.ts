@@ -31,41 +31,42 @@ export const userControllers = {
         }
     },
 
-    loginUser: async (req: Request, res: Response) => {
-        const { email, password } = req.body;
+    // put any response because return doesnt work withou it.
+    // ask ziv why
 
+    loginUser: async (req: Request, res: any) => {
+        const { email, password } = req.body;
+    
         try {
             const user = await userModules.getUserByEmail(email);
             if (!user) {
-                res.status(404).json({ message: "user not found" });
+                return res.status(404).json({ message: "User not found" });
             }
-
-            const passwordMatch = await bcrypt.compare(password+ "", user.password);
+            const passwordMatch = await bcrypt.compare(password + "", user.password);
             if (!passwordMatch) {
-                res.status(401).json({ message: "auth failed" });
+                return res.status(401).json({ message: "Auth failed" });
             }
 
-            // Generate token
             const accessToken = jwt.sign(
                 { userid: user.id, email: user.email },
                 ACCESS_TOKEN_SECRET,
                 { expiresIn: "1h" }
             );
-
+    
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
-                maxAge: 60 * 1000,
+                maxAge: 60 * 60 * 1000,
             });
 
-            res.status(200).json({
+            return res.status(200).json({
                 message: "Login success",
                 user: { userid: user.id, email: user.email },
                 accessToken: accessToken,
             });
-
+    
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "internal server error" });
+            console.error(error);
+            return res.status(500).json({ message: "Internal server error" });
         }
     },
     
@@ -81,27 +82,40 @@ export const userControllers = {
         }
     },
 
-    // verifyAuth: (req: any, res: Response) => {
-    //     if (!req.userid || !req.email) {
-    //         res.status(400).json({ message: "Invalid data" });
-    //     }else{
-    //         const accessToken = jwt.sign(
-    //             { userid: req.userid, email: req.email },
-    //             ACCESS_TOKEN_SECRET,
-    //             { expiresIn: "60s" }
-    //         );
+    verifyAuth: (req: any, res: Response) => {
+
+        // req any type because i didn't add useid to the interface 
+        // res any type because without it i cannot use return . it throws an error
+
+        if (!req.body.userid || !req.body.email) {
+            res.status(400).json({ message: "Invalid data" });
+        }else{
+            const accessToken = jwt.sign(
+
+                { userid: req.body.userid, email: req.body.email },
+                ACCESS_TOKEN_SECRET,
+                { expiresIn: "60s" }
+            );
         
-    //         res.cookie("accessToken", accessToken, {
-    //             httpOnly: true,
-    //             maxAge: 60 * 1000
-    //         });
+            res.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                maxAge: 60 * 1000
+            });
             
-    //         res.json({
-    //             message: "Auth success",
-    //             user: { userid: req.userid, email: req.email },
-    //             accessToken
-    //         });
-    //     }
-    // }
+            res.json({
+                message: "Auth success",
+                user: { userid: req.userid, email: req.email },
+                accessToken
+            });
+        }
+    },
+    logoutUser: (req: Request, res: Response) => {
+        res.clearCookie("accessToken", {
+            httpOnly: true,
+            secure: true,  // Make sure you set secure flag in production
+            sameSite: "strict" // To avoid CSRF attacks
+        });
+        res.status(200).json({message: "Logout successful"});
+    }
 }
 
