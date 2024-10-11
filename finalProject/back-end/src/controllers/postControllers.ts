@@ -6,6 +6,9 @@ export const postControllers = {
 
     createPost: async (req: Request, res: Response) => {
         const { content, userid } = req.body;
+        // need to add this to the type 
+
+        // const {userid} = req.userinfo
 
         if (!content || content.length === 0) {
             res.status(400).json({ message: "Content is required" });
@@ -49,6 +52,40 @@ export const postControllers = {
 
         } catch (error) {
             console.error("Error fetching post: ", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    },
+    deletePostById: async (req: Request, res: Response) => {
+        try {
+            const {id} = req.params
+            const deletedPost = await postModels.deletePostById(id)
+        if (deletedPost === 0) {
+            res.status(400).json({ message: "Post not found" })
+        }
+        res.status(200).json({ message: "Post deleted successfully" }) 
+        } catch (error) {
+            console.error("Error deleting post: ", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    },
+
+    editPostById: async (req: Request, res: Response) => {
+        try {
+            const {id} = req.params
+            const {content} = req.body
+            
+            const updatedRows = await postModels.editPostById(id, content)
+            const updatedPost = await postModels.getPostById(id)
+            if(!updatedRows){
+                res.status(400).json({ message: "Post update faild" })
+            }else{
+                res.status(200).json({ 
+                    message: "Post updated successfully",
+                    updatedPost
+                }) 
+            }
+        } catch (error) {
+            console.error("Error updating post: ", error);
             res.status(500).json({ message: "Internal server error" });
         }
     }

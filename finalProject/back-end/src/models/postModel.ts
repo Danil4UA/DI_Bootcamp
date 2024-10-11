@@ -32,12 +32,15 @@ export const postModels = {
 
         const trx = await db.transaction();
         try {
+            if(!createContent) throw Error
+
             const client = new OpenAI({
                 apiKey: process.env.OPENAI_API_KEY
             });
 
             
             const params: OpenAI.Chat.ChatCompletionCreateParams = {
+                // check how you ar e saving messages 
                 messages: [{ role: 'user', content: createContent}],
                 model: 'gpt-3.5-turbo',
             };
@@ -73,10 +76,45 @@ export const postModels = {
 
     getPostById: async (id: string) => {
         try {
-            return await db("posts")
-                .select("id","user_id", "content", "status")
-                .where({"id": id})
+            const post = await db("posts")
+                .select("id", "user_id", "content", "status")
+                .where({ "id": id })
+                .first()
             
+            if (!post) {
+                throw new Error("Post not found.");
+            }
+
+            return post;
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error fetching post.");
+        }
+
+    },
+    deletePostById: async (id: string) => {
+        try {
+            const deletedRows = await db("posts")
+                .delete()
+                .where({"id": id})
+            return deletedRows
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    },
+
+    editPostById: async (id: string, content: string) => {
+        try {
+            const updatedRows = await db("posts")
+                .update({ content })
+                .where({ id });
+
+            if (updatedRows === 0) {
+                throw new Error("Post not found or not updated.");
+            }
+            return updatedRows;
+
         } catch (error) {
             console.log(error)
             throw error

@@ -19,6 +19,10 @@ const verifyAccessToken = (req, res, next) => {
             }
             const { userid, email } = decoded;
             // validation 
+            // req.userinfo = {
+            //      userid,
+            //      email
+            // }
             req.body.userid = userid;
             req.body.email = email;
             next();

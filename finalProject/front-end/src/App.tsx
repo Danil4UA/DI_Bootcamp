@@ -1,33 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './features/Header'
+import Login from './features/Login'
+import Register from './features/Register'
+import Admin from './features/Admin'
+import {Route, Routes} from "react-router-dom"
+import Dashboard from './features/Dashboard'
 
-function App() {
-  const [count, setCount] = useState(0)
+// import { createContext, useState } from 'react'
+// import { Dispatch, SetStateAction } from 'react';
+// import Auth from './Auth/Auth'
+
+// interface AuthContextProps {
+//   token: string | null;
+//   setToken: Dispatch<SetStateAction<string | null>>;
+// }
+
+// export const AuthContext = createContext<AuthContextProps>({
+//   token: null,
+//   setToken: () => {}
+// });
+function App():JSX.Element {
+  // const [token, setToken] = useState(null)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    {/* <AuthContext.Provider value={{token, setToken}}> */}
+      <Header />
+        <Routes>
+          <Route path='/' element={<Dashboard/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
+          {/* <Route path='/admin' element={<Auth><Admin/></Auth>} /> */}
+          <Route path='/admin' element={<Admin/>} />
+        </Routes>
+      {/* </AuthContext.Provider> */}
     </>
   )
 }

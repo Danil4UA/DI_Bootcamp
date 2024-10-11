@@ -49,7 +49,7 @@ export const userControllers = {
             const accessToken = jwt.sign(
                 { userid: user.id, email: user.email },
                 ACCESS_TOKEN_SECRET,
-                { expiresIn: "60s" }
+                { expiresIn: "1h" }
             );
 
             res.cookie("accessToken", accessToken, {
@@ -79,6 +79,29 @@ export const userControllers = {
         } catch (error) {
             console.log(error)
         }
-    }
+    },
+
+    // verifyAuth: (req: any, res: Response) => {
+    //     if (!req.userid || !req.email) {
+    //         res.status(400).json({ message: "Invalid data" });
+    //     }else{
+    //         const accessToken = jwt.sign(
+    //             { userid: req.userid, email: req.email },
+    //             ACCESS_TOKEN_SECRET,
+    //             { expiresIn: "60s" }
+    //         );
+        
+    //         res.cookie("accessToken", accessToken, {
+    //             httpOnly: true,
+    //             maxAge: 60 * 1000
+    //         });
+            
+    //         res.json({
+    //             message: "Auth success",
+    //             user: { userid: req.userid, email: req.email },
+    //             accessToken
+    //         });
+    //     }
+    // }
 }
 

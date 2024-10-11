@@ -17,7 +17,11 @@ export const verifyAccessToken = (req: Request ,res: Response ,next: NextFunctio
     
             // validation 
     
-            req.body.userid = userid
+            // req.userinfo = {
+            //      userid,
+            //      email
+            // }
+            req.body.userid =  userid
             req.body.email = email
             next()
         })
