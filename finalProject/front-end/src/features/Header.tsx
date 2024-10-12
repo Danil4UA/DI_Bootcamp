@@ -16,8 +16,8 @@ const Header = (): JSX.Element => {
         try {
             const response = await axios.delete("http://localhost:5001/api/users/logout")
             if(response.status === 200){
-                console.log("Logged out successfully", token); // Здесь вы можете увидеть токен перед его очисткой
-                setToken(null); // Clear the token in the AuthContext
+                console.log("Logged out successfully", token); 
+                setToken(null);
             }
         } catch (error) {
             console.log("Error during logout", error)
@@ -26,13 +26,18 @@ const Header = (): JSX.Element => {
 
     return (
         <>  
+        {!token? 
             <Stack spacing={2} direction={"row"}>
-                <Button component={Link} to="/">Dashboard</Button>
-                <Button component={Link} to="/login">Login</Button>
-                <Button component={Link} to="/register">Register</Button>
-                <Button component={Link} to="/admin">Admin</Button>
-                <Button onClick={logout}>Log out</Button>
+                    <Button component={Link} to="/login">Login</Button>
+                    <Button component={Link} to="/register">Register</Button>
+            </Stack> : 
+            
+            <Stack spacing={2} direction={"row"}>
+                    <Button component={Link} to="/">Dashboard</Button>
+                    <Button component={Link} to="/admin">Admin</Button>
+                    <Button onClick={logout}>Log out</Button>
             </Stack>
+        }
         </>
     );
 }

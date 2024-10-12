@@ -1,5 +1,5 @@
 
-import {Box, TextField, Button} from "@mui/material"
+import {Box, TextField, Button, Typography} from "@mui/material"
 import axios from "axios"
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
@@ -8,6 +8,7 @@ import { AuthContext } from "../App"
 const Login = (): JSX.Element => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate()
 
     // making sure context is not null
@@ -17,11 +18,13 @@ const Login = (): JSX.Element => {
     }
     const { setToken } = authContext;
 
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
+        
         try {
             console.log(email, password)
-            const response: any = await axios.post("http://localhost:5001/api/users/login", {
+            const response = await axios.post("http://localhost:5001/api/users/login", {
                 email: email,
                 password: password,
             })
@@ -31,14 +34,15 @@ const Login = (): JSX.Element => {
                 navigate('/')
             }
             
-        } catch (error) {
-            console.log(error)
+        }catch (error) {
+            setError("Login failed. Please try again.");
         }
     }
 
     return (
         <>
-            <Box component="form" sx={{ m: 1 }} onSubmit={handleLogin} noValidate autoComplete="off" >
+            <Box component="form" sx={{ m: 1 }} onSubmit={handleLogin} noValidate autoComplete="off">
+                
                 <TextField
                     sx={{m:1}}
                     id="email"
@@ -56,6 +60,11 @@ const Login = (): JSX.Element => {
                     variant="outlined"
                     onChange={(e)=>setPassword(e.target.value)}
                 ></TextField>
+                 {error && (
+                <Typography color="error" sx={{ m: 1 }}>
+                    {error}
+                </Typography>
+            )}
                 <Button type="submit" variant="contained">Login</Button>
             </Box>
  

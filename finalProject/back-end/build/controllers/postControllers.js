@@ -22,6 +22,7 @@ exports.postControllers = {
         }
         try {
             const post = yield postModel_1.postModels.createPost({ content, userid });
+            console.log("Post is created successfully");
             res.status(200).json({
                 message: "Post is created successfully",
                 post,

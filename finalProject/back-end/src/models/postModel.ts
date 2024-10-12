@@ -8,6 +8,9 @@ interface Content {
     emojis: boolean; 
     style: string; 
     audience: string;
+    platform: string;
+    hashtags: boolean;
+    characthersCount: number
 }
 
 interface PostInfo {
@@ -17,15 +20,18 @@ interface PostInfo {
 export const postModels = {
     createPost: async(postInfo: PostInfo) => {
     function convertPostToSentence(content: Content): string {
-        const emojiText = content.emojis ? "with emojis" : "without emojis";
 
         const parts = [
-            `Create a ${content.size} post for "${content.request}"`,
-            `in ${content.language} language`,
-            `in a ${content.style} style`,
-            `targeting ${content.audience}`,
-            emojiText
+            `Please generate a post of around ${content.characthersCount} characters.`,
+            `User prompts: ${content.request}.`,
+            `The post should be written in ${content.language} language.`,
+            `Style: ${content.style}.`,
+            `Target audience: ${content.audience}.`,
+            `Emojis should be ${content.emojis ? "included" : "excluded"}.`,
+            `The post will be shared on ${content.platform}.`,
+            `Hashtags should be ${content.hashtags ? "included" : "excluded"}.`
         ];
+
         return parts.join(', ') + '.';
 }
         const createContent = convertPostToSentence(postInfo.content)
@@ -41,21 +47,32 @@ export const postModels = {
             
             const params: OpenAI.Chat.ChatCompletionCreateParams = {
                 // check how you ar e saving messages 
-                messages: [{ role: 'user', content: createContent}],
+                messages: [{ 
+                    role: 'user', 
+                    content: `${createContent} \n\nPlease structure the response with logical paragraph breaks. Separate different ideas, sections, or important points into distinct paragraphs to improve readability.` 
+                }],
                 model: 'gpt-3.5-turbo',
             };
 
             const response: OpenAI.Chat.ChatCompletion = await client.chat.completions.create(params);
             const gptResponseText = response.choices[0].message.content;
-            const [post] = await trx('posts').insert({
-                content: gptResponseText, 
-                created_at: new Date(),
-                user_id: postInfo.userid
-            }).returning('*');
+            
+            if(gptResponseText){
+                const formattedResponse = gptResponseText
+                    .split('\n\n')  // Используем абзацы
+                    .map((paragraph: string) => paragraph.trim())
+                    .filter((paragraph: string) => paragraph.length > 0)
+                    .join('\n\n');
 
-            await trx.commit(); 
-            return post
-
+                    const [post] = await trx('posts').insert({
+                        content: formattedResponse, 
+                        created_at: new Date(),
+                        user_id: postInfo.userid
+                    }).returning('*');
+                    await trx.commit(); 
+                    return post        
+            }
+          
         } catch (error) {
             await trx.rollback()
             console.log(error)

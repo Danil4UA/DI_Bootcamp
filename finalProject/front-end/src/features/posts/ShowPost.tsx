@@ -1,10 +1,13 @@
-const ShowPost = () => {
+
+interface ShowPostProps {
+    content: string
+}
+
+
+const ShowPost = ({content}: ShowPostProps) => {
     return (
         <>
-            <div>
-        
-
-            </div>
+            <div>{content}</div>
         </>
     )
 }

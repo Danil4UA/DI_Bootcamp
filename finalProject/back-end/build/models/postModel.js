@@ -18,13 +18,15 @@ const openai_1 = __importDefault(require("openai"));
 exports.postModels = {
     createPost: (postInfo) => __awaiter(void 0, void 0, void 0, function* () {
         function convertPostToSentence(content) {
-            const emojiText = content.emojis ? "with emojis" : "without emojis";
             const parts = [
-                `Create a ${content.size} post for "${content.request}"`,
-                `in ${content.language} language`,
-                `in a ${content.style} style`,
-                `targeting ${content.audience}`,
-                emojiText
+                `Please generate a post of around ${content.characthersCount} characters.`,
+                `User prompts: ${content.request}.`,
+                `The post should be written in ${content.language} language.`,
+                `Style: ${content.style}.`,
+                `Target audience: ${content.audience}.`,
+                `Emojis should be ${content.emojis ? "included" : "excluded"}.`,
+                `The post will be shared on ${content.platform}.`,
+                `Hashtags should be ${content.hashtags ? "included" : "excluded"}.`
             ];
             return parts.join(', ') + '.';
         }
@@ -38,18 +40,28 @@ exports.postModels = {
             });
             const params = {
                 // check how you ar e saving messages 
-                messages: [{ role: 'user', content: createContent }],
+                messages: [{
+                        role: 'user',
+                        content: `${createContent} \n\nPlease structure the response with logical paragraph breaks. Separate different ideas, sections, or important points into distinct paragraphs to improve readability.`
+                    }],
                 model: 'gpt-3.5-turbo',
             };
             const response = yield client.chat.completions.create(params);
             const gptResponseText = response.choices[0].message.content;
-            const [post] = yield trx('posts').insert({
-                content: gptResponseText,
-                created_at: new Date(),
-                user_id: postInfo.userid
-            }).returning('*');
-            yield trx.commit();
-            return post;
+            if (gptResponseText) {
+                const formattedResponse = gptResponseText
+                    .split('\n\n') // Используем абзацы
+                    .map((paragraph) => paragraph.trim())
+                    .filter((paragraph) => paragraph.length > 0)
+                    .join('\n\n');
+                const [post] = yield trx('posts').insert({
+                    content: formattedResponse,
+                    created_at: new Date(),
+                    user_id: postInfo.userid
+                }).returning('*');
+                yield trx.commit();
+                return post;
+            }
         }
         catch (error) {
             yield trx.rollback();

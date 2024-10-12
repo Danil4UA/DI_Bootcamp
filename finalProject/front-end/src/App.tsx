@@ -28,7 +28,6 @@ function App():ReactNode {
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/admin' element={<Auth><Admin/></Auth>} />
-
           </Routes>
       </AuthContext.Provider>
       

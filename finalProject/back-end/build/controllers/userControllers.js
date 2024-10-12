@@ -90,10 +90,10 @@ exports.userControllers = {
             res.status(400).json({ message: "Invalid data" });
         }
         else {
-            const accessToken = jsonwebtoken_1.default.sign({ userid: req.body.userid, email: req.body.email }, ACCESS_TOKEN_SECRET, { expiresIn: "60s" });
+            const accessToken = jsonwebtoken_1.default.sign({ userid: req.body.userid, email: req.body.email }, ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
-                maxAge: 60 * 1000
+                maxAge: 60 * 60 * 1000
             });
             res.json({
                 message: "Auth success",

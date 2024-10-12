@@ -1,9 +1,10 @@
-import PostForm from "./posts/PostForm"
+import GeneratePost from "./GeneratePost"
+
 const Dashboard = (): JSX.Element => {
     return (
         <>
+            <GeneratePost />
             
-            <PostForm />
         </>
     )
 }

@@ -17,6 +17,7 @@ export const postControllers = {
 
         try {
             const post = await postModels.createPost({ content, userid });
+            console.log("Post is created successfully")
             res.status(200).json({
                 message: "Post is created successfully",
                 post,
