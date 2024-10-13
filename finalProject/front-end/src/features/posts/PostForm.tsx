@@ -66,38 +66,6 @@ const PostForm = (): JSX.Element => {
     
     return (
         <>
-            {/* <form onSubmit={handleSubmit} style={{display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                <InputText 
-                    placeholder="Audience" 
-                    value={audience}
-                    onChange={(e) => setAudience(e.target.value)} 
-                />
-                <InputText 
-                    placeholder="Style" 
-                    value={style}
-                    onChange={(e) => setStyle(e.target.value)} 
-                />
-                <SelectInput 
-                    size={['small', 'medium', 'large']} 
-                    onChange={(e) => setSize(e.target.value)} 
-                />
-                <SelectInput 
-                    language={['ENG', 'SPA', 'FRA']} 
-                    onChange={(e) => setLanguage(e.target.value)} 
-                />
-                <SelectInput 
-                    platform ={['Facebook', 'Twitter(X)', 'Instagram']} 
-                    onChange={(e) => setPlatform(e.target.value)} 
-                />
-                <InputText 
-                    placeholder="Enter your request" 
-                    value={request}
-                    onChange={(e) => setRequest(e.target.value)} 
-                />
-                <SubmitPost />
-            </form> */}
-
-
             <Box component="form" onSubmit={handleSubmit} sx={{ width: '400px', padding: '20px' }}>
                 {/* Поле для ввода запроса */}
                 <TextField
@@ -126,13 +94,13 @@ const PostForm = (): JSX.Element => {
                 </Box>
 
                 {/* Поле для выбора количества слов */}
-                <Typography gutterBottom>Approximate characthers: {formData.characthersCount}</Typography>
+                <Typography gutterBottom>Approximate characthers: <span>{formData.characthersCount}</span></Typography>
                 <Slider
                     value={formData.characthersCount}
                     onChange={handleSliderChange}
                     aria-labelledby="word-count-slider"
                     min={10}
-                    max={2000}
+                    max={1000}
                     step={10}
                     sx={{ marginBottom: 2 }}
                 />
@@ -146,6 +114,7 @@ const PostForm = (): JSX.Element => {
                     control={<Switch name="emojis" checked={formData.emojis} onChange={handleChange} />}
                     label="Include emojis"
                 />
+
 
                 {/* Кнопка для отправки формы */}
                 <Button type="submit" variant="contained" fullWidth>

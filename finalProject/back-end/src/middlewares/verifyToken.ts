@@ -16,17 +16,15 @@ export const verifyAccessToken = (req: Request ,res: Response ,next: NextFunctio
             const {userid, email} = decoded
 
             
-    
-            // validation 
-    
-            // req.userinfo = {
-            //      userid,
-            //      email
-            // }
+            // req.user = {
+            //     userid,
+            //     email,
+            // };
 
 
             req.body.userid =  userid
             req.body.email = email
+            console.log("i am middle ware, your id is - ", userid)
             next()
         })
     }

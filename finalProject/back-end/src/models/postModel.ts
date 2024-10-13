@@ -109,6 +109,23 @@ export const postModels = {
         }
 
     },
+
+    getAllPostsByUserID: async (userid: string) => {
+        try {
+            const posts = await db("posts")
+                .select("id", "user_id", "content", "status")
+                .where({ "user_id": userid })
+                
+            if (!posts) {
+                throw new Error("Posts not found.");
+            }
+    return posts
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error fetching post.");
+        }
+    },
+
     deletePostById: async (id: string) => {
         try {
             const deletedRows = await db("posts")

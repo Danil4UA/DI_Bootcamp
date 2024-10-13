@@ -95,6 +95,21 @@ exports.postModels = {
             throw new Error("Error fetching post.");
         }
     }),
+    getAllPostsByUserID: (userid) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const posts = yield (0, db_1.db)("posts")
+                .select("id", "user_id", "content", "status")
+                .where({ "user_id": userid });
+            if (!posts) {
+                throw new Error("Posts not found.");
+            }
+            return posts;
+        }
+        catch (error) {
+            console.error(error);
+            throw new Error("Error fetching post.");
+        }
+    }),
     deletePostById: (id) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const deletedRows = yield (0, db_1.db)("posts")

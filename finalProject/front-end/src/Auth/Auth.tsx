@@ -35,6 +35,8 @@ const Auth = ({children}: AuthProps) => {
                 if (response.status === 200) {
                     setToken(response.data.accessToken);
                     setRedirect(true);
+                } else {
+                    setToken(null);
                 }
             } catch (error) {
                 console.log(error);

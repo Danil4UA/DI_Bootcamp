@@ -2,7 +2,7 @@ import './App.css'
 import Header from './features/Header'
 import Login from './features/Login'
 import Register from './features/Register'
-import Admin from './features/Admin'
+import ManageAccount from './features/ManageAccount'
 import {Route, Routes} from "react-router-dom"
 import Dashboard from './features/Dashboard'
 import { createContext, useState, ReactNode } from 'react'
@@ -27,7 +27,7 @@ function App():ReactNode {
             <Route path='/' element={<Auth><Dashboard/></Auth>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
-            <Route path='/admin' element={<Auth><Admin/></Auth>} />
+            <Route path='/manage' element={<Auth><ManageAccount/></Auth>} />
           </Routes>
       </AuthContext.Provider>
       

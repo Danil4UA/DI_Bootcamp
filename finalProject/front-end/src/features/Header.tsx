@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext } from  "../App"
 import { useContext } from "react";
 
+
 const Header = (): JSX.Element => {
     const authContext = useContext(AuthContext)
     if (!authContext) {
@@ -11,18 +12,17 @@ const Header = (): JSX.Element => {
     }
     const { token, setToken } = authContext;
 
-    const logout = async () => {
-        
+    const handleLogout = async () => {
         try {
-            const response = await axios.delete("http://localhost:5001/api/users/logout")
-            if(response.status === 200){
-                console.log("Logged out successfully", token); 
-                setToken(null);
-            }
+            await axios.delete("http://localhost:5001/api/users/logout",{
+                withCredentials: true,
+            });
+            setToken(null); // Сбрасываем токен
+            console.log("Logged out successfully");
         } catch (error) {
-            console.log("Error during logout", error)
+            console.error("Failed to logout:", error);
         }
-    }
+    };
 
     return (
         <>  
@@ -34,8 +34,8 @@ const Header = (): JSX.Element => {
             
             <Stack spacing={2} direction={"row"}>
                     <Button component={Link} to="/">Dashboard</Button>
-                    <Button component={Link} to="/admin">Admin</Button>
-                    <Button onClick={logout}>Log out</Button>
+                    <Button component={Link} to="/manage">Manage</Button>
+                    <Button onClick={handleLogout}>Log out</Button>
             </Stack>
         }
         </>

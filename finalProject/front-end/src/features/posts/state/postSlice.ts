@@ -6,8 +6,11 @@ import { RootState } from "../../../app/store"
 // import { PayloadAction } from "@reduxjs/toolkit";
 
 
-interface Post {
-    content: string
+export interface Post {
+    id: number;        
+    user_id: number;
+    content: string;    
+    status: 'pending' | 'published' | 'archived'; 
 }
 
 interface InitialStatePosts {
@@ -60,11 +63,18 @@ export const createPost = createAsyncThunk(
 );
 
 
-export const fetchPosts = createAsyncThunk("posts/fetchposts", async () => {
-    const response: any = axios.get(`${URL}/posts/all`)
-    return response.data
-    
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${URL}/posts/all`, {
+                withCredentials: true
+        });
+        return response.data.posts;
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error.response?.data || "Failed to fetch posts");
+    }
 });
+
 
 const postsSlice = createSlice({
     name: "posts",

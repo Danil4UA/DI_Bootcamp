@@ -7,7 +7,8 @@ const express_1 = __importDefault(require("express"));
 const verifyToken_1 = require("../middlewares/verifyToken");
 const postControllers_1 = require("../controllers/postControllers");
 const router = express_1.default.Router();
-router.get("/all", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.getAllPosts);
+// router.get("/all", verifyAccessToken, postControllers.getAllPosts)
+router.get("/all", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.getAllPostsByUserId);
 router.get("/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.getPostById);
 router.post("/create", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.createPost);
 router.put("/edit/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.editPostById);

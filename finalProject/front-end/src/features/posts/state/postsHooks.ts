@@ -10,15 +10,16 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useSelectPosts = () => {
     const dispatch = useAppDispatch();
+    const posts = useAppSelector(selectPosts);
 
     useEffect(() => {
-        dispatch(fetchPosts());
+
+            dispatch(fetchPosts());
+
     }, [dispatch]);
 
-
-    return useAppSelector(selectPosts);
+    return posts;
 };
-
 export const useSelectPostsCurrentResult = () => {
 
     return useAppSelector(selectPostsCurrentResult)

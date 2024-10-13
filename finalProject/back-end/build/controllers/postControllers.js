@@ -65,6 +65,26 @@ exports.postControllers = {
             res.status(500).json({ message: "Internal server error" });
         }
     }),
+    getAllPostsByUserId: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const { userid } = req.body;
+            console.log("User ID:", userid);
+            const posts = yield postModel_1.postModels.getAllPostsByUserID(userid);
+            if (posts.length === 0) {
+                res.status(404).json({ message: "Posts are not found" });
+            }
+            else {
+                res.status(200).json({
+                    message: "Posts fetched successfully",
+                    posts
+                });
+            }
+        }
+        catch (error) {
+            console.error("Error fetching posts: ", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    }),
     deletePostById: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { id } = req.params;
