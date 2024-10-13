@@ -13,13 +13,12 @@ export const useSelectPosts = () => {
     const posts = useAppSelector(selectPosts);
 
     useEffect(() => {
-
             dispatch(fetchPosts());
-
-    }, [dispatch]);
+    }, [dispatch, posts]);
 
     return posts;
 };
+
 export const useSelectPostsCurrentResult = () => {
 
     return useAppSelector(selectPostsCurrentResult)

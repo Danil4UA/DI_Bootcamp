@@ -1,8 +1,3 @@
-import InputText from "./InputText"
-import SubmitPost from "./SubmitPost"
-import SelectInput from "./SelectInput"
-
-
 import { useState } from "react"
 import {createPost} from "./state/postSlice"
 import { useAppDispatch } from "./state/postsHooks"
@@ -43,6 +38,7 @@ const PostForm = (): JSX.Element => {
       };
 
       const handleSliderChange = (event: Event, newValue: number | number[]) => {
+        event.preventDefault()
         setFormData((prevState) => ({
             ...prevState,
             characthersCount: newValue as number,
@@ -67,7 +63,7 @@ const PostForm = (): JSX.Element => {
     return (
         <>
             <Box component="form" onSubmit={handleSubmit} sx={{ width: '400px', padding: '20px' }}>
-                {/* Поле для ввода запроса */}
+       
                 <TextField
                     label="Your prompt"
                     multiline
@@ -79,7 +75,7 @@ const PostForm = (): JSX.Element => {
                     sx={{ marginBottom: 2 }}
                 />
 
-                {/* Выбор тона голоса */}
+         
                 <Typography gutterBottom>Tone of voice</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: 2 }}>
                     {toneOfVoice.map((tone) => (
@@ -93,7 +89,7 @@ const PostForm = (): JSX.Element => {
                     ))}
                 </Box>
 
-                {/* Поле для выбора количества слов */}
+
                 <Typography gutterBottom>Approximate characthers: <span>{formData.characthersCount}</span></Typography>
                 <Slider
                     value={formData.characthersCount}
@@ -105,7 +101,7 @@ const PostForm = (): JSX.Element => {
                     sx={{ marginBottom: 2 }}
                 />
 
-                {/* Переключатели для генерации хэштегов и использования эмодзи */}
+
                 <FormControlLabel
                     control={<Switch name="hashtags" checked={formData.hashtags} onChange={handleChange} />}
                     label="Generate hashtags"
@@ -116,7 +112,7 @@ const PostForm = (): JSX.Element => {
                 />
 
 
-                {/* Кнопка для отправки формы */}
+
                 <Button type="submit" variant="contained" fullWidth>
                     Generate
                 </Button>
