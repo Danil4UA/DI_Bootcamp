@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom"
 import Dashboard from './features/Dashboard'
 import { createContext, useState, ReactNode } from 'react'
 import Auth from './Auth/Auth'
+import PostEditor from './features/posts/PostEditor'
 
 
 interface AuthContextType {
@@ -28,6 +29,7 @@ function App():ReactNode {
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
             <Route path='/manage' element={<Auth><ManageAccount/></Auth>} />
+            <Route path="/edit-post/:postId" element={<Auth><PostEditor /></Auth>}/>
           </Routes>
       </AuthContext.Provider>
       

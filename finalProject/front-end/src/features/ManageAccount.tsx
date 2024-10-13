@@ -1,16 +1,24 @@
 import { useSelectPosts } from './posts/state/postsHooks';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Checkbox, Button } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+
 const ManageAccount = () => {
     const posts = useSelectPosts();
+    const navigate = useNavigate();
     const [selectedPosts, setSelectedPosts] = useState<number[]>([]); 
 
     const handleSelectPost = (postId: number) => {
       setSelectedPosts((prev) => 
           prev.includes(postId) ? prev.filter(id => id !== postId) : [...prev, postId]
       );
-  };
+    };
+    
+    const handleEdit = (postId: number) => {
+      navigate(`/edit-post/${postId}`);
+    };
 
     const handleDeletePosts = async () => {
       try {
@@ -59,6 +67,16 @@ const ManageAccount = () => {
                               <TableCell>{post.user_id}</TableCell>
                               <TableCell>{post.content}</TableCell>
                               <TableCell>{post.status}</TableCell>
+                              <TableCell>
+                             
+                                        <Button 
+                                            variant="contained" 
+                                            color="primary" 
+                                            onClick={() => handleEdit(post.id)}
+                                        >
+                                            Edit
+                                        </Button>
+                                    </TableCell>
                           </TableRow>
                       ))
                   ) : (
