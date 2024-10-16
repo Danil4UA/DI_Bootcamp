@@ -1,7 +1,8 @@
 import { useState } from "react"
-import {createPost} from "./state/postSlice"
+import {createPost, fetchPosts} from "./state/postSlice"
 import { useAppDispatch } from "./state/postsHooks"
 import {setCurrentResult} from "./state/postSlice"
+// import { useSelectPosts } from "./state/postsHooks"
 
 import { TextField, Button, Switch, Slider, Typography, Box, FormControlLabel } from '@mui/material';
 
@@ -51,6 +52,8 @@ const PostForm = (): JSX.Element => {
             const content = { ...formData }
             console.log(content)
             const createPostsResponse = await dispatch(createPost(content))
+            await dispatch(fetchPosts())
+
             const currentResult = createPostsResponse.payload.post.content
             dispatch(setCurrentResult(currentResult))
 
@@ -62,18 +65,18 @@ const PostForm = (): JSX.Element => {
     
     return (
         <>
-            <Box component="form" onSubmit={handleSubmit} sx={{ width: '400px', padding: '20px' }}>
-       
-                <TextField
-                    label="Your prompt"
-                    multiline
-                    rows={4}
-                    name="request"
-                    value={formData.request}
-                    onChange={handleChange}
-                    fullWidth
-                    sx={{ marginBottom: 2 }}
-                />
+             <Box component="form" onSubmit={handleSubmit} sx={{ padding: 3 }}>
+            <TextField
+                label="Your prompt"
+                multiline
+                rows={4}
+                name="request"
+                value={formData.request}
+                onChange={handleChange}
+                fullWidth
+                sx={{ marginBottom: 2 }}
+                variant="outlined"
+            />
 
          
                 <Typography gutterBottom>Tone of voice</Typography>
@@ -88,8 +91,6 @@ const PostForm = (): JSX.Element => {
                         </Button>
                     ))}
                 </Box>
-
-
                 <Typography gutterBottom>Approximate characthers: <span>{formData.characthersCount}</span></Typography>
                 <Slider
                     value={formData.characthersCount}
@@ -100,8 +101,6 @@ const PostForm = (): JSX.Element => {
                     step={10}
                     sx={{ marginBottom: 2 }}
                 />
-
-
                 <FormControlLabel
                     control={<Switch name="hashtags" checked={formData.hashtags} onChange={handleChange} />}
                     label="Generate hashtags"

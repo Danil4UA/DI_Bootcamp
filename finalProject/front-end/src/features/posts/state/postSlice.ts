@@ -37,7 +37,7 @@ const URL = "http://localhost:5001/api"
 
 const initialState: InitialStatePosts = {
     posts: [],
-    status: "",
+    status: 'idle',
     currentResult: null
   
 };
@@ -59,6 +59,21 @@ export const createPost = createAsyncThunk(
             console.log("error => ", error)
         }
        
+    }
+);
+
+export const deletePost = createAsyncThunk(
+    "posts/deletePost",
+    async (postId: number, { rejectWithValue }) => {
+        try {
+            await axios.delete(`${URL}/posts/${postId}`, {
+                withCredentials: true,
+            });
+            return postId; 
+        } catch (error: any) {
+            console.error("Error deleting post:", error);
+            return rejectWithValue(error.response?.data || "Failed to delete post");
+        }
     }
 );
 
@@ -96,6 +111,10 @@ const postsSlice = createSlice({
             .addCase(fetchPosts.rejected,(state)=> {
                 state.status = "faild"
             })
+
+            .addCase(deletePost.fulfilled, (state, action) => {
+                state.posts = state.posts.filter((post) => post.id !== action.payload);
+            });
     }
 })
 

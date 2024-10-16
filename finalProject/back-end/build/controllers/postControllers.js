@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postControllers = void 0;
+exports.updatePost = exports.postControllers = void 0;
 const postModel_1 = require("../models/postModel");
+const db_1 = require("../config/db");
 exports.postControllers = {
     createPost: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { content, userid } = req.body;
@@ -33,19 +34,18 @@ exports.postControllers = {
             res.status(500).json({ message: "Internal server error" });
         }
     }),
-    getAllPosts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const posts = yield postModel_1.postModels.getAllPosts();
-            res.status(200).json({
-                message: "Posts are fetched successfully",
-                posts
-            });
-        }
-        catch (error) {
-            console.error("Error fetching posts: ", error);
-            res.status(500).json({ message: "Internal server error" });
-        }
-    }),
+    // getAllPosts: async (req: Request, res: Response) => {
+    //     try {
+    //         const posts = await postModels.getAllPosts()
+    //         res.status(200).json({
+    //             message: "Posts are fetched successfully",
+    //             posts
+    //         })
+    //     } catch (error) {
+    //         console.error("Error fetching posts: ", error);
+    //         res.status(500).json({ message: "Internal server error" });
+    //     }
+    // },
     getPostById: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { id } = req.params;
@@ -121,3 +121,21 @@ exports.postControllers = {
         }
     })
 };
+const updatePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { content } = req.body;
+    const file = req.file;
+    try {
+        // Сохраняем информацию о файле и посте в базу данных
+        const updatedPost = yield (0, db_1.db)('posts').where({ id }).update({
+            content: content,
+            file_url: file ? `/uploads/${file.filename}` : null
+        });
+        res.json({ message: 'Post updated', post: updatedPost });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating post');
+    }
+});
+exports.updatePost = updatePost;

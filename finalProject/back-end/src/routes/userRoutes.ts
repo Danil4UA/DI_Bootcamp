@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post("/register", userControllers.registerUsers)
 router.post("/login", userControllers.loginUser)
-router.delete("/logout", userControllers.logoutUser)
+router.get("/logout", userControllers.logoutUser)
 
 router.get("/all", verifyAccessToken, userControllers.getUsers)
 router.get("/auth", verifyAccessToken, userControllers.verifyAuth)

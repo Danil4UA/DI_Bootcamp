@@ -18,6 +18,7 @@ interface PostInfo {
     userid: number
 }
 export const postModels = {
+
     createPost: async(postInfo: PostInfo) => {
     function convertPostToSentence(content: Content): string {
 
@@ -116,10 +117,12 @@ export const postModels = {
                 .select("id", "user_id", "content", "status")
                 .where({ "user_id": userid })
                 
-            if (!posts) {
-                throw new Error("Posts not found.");
-            }
-    return posts
+                if (posts.length === 0) {
+                    throw new Error("Posts not found.");
+                }
+                
+            return posts
+
         } catch (error) {
             console.error(error);
             throw new Error("Error fetching post.");

@@ -55,6 +55,7 @@ export const userControllers = {
     
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
+                secure: true, 
                 maxAge: 60 * 60 * 1000,
             });
 
@@ -110,11 +111,25 @@ export const userControllers = {
         }
     },
     logoutUser: (req: Request, res: Response) => {
-        res.clearCookie("accessToken", {
+        res.cookie("accessToken", {
+            httpOnly: true,
+            secure: true, 
+            maxAge: -1,
+        });
+
+        req.cookies.accessToken = null
+        req.body = {}
+        res.clearCookie("accessToken",  
+            {
             httpOnly: true,
             secure: true,  // Make sure you set secure flag in production
-            sameSite: "strict" // To avoid CSRF attacks
+            // sameSite: "strict", // To avoid CSRF attacks,
+            // path: "/",
+            // domain: "localhost"
         });
+        console.log(req.cookies.accessToken, "i am log out")
+           
+
         res.status(200).json({message: "Logout successful"});
     }
 }

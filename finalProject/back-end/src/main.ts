@@ -3,6 +3,7 @@ import userRouter from "./routes/userRoutes"
 import postRouter from "./routes/postRoutes"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import path from 'path';
 
 import 'dotenv/config';
 const app: Application = express();
@@ -18,6 +19,7 @@ const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 5001;
 
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}...`);

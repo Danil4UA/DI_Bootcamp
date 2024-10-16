@@ -100,7 +100,7 @@ exports.postModels = {
             const posts = yield (0, db_1.db)("posts")
                 .select("id", "user_id", "content", "status")
                 .where({ "user_id": userid });
-            if (!posts) {
+            if (posts.length === 0) {
                 throw new Error("Posts not found.");
             }
             return posts;

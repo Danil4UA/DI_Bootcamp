@@ -1,44 +1,76 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Snackbar, Alert, Box, AppBar, Toolbar, Typography } from "@mui/material"; // Импортируйте необходимые компоненты
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from  "../App"
-import { useContext } from "react";
-
+import { AuthContext } from "../App";
+import { useContext, useState } from "react";
 
 const Header = (): JSX.Element => {
-    const authContext = useContext(AuthContext)
+    const authContext = useContext(AuthContext);
     if (!authContext) {
         throw new Error("AuthContext must be used within an AuthProvider");
     }
     const { token, setToken } = authContext;
 
+    const [loading, setLoading] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+
     const handleLogout = async () => {
+        setLoading(true);
         try {
-            await axios.delete("http://localhost:5001/api/users/logout",{
+            await axios.get("http://localhost:5001/api/users/logout", {
                 withCredentials: true,
             });
             setToken(null); // Сбрасываем токен
             console.log("Logged out successfully");
+            setSnackbarMessage("Logged out successfully");
         } catch (error) {
             console.error("Failed to logout:", error);
+            setSnackbarMessage("Failed to logout");
+        } finally {
+            setLoading(false);
+            setSnackbarOpen(true);
         }
     };
 
+    const handleCloseSnackbar = () => {
+        setSnackbarOpen(false);
+    };
+
     return (
-        <>  
-        {!token? 
-            <Stack spacing={2} direction={"row"}>
-                    <Button component={Link} to="/login">Login</Button>
-                    <Button component={Link} to="/register">Register</Button>
-            </Stack> : 
-            
-            <Stack spacing={2} direction={"row"}>
-                    <Button component={Link} to="/">Dashboard</Button>
-                    <Button component={Link} to="/manage">Manage</Button>
-                    <Button onClick={handleLogout}>Log out</Button>
-            </Stack>
-        }
-        </>
+        <AppBar position="static">
+            <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="h6" component={Link} to="/" sx={{ textDecoration: 'none', color: 'white' }}>
+                    Posts AI Generator
+                </Typography>
+                <Box>
+                    {!token ? (
+                        <Stack spacing={2} direction={"row"}>
+                            <Button component={Link} to="/login" color="inherit">Login</Button>
+                            <Button component={Link} to="/register" color="inherit">Register</Button>
+                        </Stack>
+                    ) : (
+                        <Stack spacing={2} direction={"row"}>
+                            <Button component={Link} to="/" color="inherit">Dashboard</Button>
+                            <Button component={Link} to="/manage" color="inherit">Manage</Button>
+                        </Stack>
+                    )}
+                </Box>
+                {token && (
+                    <Button onClick={handleLogout} disabled={loading} color="inherit">Log out</Button>
+                )}
+            </Toolbar>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarMessage === "Failed to logout" ? "error" : "success"}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
+        </AppBar>
     );
 }
 

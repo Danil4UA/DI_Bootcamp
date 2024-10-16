@@ -1,29 +1,26 @@
 import { useSelectPostsCurrentResult } from "./state/postsHooks"
+import {Box, Typography} from "@mui/material"
 
 const PostResult = () => {
-    const currentResult = useSelectPostsCurrentResult()
-    if(!currentResult){
-       return
+    const currentResult = useSelectPostsCurrentResult();
+    if (!currentResult) {
+        return null;
     }
 
     return (
-        <>
-            
-            <div style={{width: "50%", padding: "20px", fontSize:"18px", lineHeight: "25px"}}>
-                <h3>Result:</h3>
-                <div style={{textAlign:"left"}}>
-                    {
-                    currentResult
-                    .split('\n\n')
-                    .map((paragraph, index) => <p key={index}>{paragraph}</p>)
-                    }
-                </div>
-                
+        <Box sx={{ padding: 3 }}>
+            <Typography variant="h6" gutterBottom>
+                Generated Post
+            </Typography>
+            <div style={{ textAlign: "left", lineHeight: "1.5" }}>
+                {currentResult.split('\n\n').map((paragraph, index) => (
+                    <Typography key={index} paragraph>
+                        {paragraph}
+                    </Typography>
+                ))}
             </div>
-
-            
-        </>
-    )
-}
+        </Box>
+    );
+};
 
 export default PostResult

@@ -14,6 +14,9 @@ const PostEditor = () => {
 
     const foundPost = posts.find((post: Post) => post.id === Number(postId));
 
+
+
+
     // Set the content state when the post is found
     if (foundPost && content === '') {
         setContent(foundPost.content);
@@ -23,37 +26,62 @@ const PostEditor = () => {
         setContent(e.target.value);
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setFile(e.target.files[0]);
-        }
-    };
+   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+        setFile(e.target.files[0]);
+    }
+};
 
-    const handleSave = async () => {
-        if (foundPost) {
-            try {
-                setIsSaving(true);
-                const response = await axios.put(`http://localhost:5001/api/posts/edit/${foundPost.id}`, {
-                    content: content
-                }, {
-                    withCredentials: true
-                });
 
-                console.log('Post updated:', response.data);
-                setIsSaving(false);
-            } catch (error) {
-                console.error('Error updating post:', error);
-                setIsSaving(false);
+
+
+const handleSave = async () => {
+    if (foundPost) {
+        try {
+            setIsSaving(true);
+            
+            const formData = new FormData();
+            
+            // Добавляем содержимое поста, даже если файл не выбран
+            formData.append('content', content || '');  // Текст поста, с проверкой на undefined
+            
+            // Если файл выбран, добавляем его в formData
+            if (file) {
+                formData.append('file', file);  // Прикрепленный файл
             }
-        } else {
-            console.log('Post not found');
+
+            const response = await axios.put(
+                `http://localhost:5001/api/posts/edit/${foundPost.id}`, 
+                formData,
+                { 
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                    withCredentials: true 
+                }
+            );
+
+            console.log('Post updated:', response.data);
+            setIsSaving(false);
+        } catch (error) {
+            console.error('Error updating post:', error);
+            setIsSaving(false);
         }
-    };
+    } else {
+        console.log('Post not found or file not selected');
+    }
+};
+
+
+
+
+
+
+
 
     const handlePublish = async () => {
         if (foundPost) {
             try {
-                // Implement your publish functionality here
                 console.log("Post published");
             } catch (error) {
                 console.error('Error publishing post:', error);
