@@ -84,7 +84,7 @@ export const postModels = {
     getAllPosts: async ()=>{
         try {
             return await db("posts")
-                .select("id","user_id", "content", "status",)
+                .select("id","user_id", "content", "status", "file_url")
         } catch (error) {
 
             console.log(error)
@@ -95,7 +95,7 @@ export const postModels = {
     getPostById: async (id: string) => {
         try {
             const post = await db("posts")
-                .select("id", "user_id", "content", "status")
+                .select("id", "user_id", "content", "status", "file_url")
                 .where({ "id": id })
                 .first()
             
@@ -114,7 +114,7 @@ export const postModels = {
     getAllPostsByUserID: async (userid: string) => {
         try {
             const posts = await db("posts")
-                .select("id", "user_id", "content", "status")
+                .select("id", "user_id", "content", "status", "file_url")
                 .where({ "user_id": userid })
                 
                 if (posts.length === 0) {

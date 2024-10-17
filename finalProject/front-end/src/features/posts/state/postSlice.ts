@@ -9,7 +9,8 @@ import { RootState } from "../../../app/store"
 export interface Post {
     id: number;        
     user_id: number;
-    content: string;    
+    content: string;
+    file_url: string    
     status: 'pending' | 'published' | 'archived'; 
 }
 
@@ -23,9 +24,9 @@ interface InitialStatePosts {
 export interface Content {
         language: string
         request: string
-        size: string
+        // size: string
         emojis: boolean
-        style: string
+        // style: string
         audience: string
         platform: string
         hashtags: boolean

@@ -72,7 +72,7 @@ exports.postModels = {
     getAllPosts: () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             return yield (0, db_1.db)("posts")
-                .select("id", "user_id", "content", "status");
+                .select("id", "user_id", "content", "status", "file_url");
         }
         catch (error) {
             console.log(error);
@@ -82,7 +82,7 @@ exports.postModels = {
     getPostById: (id) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const post = yield (0, db_1.db)("posts")
-                .select("id", "user_id", "content", "status")
+                .select("id", "user_id", "content", "status", "file_url")
                 .where({ "id": id })
                 .first();
             if (!post) {
@@ -98,7 +98,7 @@ exports.postModels = {
     getAllPostsByUserID: (userid) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const posts = yield (0, db_1.db)("posts")
-                .select("id", "user_id", "content", "status")
+                .select("id", "user_id", "content", "status", "file_url")
                 .where({ "user_id": userid });
             if (posts.length === 0) {
                 throw new Error("Posts not found.");
