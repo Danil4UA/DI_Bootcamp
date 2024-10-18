@@ -8,9 +8,8 @@ const GeneratePost = () => {
 
     return (
     <>
-        <h2>Post Generation</h2>
-        <div style={{display: "flex", justifyContent:"space-evenly "}}>
-            {/* <PostTemplates /> */}
+        
+        <div style={{display: "flex", justifyContent:"space-evenly ", padding: "30px", maxWidth: "1400px", margin:"auto"}}>
             <PostForm />
             <PostResult />
 
