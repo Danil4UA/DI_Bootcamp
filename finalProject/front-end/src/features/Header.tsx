@@ -21,7 +21,9 @@ const Header = (): JSX.Element => {
             await axios.get("http://localhost:5001/api/users/logout", {
                 withCredentials: true,
             });
+            localStorage.removeItem("token");
             setToken(null); // Сбрасываем токен
+
             console.log("Logged out successfully");
             setSnackbarMessage("Logged out successfully");
         } catch (error) {

@@ -18,6 +18,11 @@ const Auth = ({children}: AuthProps) => {
     const { token, setToken } = authContext;
 
     useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            setToken(storedToken);
+        }
+        
         const verify = async () => {
             if (!token) {
                 setRedirect(false);
@@ -33,14 +38,18 @@ const Auth = ({children}: AuthProps) => {
                 });
     
                 if (response.status === 200) {
+                    const newToken = response.data.accessToken;
                     setToken(response.data.accessToken);
+                    localStorage.setItem("token", newToken);
                     setRedirect(true);
                 } else {
                     setToken(null);
+                    localStorage.removeItem("token");
                 }
             } catch (error) {
                 console.log(error);
                 setToken(null);
+                localStorage.removeItem("token");
                 setRedirect(false);
             }
         };

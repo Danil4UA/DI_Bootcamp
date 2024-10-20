@@ -120,7 +120,7 @@ export const postModels = {
                 if (posts.length === 0) {
                     throw new Error("Posts not found.");
                 }
-                
+        
             return posts
 
         } catch (error) {

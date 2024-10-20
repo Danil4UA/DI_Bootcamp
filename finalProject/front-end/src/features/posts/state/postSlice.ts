@@ -24,9 +24,7 @@ interface InitialStatePosts {
 export interface Content {
         language: string
         request: string
-        // size: string
         emojis: boolean
-        // style: string
         audience: string
         platform: string
         hashtags: boolean
