@@ -1,12 +1,12 @@
-import { useSelectPosts } from './posts/state/postsHooks.ts';
-import { useState, useEffect } from 'react';
+import { useSelectPosts } from "../../state/postsHooks.ts";
 import { useNavigate } from 'react-router-dom';
-import { deletePost, fetchPosts } from "./posts/state/postSlice.ts";
-import { useAppDispatch } from './posts/state/postsHooks.ts';
+import { deletePost, fetchPosts } from "../../state/postSlice.ts";
+import { useAppDispatch } from "../../state/postsHooks.ts";
 import { Snackbar } from '@mui/material';
-import SearchFilter from './SearchFilter.tsx';
-import PostTable from './PostTable.tsx';
-import DeletePostsButton from './DeletePostsButton.tsx';
+import SearchFilter from "./SearchFilter.tsx";
+import PostTable from "./PostTable.tsx";
+import DeletePostsButton from "./DeletePostsButton.tsx";
+import { useState, useEffect } from "react";
 
 const ManageAccount = () => {
     const dispatch = useAppDispatch();

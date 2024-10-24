@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelectPosts } from './state/postsHooks';
-import { Post } from "./state/postSlice";
+import { useSelectPosts } from '../../state/postsHooks';
+import { Post } from "../../state/postSlice";
 import { Button, TextField, Typography, Box, CircularProgress, IconButton } from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';

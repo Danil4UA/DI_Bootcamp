@@ -1,10 +1,9 @@
-import GeneratePost from "./posts/GeneratePost"
+import GeneratePost from "../features/posts/GeneratePost"
 
 const Dashboard = (): JSX.Element => {
     return (
         <>
             <GeneratePost />
-            
         </>
     )
 }

@@ -36,6 +36,7 @@ export const userControllers = {
 
     loginUser: async (req: Request, res: any) => {
         const { email, password } = req.body;
+        console.log(req.body)
     
         try {
             const user = await userModules.getUserByEmail(email);

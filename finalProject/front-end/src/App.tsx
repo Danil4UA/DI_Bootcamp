@@ -1,15 +1,15 @@
-import './App.css'
-import Header from './features/Header'
-import Login from './features/Login'
-import Register from './features/Register'
-import ManageAccount from './features/ManageAccount'
+import "./assets/styles/App.css"
+import Header from './pages/Header'
+import Login from './features/auth/Login'
+import Register from './features/auth/Register'
+import ManageAccount from './features/posts/components/PostList/ManageAccount'
 import {Route, Routes} from "react-router-dom"
-import Dashboard from './features/Dashboard'
+import Dashboard from './pages/Dashboard'
 import { createContext, useState, ReactNode } from 'react'
 import Auth from './Auth/Auth'
-import PostEditor from './features/posts/PostEditor'
-import About from './features/About'
-import Contact from './features/Contact'
+import PostEditor from './features/posts/components/PostEditor/PostEditor'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 
 interface AuthContextType {

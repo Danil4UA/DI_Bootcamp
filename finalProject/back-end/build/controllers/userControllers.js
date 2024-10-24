@@ -46,6 +46,7 @@ exports.userControllers = {
     // ask ziv why
     loginUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { email, password } = req.body;
+        console.log(req.body);
         try {
             const user = yield userModel_1.userModules.getUserByEmail(email);
             if (!user) {

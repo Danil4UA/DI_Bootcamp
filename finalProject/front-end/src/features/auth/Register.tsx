@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AuthForm from "../features/AuthForm";
+import AuthForm from "./AuthForm";
 
 const Register = (): JSX.Element => {
   const [error, setError] = useState<string | null>(null);

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { createPost, fetchPosts } from "./state/postSlice";
-import { useAppDispatch } from "./state/postsHooks";
-import { setCurrentResult } from "./state/postSlice";
+import { createPost, fetchPosts } from "../../state/postSlice";
+import { useAppDispatch } from "../../state/postsHooks";
+import { setCurrentResult } from "../../state/postSlice";
 import { Button, Box, TextField, SelectChangeEvent  } from '@mui/material';
 import PostToneSelector from "./PostToneSelector";
 import PostSliderComponent from "./PostSliderComponent";
 import PostCustomSelect from "./PostCustomSelect";
 import PostSwitchComponent from "./PostSwitchComponent";
-// import './PostForm.css';
+
 
 const PostForm = (): JSX.Element => {
     const dispatch = useAppDispatch();

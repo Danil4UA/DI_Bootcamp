@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../App";
-import AuthForm from "../features/AuthForm";
+import { AuthContext } from "../../App";
+import AuthForm from "./AuthForm";
 
 const Login = (): JSX.Element => {
   const [error, setError] = useState<string | null>(null);

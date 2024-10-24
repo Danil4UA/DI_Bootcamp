@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
 import axios from "axios";
-import Login from "../features/Login";
+import Login from "../features/auth/Login";
 
 interface AuthProps {
     children: JSX.Element;
