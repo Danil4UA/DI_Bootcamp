@@ -114,13 +114,12 @@ export const postModels = {
     getAllPostsByUserID: async (userid: string) => {
         try {
             const posts = await db("posts")
-                .select("id", "user_id", "content", "status", "file_url")
+                .select("id", "user_id", "content", "status", "file_url", "scheduled_at")
                 .where({ "user_id": userid })
                 
                 if (posts.length === 0) {
                     throw new Error("Posts not found.");
                 }
-        
             return posts
 
         } catch (error) {
@@ -141,20 +140,23 @@ export const postModels = {
         }
     },
 
-    editPostById: async (id: string, content: string) => {
+    editPostById: async (id: string, content: string, scheduled_at: string) => {
         try {
             const updatedRows = await db("posts")
-                .update({ content })
+                .update({ 
+                    content,
+                    scheduled_at, // Update scheduled_at
+                    updated_at: new Date() // Update updated_at to current date and time
+                })
                 .where({ id });
 
             if (updatedRows === 0) {
                 throw new Error("Post not found or not updated.");
             }
             return updatedRows;
-
         } catch (error) {
-            console.log(error)
-            throw error
+            console.log(error);
+            throw error;
         }
-    }
+    },
 }

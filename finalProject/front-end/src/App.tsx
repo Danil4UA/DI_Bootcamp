@@ -8,6 +8,8 @@ import Dashboard from './features/Dashboard'
 import { createContext, useState, ReactNode } from 'react'
 import Auth from './Auth/Auth'
 import PostEditor from './features/posts/PostEditor'
+import About from './features/About'
+import Contact from './features/Contact'
 
 
 interface AuthContextType {
@@ -28,6 +30,8 @@ function App():ReactNode {
             <Route path='/' element={<Auth><Dashboard/></Auth>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
+            <Route path='/about' element={<Auth><About/></Auth>} />
+            <Route path='/contact' element={<Auth><Contact/></Auth>} />
             <Route path='/manage' element={<Auth><ManageAccount/></Auth>} />
             <Route path="/edit-post/:postId" element={<Auth><PostEditor /></Auth>}/>
           </Routes>

@@ -11,6 +11,8 @@ import PostSwitchComponent from "./PostSwitchComponent";
 
 const PostForm = (): JSX.Element => {
     const dispatch = useAppDispatch();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const toneOfVoice = ["Polite", "Witty", "Enthusiastic", "Friendly", "Informational", "Funny"];
     const audienceOptions = ["any", "Adults", "Teenagers", "Children"];
     const sizeOptions = ["Short", "Medium", "Long"];
@@ -41,17 +43,29 @@ const PostForm = (): JSX.Element => {
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            const content = { ...formData };
-            const createPostsResponse = await dispatch(createPost(content));
-            await dispatch(fetchPosts());
-            const currentResult = createPostsResponse.payload.post.content;
-            dispatch(setCurrentResult(currentResult));
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    e.preventDefault();
+    try {
+        setIsSubmitting(true);
+
+        dispatch(setCurrentResult({
+            content: "Loading..."
+        }));
+
+
+        const content = { ...formData };
+        const createPostsResponse = await dispatch(createPost(content));
+        await dispatch(fetchPosts());
+        // const currentResult = createPostsResponse.payload.post.content;
+        const currentResult = createPostsResponse.payload.post;
+        console.log(currentResult)
+
+        dispatch(setCurrentResult(currentResult));
+        setIsSubmitting(false);
+    } catch (error) {
+        console.log(error);
+        setIsSubmitting(false);
+    }
+};
 
     return (
         <Box component="form" onSubmit={handleSubmit} className="form-container">
@@ -72,8 +86,8 @@ const PostForm = (): JSX.Element => {
             <PostCustomSelect label="Platform" name="platform" options={platformOptions} value={formData.platform} onChange={handleSelectChange} />
             <PostSwitchComponent name="hashtags" label="Generate hashtags" checked={formData.hashtags} onChange={handleChange} />
             <PostSwitchComponent name="emojis" label="Include emojis" checked={formData.emojis} onChange={handleChange} />
-            <Button type="submit" variant="contained" fullWidth>
-                Generate
+            <Button type="submit" variant="contained" fullWidth disabled={isSubmitting}>
+                {isSubmitting ? "Generating..." : "Generate"}
             </Button>
         </Box>
     );

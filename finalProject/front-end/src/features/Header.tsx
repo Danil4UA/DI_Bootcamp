@@ -53,8 +53,10 @@ const Header = (): JSX.Element => {
                         </Stack>
                     ) : (
                         <Stack spacing={2} direction={"row"}>
+                            <Button component={Link} to="/about" color="inherit">About</Button>
                             <Button component={Link} to="/" color="inherit">Dashboard</Button>
                             <Button component={Link} to="/manage" color="inherit">Manage</Button>
+                            <Button component={Link} to="/contact" color="inherit">Contact us</Button>
                         </Stack>
                     )}
                 </Box>

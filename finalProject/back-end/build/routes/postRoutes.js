@@ -9,11 +9,12 @@ const postControllers_1 = require("../controllers/postControllers");
 const postControllers_2 = require("../controllers/postControllers");
 const uploadMiddleware_1 = require("../middlewares/uploadMiddleware");
 const router = express_1.default.Router();
-// router.get("/all", verifyAccessToken, postControllers.getAllPosts)
 router.get("/all", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.getAllPostsByUserId);
 router.get("/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.getPostById);
-router.put('/edit/:id', uploadMiddleware_1.upload.single('file'), postControllers_2.updatePost);
+router.put("/edit/:id", verifyToken_1.verifyAccessToken, uploadMiddleware_1.upload.single('file'), postControllers_2.updatePost);
 router.post("/create", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.createPost);
-router.put("/edit/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.editPostById);
+router.post("/publish/instagram", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.publishToInstagram);
+router.post("/publish/facebook", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.publishToFacebook);
+router.put("/publish/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.publishPost);
 router.delete("/:id", verifyToken_1.verifyAccessToken, postControllers_1.postControllers.deletePostById);
 exports.default = router;

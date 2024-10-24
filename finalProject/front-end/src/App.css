@@ -1,8 +1,8 @@
+
 body {
   margin: 0;
 }
 #root {
-  /* width: 1200px; */
   margin: auto;
 }
 .auth-form {
@@ -29,9 +29,14 @@ button {
 }
 
 .form-container {
-  min-width: 550px;
-  padding: 20px;
-}
+  min-width: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
 
 .form-textfield {
   margin-bottom: 20px;
@@ -62,3 +67,100 @@ button {
 }
 
 
+.post-container {
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 20px;
+}
+  
+
+.post-title {
+  margin-bottom: 16px;
+}
+
+.post-paragraph {
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+
+.generate-post-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+  gap: 20px; /* Пространство между колонками */
+  padding: 30px;
+  max-width: 1400px;
+  margin: auto;
+  /* height: 90vh; */
+  /* max-height: 900px; */
+}
+
+.manage-account {
+  position: relative;
+  padding: 30px 0;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+
+.post-editor-container {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 15px;
+}
+
+.post-editor-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-editor-buttons {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.upload-btn,
+.save-btn,
+.publish-btn {
+  width: 180px;
+}
+
+.publish-btn {
+  width: 200px;
+}
+
+.post-editor-image {
+  position: relative;
+  max-width: 450px;
+}
+
+.post-image {
+  max-width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .generate-post-container {
+    grid-template-columns: 1fr; /* Одна колонка на мобильных */
+  }
+}

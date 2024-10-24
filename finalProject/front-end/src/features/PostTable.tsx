@@ -20,6 +20,7 @@ const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost }: PostTable
                         <TableCell>Content</TableCell>
                         <TableCell>Status</TableCell>
                         <TableCell>Actions</TableCell>
+                        <TableCell>Scheuled At</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -31,11 +32,12 @@ const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost }: PostTable
                                 isSelected={selectedPosts.includes(post.id)}
                                 onSelect={() => onSelectPost(post.id)}
                                 onEdit={() => onEditPost(post.id)}
+                                scheduledAt={post.scheduled_at}
                             />
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={6} align="center">
+                            <TableCell colSpan={7} align="center">
                                 No posts available
                             </TableCell>
                         </TableRow>

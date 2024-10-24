@@ -12,12 +12,19 @@ export interface Post {
     content: string;
     file_url: string    
     status: 'pending' | 'published' | 'archived'; 
+    scheduled_at: any // need to change later
 }
+
+type CurrentResult = {
+    content: string
+    id: number
+}
+
 
 interface InitialStatePosts {
     posts: Post[];
     status: string;
-    currentResult: null | string
+    currentResult: null | CurrentResult
 }
 
 

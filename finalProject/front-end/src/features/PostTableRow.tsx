@@ -5,6 +5,8 @@ interface PostTableRowProps {
     isSelected: boolean;
     onSelect: () => void;
     onEdit: () => void;
+    scheduledAt?: any; // Добавьте этот проп
+
 }
 
 const PostTableRow = ({ post, isSelected, onSelect, onEdit }: PostTableRowProps) => {
@@ -28,6 +30,7 @@ const PostTableRow = ({ post, isSelected, onSelect, onEdit }: PostTableRowProps)
                 </Tooltip>
             </TableCell>
             <TableCell>{post.status}</TableCell>
+            
             <TableCell>
                 <Button 
                     variant="contained" 
@@ -40,7 +43,8 @@ const PostTableRow = ({ post, isSelected, onSelect, onEdit }: PostTableRowProps)
                     Edit
                 </Button>
             </TableCell>
-        </TableRow>
+            <TableCell>{post.scheduledAt ? new Date(post.scheduledAt).toLocaleString() : 'Not selected'}</TableCell>
+            </TableRow>
     );
 };
 

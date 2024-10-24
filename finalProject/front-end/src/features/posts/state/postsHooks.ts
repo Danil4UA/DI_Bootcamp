@@ -9,13 +9,13 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useSelectPosts = () => {
-    console.log("i am use selector");
     const dispatch = useAppDispatch();
     const posts = useAppSelector(selectPosts);
     const status = useAppSelector(selectPostsStatus);
 
     useEffect(() => {
         if (status === 'idle' && posts.length === 0) {
+            console.log("i am use effect")
             dispatch(fetchPosts());
         }
     }, [dispatch, status, posts.length]);

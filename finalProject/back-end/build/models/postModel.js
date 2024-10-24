@@ -98,7 +98,7 @@ exports.postModels = {
     getAllPostsByUserID: (userid) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const posts = yield (0, db_1.db)("posts")
-                .select("id", "user_id", "content", "status", "file_url")
+                .select("id", "user_id", "content", "status", "file_url", "scheduled_at")
                 .where({ "user_id": userid });
             if (posts.length === 0) {
                 throw new Error("Posts not found.");
@@ -122,10 +122,14 @@ exports.postModels = {
             throw error;
         }
     }),
-    editPostById: (id, content) => __awaiter(void 0, void 0, void 0, function* () {
+    editPostById: (id, content, scheduled_at) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const updatedRows = yield (0, db_1.db)("posts")
-                .update({ content })
+                .update({
+                content,
+                scheduled_at, // Update scheduled_at
+                updated_at: new Date() // Update updated_at to current date and time
+            })
                 .where({ id });
             if (updatedRows === 0) {
                 throw new Error("Post not found or not updated.");
@@ -136,5 +140,5 @@ exports.postModels = {
             console.log(error);
             throw error;
         }
-    })
+    }),
 };
