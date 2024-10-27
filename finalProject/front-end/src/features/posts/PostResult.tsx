@@ -12,7 +12,9 @@ const PostResult = (): JSX.Element | null => {
     if (!currentResult) {
         return (
             <div className="post-container">
-                Generate content first ...
+                <h2>Get started</h2>
+                <p>1. Write your prompt with what you want the AI to generate and hit the Generate button.</p>
+                <p>2. Press edit to mske some changes and publick result on social medias or delete the result</p>
             </div>
         );
     }

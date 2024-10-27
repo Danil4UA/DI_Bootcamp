@@ -9,20 +9,23 @@ interface SearchFilterProps {
 
 const SearchFilter = ({ searchQuery, statusFilter, setSearchQuery, setStatusFilter }: SearchFilterProps) => {
     return (
-        <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+        <Box className="search-container">
             <TextField
                 label="Search by content"
                 variant="outlined"
                 fullWidth
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
             />
-            <FormControl fullWidth>
+            
+            <FormControl fullWidth className="custom-form-control">
                 <InputLabel>Status</InputLabel>
                 <Select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
                     label="Status"
+                    className="custom-select"
                 >
                     <MenuItem value="">All</MenuItem>
                     <MenuItem value="published">Published</MenuItem>
@@ -30,6 +33,22 @@ const SearchFilter = ({ searchQuery, statusFilter, setSearchQuery, setStatusFilt
                     <MenuItem value="archived">Archived</MenuItem>
                 </Select>
             </FormControl>
+
+            <FormControl fullWidth className="custom-form-control">
+                <InputLabel>Platform</InputLabel>
+                <Select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    label="Status"
+                    className="custom-select"
+                >
+                    <MenuItem value="">Linked In</MenuItem>
+                    <MenuItem value="published">Facebook</MenuItem>
+                    <MenuItem value="draft">Instagram</MenuItem>
+                    <MenuItem value="archived">Google</MenuItem>
+                </Select>
+            </FormControl>
+
         </Box>
     );
 };

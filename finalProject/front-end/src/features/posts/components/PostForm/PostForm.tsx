@@ -81,9 +81,41 @@ const PostForm = (): JSX.Element => {
             />
             <PostToneSelector toneOfVoice={toneOfVoice} selectedTone={formData.tone} onSelectTone={(tone) => setFormData({ ...formData, tone })} />
             <PostSliderComponent characthersCount={formData.characthersCount} onSliderChange={(value) => setFormData({ ...formData, characthersCount: value })} />
+{/*             
             <PostCustomSelect label="Audience" name="audience" options={audienceOptions} value={formData.audience} onChange={handleSelectChange} />
             <PostCustomSelect label="Size" name="size" options={sizeOptions} value={formData.size} onChange={handleSelectChange} />
             <PostCustomSelect label="Platform" name="platform" options={platformOptions} value={formData.platform} onChange={handleSelectChange} />
+             */}
+            <Box display="flex" justifyContent="space-between">
+        <Box flex="1" mr={1}>
+            <PostCustomSelect
+                label="Audience"
+                name="audience"
+                options={audienceOptions}
+                value={formData.audience}
+                onChange={handleSelectChange}
+            />
+        </Box>
+        <Box flex="1" mr={1}>
+            <PostCustomSelect
+                label="Size"
+                name="size"
+                options={sizeOptions}
+                value={formData.size}
+                onChange={handleSelectChange}
+            />
+        </Box>
+        <Box flex="1">
+            <PostCustomSelect
+                label="Platform"
+                name="platform"
+                options={platformOptions}
+                value={formData.platform}
+                onChange={handleSelectChange}
+            />
+        </Box>
+    </Box>
+            
             <PostSwitchComponent name="hashtags" label="Generate hashtags" checked={formData.hashtags} onChange={handleChange} />
             <PostSwitchComponent name="emojis" label="Include emojis" checked={formData.emojis} onChange={handleChange} />
             <Button type="submit" variant="contained" fullWidth disabled={isSubmitting}>

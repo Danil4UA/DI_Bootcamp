@@ -1,5 +1,6 @@
 import { Box, TextField, Button, Typography } from "@mui/material";
 import { useState } from "react";
+import AuthNavBar from "./AuthNavBar";
 
 interface AuthFormProps {
   title: string;
@@ -17,9 +18,15 @@ const AuthForm = ({ title, onSubmit, error }: AuthFormProps): JSX.Element => {
   };
 
   return (
-    <Box className="auth-form">
+    <Box className="auth-container">
+      
+      <Box className="auth-form">
+      <AuthNavBar title={title} />
+       
+
       <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off">
-        <Typography variant="h5" align="center">{title}</Typography>
+
+        <Typography variant="h5" align="center">Welcome to PostsAI</Typography>
         <TextField
           id="email"
           type="email"
@@ -40,6 +47,12 @@ const AuthForm = ({ title, onSubmit, error }: AuthFormProps): JSX.Element => {
         <Button type="submit" variant="contained">{title}</Button>
       </Box>
     </Box>
+
+      <Box className="auth-image">
+        
+      </Box>
+    </Box>
+    
   );
 };
 

@@ -1,26 +1,36 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import PostTableRow from './PostTableRow';
+import { useEffect, useState } from 'react';
 
 interface PostTableProps {
-    posts: any[]; // Замените на ваш тип данных
+    posts: any[];
     selectedPosts: number[];
     onSelectPost: (id: number) => void;
     onEditPost: (id: number) => void;
+    onDeletePost: (id: number) => void; 
 }
 
-const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost }: PostTableProps) => {
+const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost, onDeletePost }: PostTableProps) => {
+    const [showCheckboxes, setShowCheckboxes] = useState(false);
+
+    useEffect(() => {
+        setShowCheckboxes(selectedPosts.length > 0);
+    }, [selectedPosts]);
+
+    const handleRowClick = (id: number) => {
+        onSelectPost(id);
+    };
+
     return (
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Select</TableCell>
-                        <TableCell>ID</TableCell>
-                        <TableCell>User ID</TableCell>
+                        {showCheckboxes && <TableCell>Select</TableCell>}
                         <TableCell>Content</TableCell>
-                        <TableCell>Status</TableCell>
+                        <TableCell>Scheduled At</TableCell>
                         <TableCell>Actions</TableCell>
-                        <TableCell>Scheuled At</TableCell>
+                        <TableCell align="right">Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -30,14 +40,15 @@ const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost }: PostTable
                                 key={post.id}
                                 post={post}
                                 isSelected={selectedPosts.includes(post.id)}
-                                onSelect={() => onSelectPost(post.id)}
+                                onSelect={() => handleRowClick(post.id)}
                                 onEdit={() => onEditPost(post.id)}
-                                scheduledAt={post.scheduled_at}
+                                onDelete={() => onDeletePost(post.id)}
+                                showCheckbox={showCheckboxes}
                             />
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={7} align="center">
+                            <TableCell colSpan={4} align="center">
                                 No posts available
                             </TableCell>
                         </TableRow>

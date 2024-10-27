@@ -13,6 +13,7 @@ export interface Post {
     file_url: string    
     status: 'pending' | 'published' | 'archived'; 
     scheduled_at: any // need to change later
+    platform: string
 }
 
 type CurrentResult = {

@@ -40,20 +40,20 @@ const Header = (): JSX.Element => {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" className="appbar">
             <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography variant="h6" component={Link} to="/" sx={{ textDecoration: 'none', color: 'white' }}>
-                    Posts AI Generator
+                    Posts AI               Generator
                 </Typography>
                 <Box>
                     {!token ? (
                         <Stack spacing={2} direction={"row"}>
+                            <Button component={Link} to="/about" color="inherit">About</Button>
                             <Button component={Link} to="/login" color="inherit">Login</Button>
                             <Button component={Link} to="/register" color="inherit">Register</Button>
                         </Stack>
                     ) : (
                         <Stack spacing={2} direction={"row"}>
-                            <Button component={Link} to="/about" color="inherit">About</Button>
                             <Button component={Link} to="/" color="inherit">Dashboard</Button>
                             <Button component={Link} to="/manage" color="inherit">Manage</Button>
                             <Button component={Link} to="/contact" color="inherit">Contact us</Button>
