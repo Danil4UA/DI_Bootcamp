@@ -11,10 +11,14 @@ interface PostContentEditorProps {
 
 const PostContentEditor = ({ content, setContent, onChange }: PostContentEditorProps) => {
 
-  const [currentPost, setCurrentPost] = useState("");
+
   const [userRequest, setUserRequest] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [previousContent, setPreviousContent] = useState<string | null>(null);
+  const [isRefined, setIsRefined] = useState(false);
+
+
 
 
   const handleUserRequestChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +31,8 @@ const PostContentEditor = ({ content, setContent, onChange }: PostContentEditorP
 
 
     try {
+        setPreviousContent(content);
+
         const response = await axios.post('http://localhost:5001/api/posts/refine ', {
             originalContent: content,
             userRequest: userRequest,
@@ -35,6 +41,7 @@ const PostContentEditor = ({ content, setContent, onChange }: PostContentEditorP
         setContent(response.data.refinedPost);
 
         setUserRequest(''); 
+        setIsRefined(true); // Показываем кнопку "Get Previous Post"
     } catch (error) {
         console.error(error);
         setError('Failed to refine the post. Please try again.');
@@ -43,41 +50,61 @@ const PostContentEditor = ({ content, setContent, onChange }: PostContentEditorP
     }
   };
 
+  const handleGetPreviousPost = () => {
+
+    if (previousContent !== null) {
+      console.log("i was clicked")
+      setContent(previousContent);
+      setPreviousContent(null);
+      setIsRefined(false); // Скрываем кнопку после возврата к предыдущему варианту
+    }
+  };
+
   return (
-
-    
-    <>
     <div className="refine-post-container">
-      <TextField
-          fullWidth
-          label="Edit Post Content"
-          multiline
-          minRows={3}
-          value={content}
-          onChange={onChange}
-          sx={{ mb: 2 }}
+        <div>
+        <TextField
+            fullWidth
+            label="Edit Post Content"
+            multiline
+            minRows={5}
+            value={content}
+            onChange={onChange}
+            className="content-input"
         />
+       {isRefined && (
+          <button
+            onClick={handleGetPreviousPost}
+            disabled={!previousContent}
+            className="get-previous-post-button"
+          >
+            Get Previous Post
+          </button>
+        )}
+        </div>
+        
+        
+        <div style={{display:"flex", flexDirection:"column", gap:"10px"}}>
+          <input    
+              type="text"
+              value={userRequest}
+              onChange={handleUserRequestChange}
+              placeholder="Edit ypur post manually or typing the request here..."
+              className="user-request-input"
+          />
 
-            <input
-                type="text"
-                value={userRequest}
-                onChange={handleUserRequestChange}
-                placeholder="Enter your request here..."
-                className="user-request-input"
-                style={{width: "100%"}}
-            />
-
-            <button onClick={handleRefinePost} disabled={loading || !userRequest.trim()}>
-                {loading ? 'Processing...' : 'Refine Post'}
-            </button>
-      
+          <button 
+              onClick={handleRefinePost} 
+              disabled={loading || !userRequest.trim()} 
+              className="refine-post-button"
+          >
+              {loading ? 'Processing...' : 'Refine Post'}
+          </button>
+          {error && <div className="error-message">{error}</div>}
+        </div>
+        
     </div>
-      
-      
-
-    </>
-    
-  );
+);
 };
 
 export default PostContentEditor;

@@ -425,7 +425,7 @@ button {
 
 
 
-
+/* 
 .post-editor-container {
   max-width: 1000px;
   margin: auto;
@@ -442,7 +442,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 .post-editor-buttons {
   margin-bottom: 20px;
@@ -647,7 +647,186 @@ button {
 
 
 
+/* Post Editor Left*/
 
+.refine-post-container {
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 90vh;
+  justify-content: space-between;
+
+}
+
+.content-input .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #f7f7f7; /* Светло-серый цвет по умолчанию */
+}
+
+
+.content-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #f7f7f7; /* Светло-серый при наведении */
+}
+
+.content-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #f7f7f7; /* Светло-серый при фокусе */
+}
+
+.content-input .MuiOutlinedInput-root:active .MuiOutlinedInput-notchedOutline {
+  border-color: #f7f7f7; /* Светло-серый при нажатии */
+}
+
+.content-input .MuiOutlinedInput-root {
+  box-shadow: none; /* Убираем тень во всех состояниях */
+}
+
+
+.user-request-input {
+  padding: 12px 24px;
+  border: none;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.user-request-input:focus {
+  box-shadow: 0 0 2px #e7e6e6; /* добавляет легкую тень при фокусе (опционально) */
+}
+
+.refine-post-button {
+  padding: 10px 16px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.refine-post-button:disabled {
+  background-color: #0056b3;
+  cursor: not-allowed;
+  margin: 0;
+}
+
+.refine-post-button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+/* Post Editor Right*/
+
+/* Основной контейнер для редактора поста */
+.post-editor-container {
+  margin: 0;
+  /* display: flex; */
+  width: 100%;
+  /* max-width: 1600px; */
+}
+
+/* Контейнер для основного содержимого редактора */
+.post-editor-content {
+  display: flex;
+  
+}
+
+/* Левая часть редактора поста */
+.post-editor-left {
+  flex: 1;
+  /* padding: 24px; */
+  /* min-width: 450px; */
+  /* width: 600px; */
+}
+
+
+
+/* Редактор текста поста */
+.post-content-editor {
+}
+
+/* Загрузчик изображения */
+.post-image-uploader {
+  margin-bottom: 20px;
+}
+
+/* Кнопки сохранения и публикации */
+.post-editor-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Правая часть с iPhone Mockup */
+
+.post-editor-right {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  background-color: #f4f4f4;
+  height: 91vh;
+}
+
+
+.button {
+  padding: 8px 16px;
+  margin: 0;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Стили для кнопки сохранения */
+.primary-button {
+  background-color: #0056b3; /* Пример цвета для primary */
+  color: #fff;
+  margin-right: 8px; /* Место под аналогичный `sx={{ mr: 1 }}` */
+}
+
+.primary-button:hover:enabled {
+  background-color: #115293;
+}
+
+/* Стили для кнопки публикации */
+.secondary-button {
+  background-color: #0056b3; /* Пример цвета для secondary */
+  color: #fff;
+}
+
+.secondary-button:hover:enabled {
+  background-color: #9a0007;
+}
+
+
+.device-icons-container {
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding:  5px 10px;
+  border-radius: 5px; /* Немного округленные углы */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  margin-bottom: 20px;
+}
 
 
 

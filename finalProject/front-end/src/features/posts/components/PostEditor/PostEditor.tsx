@@ -2,13 +2,16 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelectPosts } from '../../state/postsHooks';
 import { Post } from "../../state/postSlice";
-import { Box } from "@mui/material";
 import { format, parseISO } from 'date-fns';
 import PostContentEditor from "./PostContentEditor";
 import PostImageUploader from "./PostImageUploader";
 import PostSavePublishButtons from "./PostSavePublishButtons";
 import IPhoneMockup from "./iPhoneMockup";
 import axios from "axios";
+
+import LaptopMacIcon from "@mui/icons-material/LaptopMac";
+import TabletMacIcon from "@mui/icons-material/TabletMac";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 
 
 
@@ -146,37 +149,43 @@ const PostEditor = () => {
         }
 
   return (
-    <Box display="flex" 
-    alignItems="center" 
-    flexDirection="column" sx={{ minHeight: '90vh', padding: '20px' }}>
-
-
-      <Box display="flex" justifyContent="center" alignItems="flex-start" flexDirection="row" gap="100px" sx={{ width: '100%', maxWidth: '1400px' }}>
-        <Box flex="1" mr={2} sx={{ maxWidth: '650px', width: '100%' }}>
+    <div className="post-editor-container">
+      <div className="post-editor-content">
+        <div className="post-editor-left">
           {foundPost ? (
             <>
-              <PostContentEditor content={content} setContent={setContent} onChange={handleContentChange} />
-              
-                <PostImageUploader imageUrl={imageUrl} onFileChange={handleFileChange} onRemoveImage={handleRemoveImage} />
-                   
-                <Box className="post-editor-buttons">
-                 
-                    <PostSavePublishButtons isSaving={isSaving} onSave={handleSave} onPublish={handlePublish} />
-                    
-               </Box>
+              <div className="post-content-editor">
+                <PostContentEditor content={content} setContent={setContent} onChange={handleContentChange} />
+              </div>
 
-               
+{/* 
+              <div className="post-image-uploader">
+                <PostImageUploader imageUrl={imageUrl} onFileChange={handleFileChange} onRemoveImage={handleRemoveImage} />
+              </div> */}
+
+
+              <div className="post-editor-buttons" style={{position:"absolute", top:"16px", right:"24px"}}>
+                <PostSavePublishButtons isSaving={isSaving} onSave={handleSave} onPublish={handlePublish} />
+              </div>
+
             </>
           ) : (
             <p>Post not found</p>
           )}
-        </Box>
-        
-        <Box>
+        </div>
+
+        <div className="post-editor-right">
+
+        <div className="device-icons-container">
+            <LaptopMacIcon fontSize="small" />
+            <TabletMacIcon fontSize="small" />
+            <PhoneIphoneIcon fontSize="small" />
+        </div>
+
           <IPhoneMockup content={content} imageUrl={imageUrl} />
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

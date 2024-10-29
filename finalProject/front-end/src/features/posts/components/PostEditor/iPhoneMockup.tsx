@@ -8,10 +8,10 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
     return (
         <Box
             sx={{
-                width: '280px',
-                height: '600px',
-                border: '8px solid black',
-                borderRadius: '36px',
+                width: '238px', // 280px * 0.85
+                height: '510px', // 600px * 0.85
+                border: '7px solid black', // 8px * 0.85
+                borderRadius: '30px', // 36px * 0.85
                 position: 'relative',
                 background: '#f2f2f2',
                 display: 'flex',
@@ -23,11 +23,11 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
         >
             <Box
                 sx={{
-                    width: '270px',
-                    height: '560px',
+                    width: '229px', // 270px * 0.85
+                    height: '476px', // 560px * 0.85
                     backgroundColor: 'white',
-                    borderRadius: '24px',
-                    padding: '5px',
+                    borderRadius: '20px', // 24px * 0.85
+                    padding: '4px', // 5px * 0.85
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-start',
@@ -35,7 +35,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                     boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.1)',
                     overflow: 'hidden',
                     position: 'relative',
-                    top: '20px',
+                    top: '17px', // 20px * 0.85
                 }}
             >
                 <Box
@@ -44,7 +44,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        padding: '5px 10px',
+                        padding: '4px 8px', // 5px * 0.85 and 10px * 0.85
                         borderBottom: '1px solid #e0e0e0',
                     }}
                 >
@@ -61,7 +61,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                         sx={{
                             width: '100%',
                             height: 'auto',
-                            mb: 2,
+                            mb: 1.7, // 2px * 0.85
                             boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
                             borderRadius: '0px',
                             margin: '0',
@@ -70,8 +70,8 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                 )}
 
                 {/* Post content with paragraphs */}
-                <Box sx={{ width: '100%', maxHeight: '200px', overflowY: 'auto', mb: 1 }}>
-                    <Typography variant="body2" sx={{ mt: 1 }}>
+                <Box sx={{ width: '100%', maxHeight: '170px', overflowY: 'auto', mb: 0.85 }}>
+                    <Typography variant="body2" sx={{ mt: 0.85 }}>
                         {content.split('\n').map((line, index) => (
                             <span key={index}>
                                 {line}
@@ -81,7 +81,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                     </Typography>
                 </Box>
 
-                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.85 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton>
                             <FavoriteIcon />
@@ -96,7 +96,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                     <Typography variant="body2" sx={{ fontWeight: 'bold' }}>0 Likes</Typography>
                 </Box>
 
-                <Box sx={{ width: '100%', mt: 1, borderTop: '1px solid #e0e0e0', pt: 1 }}>
+                <Box sx={{ width: '100%', mt: 0.85, borderTop: '1px solid #e0e0e0', pt: 0.85 }}>
                     <Typography variant="body2" sx={{ color: '#888' }}>View all comments</Typography>
                 </Box>
             </Box>

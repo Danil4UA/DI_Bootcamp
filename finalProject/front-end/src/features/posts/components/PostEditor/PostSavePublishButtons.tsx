@@ -9,24 +9,21 @@ interface PostSavePublishButtonsProps {
 const PostSavePublishButtons = ({ isSaving, onSave, onPublish }: PostSavePublishButtonsProps) => {
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
+      <button
         onClick={onSave}
         disabled={isSaving}
-        sx={{ mr: 1 }}
+        className="button primary-button save-button"
       >
         {isSaving ? <CircularProgress size={24} /> : "Save Changes"}
-      </Button>
+      </button>
 
-      <Button
-        variant="contained"
-        color="secondary"
+      <button
         onClick={onPublish}
         disabled={isSaving}
+        className="button secondary-button publish-button"
       >
         {isSaving ? <CircularProgress size={24} /> : "Publish"}
-      </Button>
+      </button>
     </>
   );
 };

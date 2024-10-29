@@ -63,13 +63,13 @@ const PostResult = (): JSX.Element | null => {
 
                 <div style={{display: "flex", justifyContent: "space-between"}}>
 
-                <Button variant="contained" color="primary" onClick={() => handleEdit(currentResult.id)}>
-                    Edit
-                </Button>
-    
-                <Button variant="contained" color="secondary" onClick={handleDelete}>
-                    Delete
-                </Button>
+                    <Button variant="contained" color="primary" onClick={() => handleEdit(currentResult.id)}>
+                        Edit
+                    </Button>
+        
+                    <Button variant="contained" color="secondary" onClick={handleDelete}>
+                        Delete
+                    </Button>
                 </div>
             }
             
