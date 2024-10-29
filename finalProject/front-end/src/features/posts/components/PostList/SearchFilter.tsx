@@ -1,55 +1,52 @@
-import { Box, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Search } from '@mui/icons-material'; // Импортируем иконку
 
 interface SearchFilterProps {
     searchQuery: string;
     statusFilter: string;
     setSearchQuery: (query: string) => void;
     setStatusFilter: (status: string) => void;
+    
 }
 
 const SearchFilter = ({ searchQuery, statusFilter, setSearchQuery, setStatusFilter }: SearchFilterProps) => {
     return (
-        <Box className="search-container">
-            <TextField
-                label="Search by content"
-                variant="outlined"
-                fullWidth
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-            />
-            
-            <FormControl fullWidth className="custom-form-control">
-                <InputLabel>Status</InputLabel>
-                <Select
+        <div className="search-container">
+
+            <div className="search-input-container">
+                <Search className="search-icon" />
+                <input
+                    type="text"
+                    // placeholder="Search by content"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="custom-input"
+                />
+            </div>
+
+            <div className="custom-select-container">
+                <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    label="Status"
                     className="custom-select"
                 >
-                    <MenuItem value="">All</MenuItem>
-                    <MenuItem value="published">Published</MenuItem>
-                    <MenuItem value="draft">Draft</MenuItem>
-                    <MenuItem value="archived">Archived</MenuItem>
-                </Select>
-            </FormControl>
+                    <option value="">All</option>
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                    <option value="archived">Archived</option>
+                </select>
+            </div>
 
-            <FormControl fullWidth className="custom-form-control">
-                <InputLabel>Platform</InputLabel>
-                <Select
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                    label="Status"
-                    className="custom-select"
-                >
-                    <MenuItem value="">Linked In</MenuItem>
-                    <MenuItem value="published">Facebook</MenuItem>
-                    <MenuItem value="draft">Instagram</MenuItem>
-                    <MenuItem value="archived">Google</MenuItem>
-                </Select>
-            </FormControl>
+            <div className="custom-select-container">
+                <select className="custom-select">
 
-        </Box>
+                    <option value="">Linked In</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="google">Google</option>
+
+                </select>
+            </div>
+        </div>
     );
 };
 

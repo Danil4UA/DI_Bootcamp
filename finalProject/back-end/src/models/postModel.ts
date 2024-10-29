@@ -81,6 +81,44 @@ export const postModels = {
         }
     },
 
+    refinePost: async(originalContent: string, userRequest: string) => {
+        const trx = await db.transaction();
+        try {
+            const client = new OpenAI({
+                apiKey: process.env.OPENAI_API_KEY
+            });
+
+            const params: OpenAI.Chat.ChatCompletionCreateParams = {
+                messages: [
+                    {
+                        role: 'user',
+                        content: `Here is the original post: "${originalContent}". User has a new request: "${userRequest}". Please modify the original post according to the user's request. Do not reply ANYTHING besides the modified text. No additional words! Structure the response with logical paragraph breaks.`
+                    }
+                ],
+                model: 'gpt-3.5-turbo',
+            };
+
+            const response: OpenAI.Chat.ChatCompletion = await client.chat.completions.create(params);
+            const gptResponseText = response.choices[0].message.content;
+
+            if (gptResponseText) {
+                const formattedResponse = gptResponseText
+                    .split('\n\n')
+                    .map((paragraph: string) => paragraph.trim())
+                    .filter((paragraph: string) => paragraph.length > 0)
+                    .join('\n\n');
+
+                await trx.commit();
+                return formattedResponse;
+            }
+        } catch (error) {
+            await trx.rollback();
+            console.log(error);
+            throw error;
+        }
+    },
+
+
     getAllPosts: async ()=>{
         try {
             return await db("posts")

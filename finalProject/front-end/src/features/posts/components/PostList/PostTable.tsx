@@ -27,10 +27,10 @@ const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost, onDeletePos
                 <TableHead>
                     <TableRow>
                         {showCheckboxes && <TableCell>Select</TableCell>}
-                        <TableCell>Content</TableCell>
-                        <TableCell>Scheduled At</TableCell>
-                        <TableCell>Actions</TableCell>
-                        <TableCell align="right">Delete</TableCell>
+                        <TableCell>Posts</TableCell>
+                        <TableCell>Date</TableCell>
+                        <TableCell></TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

@@ -69,6 +69,39 @@ exports.postModels = {
             throw error;
         }
     }),
+    refinePost: (originalContent, userRequest) => __awaiter(void 0, void 0, void 0, function* () {
+        const trx = yield db_1.db.transaction();
+        try {
+            const client = new openai_1.default({
+                apiKey: process.env.OPENAI_API_KEY
+            });
+            const params = {
+                messages: [
+                    {
+                        role: 'user',
+                        content: `Here is the original post: "${originalContent}". User has a new request: "${userRequest}". Please modify the original post according to the user's request. Do not reply ANYTHING besides the modified text. No additional words! Structure the response with logical paragraph breaks.`
+                    }
+                ],
+                model: 'gpt-3.5-turbo',
+            };
+            const response = yield client.chat.completions.create(params);
+            const gptResponseText = response.choices[0].message.content;
+            if (gptResponseText) {
+                const formattedResponse = gptResponseText
+                    .split('\n\n')
+                    .map((paragraph) => paragraph.trim())
+                    .filter((paragraph) => paragraph.length > 0)
+                    .join('\n\n');
+                yield trx.commit();
+                return formattedResponse;
+            }
+        }
+        catch (error) {
+            yield trx.rollback();
+            console.log(error);
+            throw error;
+        }
+    }),
     getAllPosts: () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             return yield (0, db_1.db)("posts")

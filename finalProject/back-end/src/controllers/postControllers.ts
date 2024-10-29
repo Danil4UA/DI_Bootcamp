@@ -116,6 +116,20 @@ export const postControllers = {
             res.status(500).json({ message: "Internal server error" });
         }
     },
+
+    // in the chat
+    refinePost: async (req: Request, res: Response) => {
+        const { originalContent, userRequest } = req.body;
+    
+        try {
+            const refinedPost = await postModels.refinePost(originalContent, userRequest);
+            res.json({ refinedPost });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Failed to refine post' });
+        }
+    },
+    
     publishToInstagram: async (req: Request, res: Response) => {
         const { postId, mediaUrl, caption } = req.body;
         const { INSTAGRAM_ACCESS_TOKEN } = process.env;

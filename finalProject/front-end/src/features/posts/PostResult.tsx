@@ -11,11 +11,14 @@ const PostResult = (): JSX.Element | null => {
 
     if (!currentResult) {
         return (
-            <div className="post-container">
-                <h2>Get started</h2>
-                <p>1. Write your prompt with what you want the AI to generate and hit the Generate button.</p>
-                <p>2. Press edit to mske some changes and publick result on social medias or delete the result</p>
+            <div className="post-result">
+                <div className="post-result-content">
+                    <h2>Get started</h2>
+                    <p>1. Write your prompt with what you want the AI to generate and hit the Generate button.</p>
+                    <p>2. Press edit to mske some changes and publick result on social medias or delete the result</p>
+                </div>
             </div>
+            
         );
     }
 
@@ -41,8 +44,9 @@ const PostResult = (): JSX.Element | null => {
     };
 
     return (
-        <div className="post-container">
-            <div>
+        <div className="post-result">
+     
+            <div className="post-result-content" >
                 {currentResult.content.split(/\n{2,}/).map((paragraph: string, index: number) => (
                     <Typography key={index} component="p" className="post-paragraph">
                         {paragraph}
@@ -51,8 +55,14 @@ const PostResult = (): JSX.Element | null => {
             </div>
 
 
+
+
+
+
             {currentResult.content !== "Loading..." &&
+
                 <div style={{display: "flex", justifyContent: "space-between"}}>
+
                 <Button variant="contained" color="primary" onClick={() => handleEdit(currentResult.id)}>
                     Edit
                 </Button>

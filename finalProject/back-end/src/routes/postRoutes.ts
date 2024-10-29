@@ -13,6 +13,12 @@ router.get("/:id", verifyAccessToken, postControllers.getPostById)
 
 router.put("/edit/:id", verifyAccessToken, upload.single('file'), updatePost);
 
+
+
+router.post("/refine", postControllers.refinePost)
+
+
+
 router.post("/create", verifyAccessToken, postControllers.createPost)
 
 

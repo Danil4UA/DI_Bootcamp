@@ -73,6 +73,7 @@ const ManageAccount = () => {
                             onClose={() => setOpenSnackbar(false)}
                             message="Posts deleted successfully"
                         />
+                        
                         <SearchFilter 
                             searchQuery={searchQuery} 
                             statusFilter={statusFilter} 

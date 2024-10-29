@@ -69,59 +69,55 @@ const PostForm = (): JSX.Element => {
 
     return (
         <Box component="form" onSubmit={handleSubmit} className="form-container">
-            <TextField
-                label="Your prompt"
-                multiline
-                rows={4}
-                name="request"
-                value={formData.request}
-                onChange={handleChange}
-                fullWidth
-                className="form-textfield"
-            />
-            <PostToneSelector toneOfVoice={toneOfVoice} selectedTone={formData.tone} onSelectTone={(tone) => setFormData({ ...formData, tone })} />
-            <PostSliderComponent characthersCount={formData.characthersCount} onSliderChange={(value) => setFormData({ ...formData, characthersCount: value })} />
-{/*             
-            <PostCustomSelect label="Audience" name="audience" options={audienceOptions} value={formData.audience} onChange={handleSelectChange} />
-            <PostCustomSelect label="Size" name="size" options={sizeOptions} value={formData.size} onChange={handleSelectChange} />
-            <PostCustomSelect label="Platform" name="platform" options={platformOptions} value={formData.platform} onChange={handleSelectChange} />
-             */}
-            <Box display="flex" justifyContent="space-between">
-        <Box flex="1" mr={1}>
-            <PostCustomSelect
-                label="Audience"
-                name="audience"
-                options={audienceOptions}
-                value={formData.audience}
-                onChange={handleSelectChange}
-            />
+        <TextField
+            label="Your prompt"
+            multiline
+            rows={4}
+            name="request"
+            value={formData.request}
+            onChange={handleChange}
+            fullWidth
+            className="form-textfield"
+        />
+        <PostToneSelector toneOfVoice={toneOfVoice} selectedTone={formData.tone} onSelectTone={(tone) => setFormData({ ...formData, tone })} />
+        <PostSliderComponent characthersCount={formData.characthersCount} onSliderChange={(value) => setFormData({ ...formData, characthersCount: value })} />
+
+        <Box className="form-select-container">
+            <Box className="form-select-box">
+                <PostCustomSelect
+                    label="Audience"
+                    name="audience"
+                    options={audienceOptions}
+                    value={formData.audience}
+                    onChange={handleSelectChange}
+                />
+            </Box>
+            <Box className="form-select-box">
+                <PostCustomSelect
+                    label="Size"
+                    name="size"
+                    options={sizeOptions}
+                    value={formData.size}
+                    onChange={handleSelectChange}
+                />
+            </Box>
+            <Box className="form-select-box">
+                <PostCustomSelect
+                    label="Platform"
+                    name="platform"
+                    options={platformOptions}
+                    value={formData.platform}
+                    onChange={handleSelectChange}
+                />
+            </Box>
         </Box>
-        <Box flex="1" mr={1}>
-            <PostCustomSelect
-                label="Size"
-                name="size"
-                options={sizeOptions}
-                value={formData.size}
-                onChange={handleSelectChange}
-            />
-        </Box>
-        <Box flex="1">
-            <PostCustomSelect
-                label="Platform"
-                name="platform"
-                options={platformOptions}
-                value={formData.platform}
-                onChange={handleSelectChange}
-            />
-        </Box>
+        
+        <PostSwitchComponent name="hashtags" label="Generate hashtags" checked={formData.hashtags} onChange={handleChange} />
+        <PostSwitchComponent name="emojis" label="Include emojis" checked={formData.emojis} onChange={handleChange} />
+        <Button type="submit" variant="contained" fullWidth disabled={isSubmitting} className="form-submit-button">
+            {isSubmitting ? "Generating..." : "Generate"}
+        </Button>
     </Box>
-            
-            <PostSwitchComponent name="hashtags" label="Generate hashtags" checked={formData.hashtags} onChange={handleChange} />
-            <PostSwitchComponent name="emojis" label="Include emojis" checked={formData.emojis} onChange={handleChange} />
-            <Button type="submit" variant="contained" fullWidth disabled={isSubmitting}>
-                {isSubmitting ? "Generating..." : "Generate"}
-            </Button>
-        </Box>
     );
 };
 

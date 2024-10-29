@@ -2,6 +2,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+
   /* background-image: url("./background.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
@@ -61,6 +62,13 @@ button {
 
 
 
+
+
+
+
+
+
+
 /* About */
 .about-container {
   display: flex;
@@ -94,6 +102,13 @@ button {
 .about-caption {
   margin-bottom: 16px;
 }
+
+
+
+
+
+
+
 
 
 
@@ -172,26 +187,6 @@ button {
 }
 
 
-.form-container {
-  min-width: 350px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  gap: 20px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: white;
-}
- 
-
-.form-textfield {
-  margin-bottom: 20px;
-}
-
-.tone-selector {
-  margin-bottom: 20px;
-}
 
 
 
@@ -217,31 +212,42 @@ button {
 
 .search-container {
   display: flex;
-
   gap: 16px; /* Используем gap для расстояния между элементами */
   margin-bottom: 24px; /* Отступ снизу */
-  border-bottom: 1px solid grey; /* Нижняя граница */
-  padding: 30px; /* Внутренний отступ */
+  border-bottom: 1px solid rgb(233, 233, 233); 
+  padding: 16px 24px; /* Внутренний отступ */
 }
 
 .search-input {
   max-width: 300px;
-  background-color: lightgrey;
+  background-color: rgb(233, 233, 233);
+  color: #262324;
 
 }
+.search-input-container {
+  position: relative; /* Для позиционирования иконки */
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px; /* Отступ слева */
+  top: 50%; /* Центр по вертикали */
+  transform: translateY(-50%); /* Центрирование иконки */
+  color: #aaa; /* Цвет иконки */
+}
+
+
 
 /* Стиль для FormControl */
 .custom-form-control {
   max-width: 300px;
-  
 }
 
 /* Стиль для Select */
 .custom-select {
-  background-color: lightgrey;
-  border-radius: 4px; /* Закругление углов */
-
-  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
+  color: #262324;
 }
 
 /* Можно добавить дополнительные стили для состояния наведения и фокуса */
@@ -250,8 +256,7 @@ button {
 }
 
 .custom-select:focus {
-  border: 2px solid #1976d2; /* Цвет границы при фокусе */
-  outline: none; /* Убираем стандартный обвод при фокусе */
+  outline: none;
 }
 
 
@@ -259,6 +264,40 @@ button {
 
 
 
+
+/* Search Filter */
+
+.search-container {
+  gap: 16px; /* Отступы между элементами */
+}
+
+.custom-input {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  background-color: rgb(245, 245, 245);
+  padding: 10px 10px 10px 35px;
+}
+
+.custom-input:focus {
+    outline: none;
+}
+
+.custom-select-container {
+
+}
+
+.custom-select {
+  padding: 10px 10px;
+  width: 200px;
+  border: none;
+  background-color: rgb(245, 245, 245);
+}
+
+.custom-select:focus {
+  outline: none;
+}
 
 
 
@@ -283,23 +322,14 @@ button {
 }
 
 
-.post-container {
-  padding: 30px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 20px;
-  background-color: white;
-}
-  
 
-.post-title {
-  margin-bottom: 16px;
-}
 
-.post-paragraph {
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 12px;
-}
+
+
+
+
+
+/* Generate Post */
 
 
 
@@ -309,12 +339,89 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
   gap: 20px; /* Пространство между колонками */
-  padding: 30px;
-  max-width: 1200px;
   margin: auto;
-  /* height: 90vh; */
-  max-height: 90vh
+  /* background-color: rgb(245, 245, 245); */
+  max-width: 1600px;
 }
+
+
+
+
+/* Generate Form */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: #ffffff;
+}
+
+.form-textfield {
+  margin-bottom: 16px;
+  background-color: rgb(245, 245, 245);
+}
+
+.form-select-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-select-box {
+  background-color: rgb(245, 245, 245);
+   flex: 1;
+}
+
+.form-submit-button {
+  margin-top: 16px;
+}
+
+
+
+.tone-selector {
+  margin-bottom: 20px;
+  
+}
+.tone-selector button {
+  background-color: white;
+  color: grey;
+  border-color: grey;;
+
+}
+
+
+
+/** Post Result */
+.post-result{
+  background-color: rgb(245, 245, 245);
+  padding: 24px;
+  box-sizing: border-box;
+
+}
+.post-result-content {
+  background-color: white;
+  margin: auto;
+  margin: 24px 0;
+  padding: 24px;
+}
+  
+
+.post-title {
+  margin-bottom: 16px;
+}
+
+.post-paragraph {
+  text-align: left;
+  /* padding: 15px; */
+}
+
+
+
+
+/* Iphone */
+
+
 
 
 
@@ -398,54 +505,148 @@ button {
 /* Aside Bar */
 
 .logo {
-background-image: url("./logoAI.png");
-background-size: cover;
-height: 70px;
-width: 170px;
-margin: 30px;
+  background-image: url("./logoAI.png");
+  background-size: cover;
+  height: 45px;
+  width: 110px;
 }
 
 .side-bar {
+  color: #262324;
+  font-size: 14px;
   width: 220px;
+  padding: 16px 0;
   box-sizing: border-box;
-  border-right: 1px solid grey;
+  border-right: 1px solid rgb(233, 233, 233);
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   background-color: white;
+
+  
+  transition: width 0.3s;
+}
+.side-bar.collapsed {
+  width: 68px; 
+  align-items: center;
+  padding-top: 26px
 }
 
 .pages {
   display: flex;
   flex-direction: column; 
-  align-items: flex-start; 
-  justify-content: flex-start;
-  padding: 200px 0;
+  align-items: stretch; 
 }
 
 .page-button {
-  /* width: 100%;  */
-
-  padding: 20px 16px;
-  border: none; /* Убедитесь, что не добавлены нежелательные границы */
-  background-color: transparent; /* Фон кнопок изначально прозрачный */
-  transition: background-color 0.3s, border-right 0.3s; 
+  display: flex; 
+  align-items: center; 
+  padding: 15px; 
+  text-decoration: none; 
+  color: inherit; 
+  background: transparent; 
+  border: none;
+  transition: background-color 0.3s;
 }
 
 .page-button:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Сероватый фон при наведении */
-  border-right: 2px solid grey; /* Увеличиваем правый бортик при наведении */
+  background-color: rgba(0, 0, 0, 0.05); 
+  border-right: 3px solid rgb(97, 96, 96); 
+  border-radius: 3px;
 }
 
+
+
+
+/* Profile */
 .profile {
-  padding: 16px;
-  border-top: 1px solid grey;
+  padding: 16px 16px 0 16px;
+  border-top: 1px solid rgb(233, 233, 233);
+  display: flex;
+  align-items: center ;
 }
+
+.profile-picture {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url("./profile_photo_default.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile-name {
+  padding-left: 16px;
+  width: 100px;
+  font-size:14px;
+  font-weight: 600;
+
+}
+
+.settings-icon {
+  font-size: 32px; /* Размер иконки */
+  padding: 4px;
+}
+
+.settings-icon:hover {
+  background-color: rgb(241, 241, 241); 
+  border-radius: 5px;
+}
+
+/*User Info*/
+.user-info {
+  position: absolute; 
+  bottom: 45px;
+  left: 200px;
+  min-width: 340px; 
+  background-color: white; 
+  border: 1px solid rgb(241, 241, 241); 
+  border-radius: 10px;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  */
+  padding: 10px; /* Отступы внутри */
+  z-index: 1000; /* Чтобы он был сверху других элементов */
+}
+
+
+
+.user-info-top {
+  padding: 8px;
+  box-sizing: border-box;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-user-data p {
+  padding: 3px ;
+  margin: 0;
+}
+.user-info-bottom {
+  border-top:1px solid rgb(241, 241, 241);
+}
+.user-info-bottom div {
+  padding: 8px;
+}
+
+.logout-button {
+  color: red;
+  border: none;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+
+
 
 
 

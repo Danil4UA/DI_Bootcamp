@@ -7,10 +7,8 @@ import { format, parseISO } from 'date-fns';
 import PostContentEditor from "./PostContentEditor";
 import PostImageUploader from "./PostImageUploader";
 import PostSavePublishButtons from "./PostSavePublishButtons";
-// import PostDateTimePicker from "./PostDateTimePicker";
 import IPhoneMockup from "./iPhoneMockup";
 import axios from "axios";
-// import PostCustomSelect from "../PostForm/PostCustomSelect";
 
 
 
@@ -122,23 +120,22 @@ const PostEditor = () => {
 
                     // logic to post with ayrshare.com
 
-                    const data = {
-                        post: content,
-                        platforms: ["linkedin"],
-                        // mediaUrls: [`http://localhost:5001${imageUrl}`] // the link will work when application will be on host
-                      };
+                    // const data = {
+                    //     post: content,
+                    //     platforms: ["linkedin"],
+                    //   };
                     
-                      fetch('https://app.ayrshare.com/api/post', {
-                        method: 'POST',
-                        headers: {
-                          'Authorization': 'Bearer 6F1726FA-E6FE422E-BE61D134-E3C86A8B',
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                      })
-                        .then(response => response.json())
-                        .then(data => console.log(data))
-                        .catch(error => console.error('Error:', error));
+                    //   fetch('https://app.ayrshare.com/api/post', {
+                    //     method: 'POST',
+                    //     headers: {
+                    //       'Authorization': 'Bearer 6F1726FA-E6FE422E-BE61D134-E3C86A8B',
+                    //       'Content-Type': 'application/json'
+                    //     },
+                    //     body: JSON.stringify(data)
+                    //   })
+                    //     .then(response => response.json())
+                    //     .then(data => console.log(data))
+                    //     .catch(error => console.error('Error:', error));
         
                     setIsSaving(false);
                 } catch (error) {
@@ -151,7 +148,6 @@ const PostEditor = () => {
   return (
     <Box display="flex" 
     alignItems="center" 
-    // justifyContent="center"
     flexDirection="column" sx={{ minHeight: '90vh', padding: '20px' }}>
 
 
@@ -159,15 +155,8 @@ const PostEditor = () => {
         <Box flex="1" mr={2} sx={{ maxWidth: '650px', width: '100%' }}>
           {foundPost ? (
             <>
-              <PostContentEditor content={content} onChange={handleContentChange} />
+              <PostContentEditor content={content} setContent={setContent} onChange={handleContentChange} />
               
-              {/* <PostDateTimePicker 
-                publishDate={publishDate} 
-                publishTime={publishTime} 
-                onDateChange={(e) => setPublishDate(e.target.value)} 
-                onTimeChange={(e) => setPublishTime(e.target.value)} 
-              /> */}
-
                 <PostImageUploader imageUrl={imageUrl} onFileChange={handleFileChange} onRemoveImage={handleRemoveImage} />
                    
                 <Box className="post-editor-buttons">

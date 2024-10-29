@@ -18,10 +18,10 @@ const PostTableRow = ({ post, isSelected, onSelect, onEdit, onDelete, showCheckb
                     <Checkbox checked={isSelected} onChange={onSelect} />
                 </TableCell>
             )}
-            <TableCell>
-                <Tooltip title={post.content} arrow>
+            <TableCell >
+                <Tooltip  title={post.content} arrow>
                     <Typography variant="body2" noWrap>
-                        {post.content.length > 50 ? `${post.content.slice(0, 120)}...` : post.content}
+                        {post.content.length > 50 ? `${post.content.slice(0, 90)}...` : post.content}
                     </Typography>
                 </Tooltip>
             </TableCell>

@@ -8,6 +8,7 @@ interface AuthProps {
 }
 
 const Auth = ({ children }: AuthProps) => {
+
     const [redirect, setRedirect] = useState(false);
 
     const authContext = useContext(AuthContext);
@@ -58,6 +59,7 @@ const Auth = ({ children }: AuthProps) => {
             setToken(null);
             localStorage.removeItem("token");
             setRedirect(false);
+    
         };
 
         verify();

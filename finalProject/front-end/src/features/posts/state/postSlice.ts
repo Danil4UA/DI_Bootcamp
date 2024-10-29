@@ -69,6 +69,31 @@ export const createPost = createAsyncThunk(
     }
 );
 
+
+// in the chat 
+
+export const editPost = createAsyncThunk(
+    "posts/edit",
+    async(content, request) => {
+        try {
+            console.log("making a request to edit a post with ai")
+            const response = await axios.post(`${URL}/posts/edit`, {
+                content: content,
+                request: request
+            },
+            {
+                withCredentials: true
+            })
+
+            return response.data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+
+
 export const deletePost = createAsyncThunk(
     "posts/deletePost",
     async (postId: number, { rejectWithValue }) => {

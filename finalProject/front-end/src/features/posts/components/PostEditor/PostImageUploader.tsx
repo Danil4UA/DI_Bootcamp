@@ -21,6 +21,7 @@ const PostImageUploader = ({ imageUrl, onFileChange, onRemoveImage }: PostImageU
         Choose File
         <input type="file" hidden onChange={onFileChange} />
       </Button>
+      
 
       {imageUrl && (
         <Box sx={{ position: 'relative', maxWidth: '200px', width: '100%', marginTop: 2 }}>

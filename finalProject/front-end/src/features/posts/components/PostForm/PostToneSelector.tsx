@@ -15,6 +15,7 @@ const PostToneSelector = ({ toneOfVoice, selectedTone, onSelectTone }: Props): J
                     key={tone}
                     variant={selectedTone === tone ? 'contained' : 'outlined'}
                     onClick={() => onSelectTone(tone)}
+                    
                 >
                     {tone}
                 </Button>
