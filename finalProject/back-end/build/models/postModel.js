@@ -19,7 +19,7 @@ exports.postModels = {
     createPost: (postInfo) => __awaiter(void 0, void 0, void 0, function* () {
         function convertPostToSentence(content) {
             const parts = [
-                `Please generate a post of around ${content.characthersCount} characters.`,
+                `Please generate a post`,
                 `User prompts: ${content.request}.`,
                 `The post should be written in ${content.language} language.`,
                 `Style: ${content.style}.`,

@@ -1,4 +1,3 @@
-import { Button, Box, Typography } from '@mui/material';
 
 interface Props {
     toneOfVoice: string[];
@@ -6,22 +5,27 @@ interface Props {
     onSelectTone: (tone: string) => void;
 }
 
-const PostToneSelector = ({ toneOfVoice, selectedTone, onSelectTone }: Props): JSX.Element => (
-    <Box className="tone-selector">
-        <Typography gutterBottom>Tone of voice</Typography>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+const PostToneSelector = ({ toneOfVoice, selectedTone, onSelectTone }: Props): JSX.Element =>{
+    return (
+        <div className="tone-selector">
+          <p className="tone-title">Tone of voice</p>
+          <div className="tone-buttons-container">
             {toneOfVoice.map((tone) => (
-                <Button
-                    key={tone}
-                    variant={selectedTone === tone ? 'contained' : 'outlined'}
-                    onClick={() => onSelectTone(tone)}
-                    
-                >
-                    {tone}
-                </Button>
+              <button
+                key={tone}
+                className={`tone-button ${selectedTone === tone ? "selected" : ""}`}
+                onClick={(event) => {
+                    event.preventDefault(); 
+                    onSelectTone(tone);
+                }}
+              >
+                <span className={`tone-indicator ${selectedTone === tone ? "active" : ""}`}></span>
+                {tone}
+              </button>
             ))}
-        </Box>
-    </Box>
-);
+          </div>
+        </div>
+      );
+} 
 
 export default PostToneSelector;

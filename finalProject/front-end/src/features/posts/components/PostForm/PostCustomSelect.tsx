@@ -1,25 +1,29 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material/Select';
+import { FormControl} from '@mui/material';
 
 interface Props {
     label: string;
     name: string;
     options: string[];
     value: string;
-    onChange: (event: SelectChangeEvent) => void;
+    onChange: any
 }
 
-const PostCustomSelect = ({ label, name, options, value, onChange }: Props): JSX.Element => (
-    <FormControl fullWidth>
-        <InputLabel>{label}</InputLabel>
-        <Select name={name} value={value} onChange={onChange}>
-            {options.map((option) => (
-                <MenuItem key={option} value={option}>
-                    {option}
-                </MenuItem>
-            ))}
-        </Select>
-    </FormControl>
-);
+const PostCustomSelect = ({ name, options, value, onChange }: Props): JSX.Element => {
+    return (
+        <>
+            <select name={name}value={value} onChange={onChange} className='custom-select generate-post-select'>
+
+                {options.map((option) => (
+                    <option key={option} value={option} >
+                        {option}
+                    </option>
+                ))}
+            </select>
+        </>
+    )
+} 
+    
+
+
 
 export default PostCustomSelect;

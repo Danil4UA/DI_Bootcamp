@@ -23,7 +23,7 @@ export const postModels = {
     function convertPostToSentence(content: Content): string {
 
         const parts = [
-            `Please generate a post of around ${content.characthersCount} characters.`,
+            `Please generate a post`,
             `User prompts: ${content.request}.`,
             `The post should be written in ${content.language} language.`,
             `Style: ${content.style}.`,

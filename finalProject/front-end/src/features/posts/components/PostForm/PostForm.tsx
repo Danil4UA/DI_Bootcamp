@@ -2,9 +2,9 @@ import { useState } from "react";
 import { createPost, fetchPosts } from "../../state/postSlice";
 import { useAppDispatch } from "../../state/postsHooks";
 import { setCurrentResult } from "../../state/postSlice";
-import { Button, Box, TextField, SelectChangeEvent  } from '@mui/material';
+import { Box, TextField, SelectChangeEvent  } from '@mui/material';
 import PostToneSelector from "./PostToneSelector";
-import PostSliderComponent from "./PostSliderComponent";
+// import PostSliderComponent from "./PostSliderComponent";
 import PostCustomSelect from "./PostCustomSelect";
 import PostSwitchComponent from "./PostSwitchComponent";
 
@@ -26,7 +26,7 @@ const PostForm = (): JSX.Element => {
         platform: "Facebook",
         hashtags: true,
         emojis: false,
-        characthersCount: 100,
+        // characthersCount: 100,
         tone: "Polite", 
     });
 
@@ -44,6 +44,7 @@ const PostForm = (): JSX.Element => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("handling submit")
     try {
         setIsSubmitting(true);
 
@@ -69,6 +70,7 @@ const PostForm = (): JSX.Element => {
 
     return (
         <Box component="form" onSubmit={handleSubmit} className="form-container">
+
         <TextField
             label="Your prompt"
             multiline
@@ -77,10 +79,11 @@ const PostForm = (): JSX.Element => {
             value={formData.request}
             onChange={handleChange}
             fullWidth
-            className="form-textfield"
+            className="content-input form-textfield "
         />
         <PostToneSelector toneOfVoice={toneOfVoice} selectedTone={formData.tone} onSelectTone={(tone) => setFormData({ ...formData, tone })} />
-        <PostSliderComponent characthersCount={formData.characthersCount} onSliderChange={(value) => setFormData({ ...formData, characthersCount: value })} />
+            
+        {/* <PostSliderComponent characthersCount={formData.characthersCount} onSliderChange={(value) => setFormData({ ...formData, characthersCount: value })} /> */}
 
         <Box className="form-select-container">
             <Box className="form-select-box">
@@ -92,6 +95,7 @@ const PostForm = (): JSX.Element => {
                     onChange={handleSelectChange}
                 />
             </Box>
+
             <Box className="form-select-box">
                 <PostCustomSelect
                     label="Size"
@@ -114,9 +118,13 @@ const PostForm = (): JSX.Element => {
         
         <PostSwitchComponent name="hashtags" label="Generate hashtags" checked={formData.hashtags} onChange={handleChange} />
         <PostSwitchComponent name="emojis" label="Include emojis" checked={formData.emojis} onChange={handleChange} />
-        <Button type="submit" variant="contained" fullWidth disabled={isSubmitting} className="form-submit-button">
+        <button 
+            type="submit"
+            disabled={isSubmitting}
+              className="refine-post-button"
+          >
             {isSubmitting ? "Generating..." : "Generate"}
-        </Button>
+          </button>
     </Box>
     );
 };

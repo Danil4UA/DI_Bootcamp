@@ -36,7 +36,7 @@ export interface Content {
         audience: string
         platform: string
         hashtags: boolean
-        characthersCount: number
+        // characthersCount: number
 }
 
 const URL = "http://localhost:5001/api"

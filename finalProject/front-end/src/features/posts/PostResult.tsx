@@ -1,8 +1,9 @@
 import { useSelectPostsCurrentResult } from "./state/postsHooks";
-import { Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import { deletePost, setCurrentResult } from "./state/postSlice";
 import { useAppDispatch } from "./state/postsHooks";
 import { useNavigate } from "react-router-dom";
+
 
 const PostResult = (): JSX.Element | null => {
     const currentResult = useSelectPostsCurrentResult();
@@ -13,9 +14,9 @@ const PostResult = (): JSX.Element | null => {
         return (
             <div className="post-result">
                 <div className="post-result-content">
-                    <h2>Get started</h2>
+                    {/* <h2>Get started</h2>
                     <p>1. Write your prompt with what you want the AI to generate and hit the Generate button.</p>
-                    <p>2. Press edit to mske some changes and publick result on social medias or delete the result</p>
+                    <p>2. Press edit to mske some changes and publick result on social medias or delete the result</p> */}
                 </div>
             </div>
             
@@ -45,7 +46,6 @@ const PostResult = (): JSX.Element | null => {
 
     return (
         <div className="post-result">
-     
             <div className="post-result-content" >
                 {currentResult.content.split(/\n{2,}/).map((paragraph: string, index: number) => (
                     <Typography key={index} component="p" className="post-paragraph">
@@ -53,27 +53,28 @@ const PostResult = (): JSX.Element | null => {
                     </Typography>
                 ))}
             </div>
-
-
-
+        
 
 
 
             {currentResult.content !== "Loading..." &&
 
-                <div style={{display: "flex", justifyContent: "space-between"}}>
+                <div className="post-editor-buttons" style={{position:"absolute", top:"16px", right:"24px"}}>
+                <button
+                    onClick={() => handleEdit(currentResult.id)}
+                    className="button primary-button save-button"
+                >
+                    Edit
+                </button>
 
-                    <Button variant="contained" color="primary" onClick={() => handleEdit(currentResult.id)}>
-                        Edit
-                    </Button>
-        
-                    <Button variant="contained" color="secondary" onClick={handleDelete}>
-                        Delete
-                    </Button>
+                <button
+                    onClick={handleDelete}
+                    className="button secondary-button publish-button"
+                >
+                    Delete
+                </button>
                 </div>
             }
-            
-            
             
         </div>
     );

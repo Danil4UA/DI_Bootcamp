@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 interface PostSavePublishButtonsProps {
   isSaving: boolean;

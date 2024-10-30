@@ -246,7 +246,7 @@ button {
 /* Стиль для Select */
 .custom-select {
   background-color: rgb(233, 233, 233);
-  border-radius: 10px;
+  border-radius: 7px;
   color: #262324;
 }
 
@@ -282,10 +282,6 @@ button {
 
 .custom-input:focus {
     outline: none;
-}
-
-.custom-select-container {
-
 }
 
 .custom-select {
@@ -338,12 +334,41 @@ button {
 .generate-post-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
-  gap: 20px; /* Пространство между колонками */
-  margin: auto;
+  /* gap: 20px; Пространство между колонками */
+  margin: 0;
+  width: 100%;
   /* background-color: rgb(245, 245, 245); */
-  max-width: 1600px;
+  /* max-width: 1600px; */
 }
 
+/** Post Result */
+.post-result{
+  background-color: rgb(245, 245, 245);
+  box-sizing: border-box;
+  height: 90vh;
+  padding: 0 24px;
+ 
+
+} 
+.post-result-content {
+  background-color: white;
+  min-height: 600px;
+  max-width: 550px;
+/* display: flex;
+justify-content: center;
+align-items: center; */
+  /* margin: 24px 36px; */
+  /* margin: auto; */
+  margin: auto;
+  margin-top: 24px;
+  border-radius: 10px;
+  padding: 24px;
+}
+   
+.post-result-icons {
+  margin: auto;
+  margin-top: 20px;
+}
 
 
 
@@ -355,23 +380,37 @@ button {
   gap: 16px;
   padding: 24px;
   background-color: #ffffff;
+  max-height: 564px;
+  max-width: 550px;
+  margin: auto;
+  margin-top: 0;
 }
 
 .form-textfield {
-  margin-bottom: 16px;
   background-color: rgb(245, 245, 245);
+
 }
 
 .form-select-container {
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: space-evenly; */
   gap: 10px;
 }
 
-.form-select-box {
-  background-color: rgb(245, 245, 245);
-   flex: 1;
+
+
+.generate-post-select{
+  /* display: inline-block;
+  color  */
+  font-size: 18px;
+  padding: 8px 16px;
 }
+
+
+
+
+
 
 .form-submit-button {
   margin-top: 16px;
@@ -379,33 +418,66 @@ button {
 
 
 
+
 .tone-selector {
-  margin-bottom: 20px;
-  
-}
-.tone-selector button {
-  background-color: white;
-  color: grey;
-  border-color: grey;;
-
+  margin-bottom: 16px;
 }
 
+/* Заголовок выбора тона */
+.tone-title {
+  font-size: 14px;
+  margin: 0;
+}
 
+/* Контейнер для кнопок выбора тона */
+.tone-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-/** Post Result */
-.post-result{
-  background-color: rgb(245, 245, 245);
-  padding: 24px;
-  box-sizing: border-box;
+/* Стили кнопок выбора тона */
+.tone-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 18px;
+  border: 1px solid rgb(223, 223, 223);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 7px;
+}
+
+.tone-button:hover {
+  background-color: #f5f5f5;
+}
+
+/* Индикатор (круглый чекбокс) слева от текста */
+.tone-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgb(223, 223, 223);
+  margin-right: 8px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.tone-indicator.active {
+  background-color: black;
+  border: 2px solid black;
 
 }
-.post-result-content {
-  background-color: white;
-  margin: auto;
-  margin: 24px 0;
-  padding: 24px;
+
+.tone-button.selected {
+  border: 1px solid rgb(83, 82, 82);
 }
-  
+
+
+
+
+
 
 .post-title {
   margin-bottom: 16px;
@@ -660,6 +732,7 @@ button {
 
 }
 
+
 .content-input .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: #f7f7f7; /* Светло-серый цвет по умолчанию */
 }
@@ -703,6 +776,7 @@ button {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  background-color: #0056b3;
 }
 
 .refine-post-button:disabled {
@@ -711,9 +785,9 @@ button {
   margin: 0;
 }
 
-.refine-post-button:not(:disabled):hover {
+/* .refine-post-button:not(:disabled):hover {
   background-color: #0056b3;
-}
+} */
 
 
 
@@ -741,12 +815,6 @@ button {
   /* padding: 24px; */
   /* min-width: 450px; */
   /* width: 600px; */
-}
-
-
-
-/* Редактор текста поста */
-.post-content-editor {
 }
 
 /* Загрузчик изображения */

@@ -40,7 +40,7 @@ const Layout = (): JSX.Element => {
                 }}>
                 {!hideLayout && (
                     <div style={{ borderBottom: "1px solid rgb(233, 233, 233)", padding: "16px 24px", fontSize:"32px",                        
-                        position: "sticky", // Фиксируем заголовок в верхней части
+                        // position: "sticky", // Фиксируем заголовок в верхней части
 
 
                          
