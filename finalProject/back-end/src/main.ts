@@ -1,6 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import userRouter from "./routes/userRoutes"
 import postRouter from "./routes/postRoutes"
+import userProfileRouter from "./routes/userProfileRoutes"
+
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import path from 'path';
@@ -19,6 +21,7 @@ const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 5001;
 
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/profiles", userProfileRouter)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.listen(PORT, () => {

@@ -1,8 +1,10 @@
 import {userModules} from "../models/userModel"
+import { userProfileModules } from "../models/userProfileModel"
 import { Request, Response } from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import "dotenv/config"
+import { UserProfileInfo } from "../models/userProfileModel"
 
 const {ACCESS_TOKEN_SECRET}: any= process.env
 
@@ -18,11 +20,20 @@ export const userControllers = {
             if (ifUserExist) {
                 res.status(409).json({ message: "User already exists" });
             } else {
-                // Create new user
+                // Create new user and profile
             const user = await userModules.createUser(userInfo);
+
+            const profileInfo = {
+                userId: user.id,
+                firstName: "New",
+                lastName: "User"
+            }
+            const userProfile = await userProfileModules.createUserProfile(profileInfo)
+
             res.status(201).json({
                 message: "User is registered successfully",
                 user,
+                userProfile
             });
             }
         } catch (error) {
@@ -120,6 +131,7 @@ export const userControllers = {
 
         req.cookies.accessToken = null
         req.body = {}
+
         res.clearCookie("accessToken",  
             {
             httpOnly: true,
@@ -132,6 +144,7 @@ export const userControllers = {
            
 
         res.status(200).json({message: "Logout successful"});
-    }
+    },
+  
 }
 

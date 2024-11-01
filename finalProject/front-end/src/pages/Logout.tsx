@@ -23,10 +23,19 @@ const Logout = (): JSX.Element => {
             await axios.get("http://localhost:5001/api/users/logout", {
                 withCredentials: true,
             });
+            localStorage.removeItem("accessToken");
+
+
+   
             localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            localStorage.removeItem("userEmail");
+
             navigate("/login")
             setToken(null); // Сбрасываем токен
             console.log("Logged out successfully");
+
+            console.log(localStorage)
             setSnackbarMessage("Logged out successfully");
         } catch (error) {
             console.error("Failed to logout:", error);
@@ -38,18 +47,19 @@ const Logout = (): JSX.Element => {
     };
 
     return (
-        <div>
-             <button 
+        // <div className="settings-button ">
+             <div 
                 onClick={handleLogout} 
-                disabled={loading} 
-                className="logout-button"
-                style={{ cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.5 : 1 }}
+                // disabled={loading} 
+                className="logout-button settings-button"
+                style={{ cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.5 : 1, fontSize:"14px" }}
             >
-                log out
-            </button>
-        </div>
+                Log out
+            </div>
+    )
+        {/* </div> */}
            
-    );
+    
 };
 
 export default Logout

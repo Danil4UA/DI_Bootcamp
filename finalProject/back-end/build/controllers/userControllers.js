@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userControllers = void 0;
 const userModel_1 = require("../models/userModel");
+const userProfileModel_1 = require("../models/userProfileModel");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 require("dotenv/config");
@@ -29,11 +30,18 @@ exports.userControllers = {
                 res.status(409).json({ message: "User already exists" });
             }
             else {
-                // Create new user
+                // Create new user and profile
                 const user = yield userModel_1.userModules.createUser(userInfo);
+                const profileInfo = {
+                    userId: user.id,
+                    firstName: "New",
+                    lastName: "User"
+                };
+                const userProfile = yield userProfileModel_1.userProfileModules.createUserProfile(profileInfo);
                 res.status(201).json({
                     message: "User is registered successfully",
                     user,
+                    userProfile
                 });
             }
         }
@@ -121,5 +129,5 @@ exports.userControllers = {
         });
         console.log(req.cookies.accessToken, "i am log out");
         res.status(200).json({ message: "Logout successful" });
-    }
+    },
 };

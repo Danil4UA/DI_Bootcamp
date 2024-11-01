@@ -7,7 +7,6 @@ const Contact = () => {
                 <p>Let's create something together ✌️</p>
                 <div className="contact-email">
                     <span>📧 Mail me at</span>
-                    <a href="mailto:danil.kapkov20@gmail.com"> danil.kapkov20@gmail.com</a>
                 </div>
             </div>
             

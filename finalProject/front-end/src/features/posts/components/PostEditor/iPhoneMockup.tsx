@@ -4,7 +4,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string | null }): JSX.Element => {
+const IPhoneMockup = ({ content }: { content: string}): JSX.Element => {
     return (
         <Box
             sx={{
@@ -54,7 +54,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                     </IconButton>
                 </Box>
 
-                {imageUrl && (
+                {/* {imageUrl && (
                     <Box
                         component="img"
                         src={imageUrl.startsWith("data") ? imageUrl : `http://localhost:5001${imageUrl}`}
@@ -67,7 +67,7 @@ const IPhoneMockup = ({ content, imageUrl }: { content: string; imageUrl: string
                             margin: '0',
                         }}
                     />
-                )}
+                )} */}
 
                 {/* Post content with paragraphs */}
                 <Box sx={{ width: '100%', maxHeight: '170px', overflowY: 'auto', mb: 0.85 }}>

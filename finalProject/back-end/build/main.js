@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
+const userProfileRoutes_1 = __importDefault(require("./routes/userProfileRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
@@ -20,6 +21,7 @@ app.use((0, cors_1.default)({
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 5001;
 app.use("/api/users", userRoutes_1.default);
 app.use("/api/posts", postRoutes_1.default);
+app.use("/api/profiles", userProfileRoutes_1.default);
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}...`);

@@ -10,23 +10,22 @@ const { ACCESS_TOKEN_SECRET } = process.env;
 const verifyAccessToken = (req, res, next) => {
     const token = req.cookies["accessToken"] || req.headers["x-access-token"];
     if (!token) {
-        res.status(401).json({ message: "unauthorized" });
+        res.status(401).json({ message: "Unauthorized" });
+        return;
     }
-    else {
-        jsonwebtoken_1.default.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
-            if (err) {
-                res.status(403).json({ message: "Forbidden", error: err.message });
-            }
-            const { userid, email } = decoded;
-            // req.user = {
-            //     userid,
-            //     email,
-            // };
-            req.body.userid = userid;
-            req.body.email = email;
-            console.log("i am middle ware, your id is - ", userid);
-            next();
-        });
-    }
+    jsonwebtoken_1.default.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            res.status(403).json({ message: "Forbidden", error: err.message });
+            return;
+        }
+        if (!decoded || !decoded.userid || !decoded.email) {
+            res.status(400).json({ message: "Token is missing required fields" });
+            return;
+        }
+        const { userid, email } = decoded;
+        req.body.userid = userid;
+        req.body.email = email;
+        next();
+    });
 };
 exports.verifyAccessToken = verifyAccessToken;

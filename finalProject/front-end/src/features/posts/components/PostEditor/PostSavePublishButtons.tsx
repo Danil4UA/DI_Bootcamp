@@ -1,5 +1,6 @@
 import { CircularProgress } from "@mui/material";
 
+
 interface PostSavePublishButtonsProps {
   isSaving: boolean;
   onSave: () => void;
@@ -20,7 +21,7 @@ const PostSavePublishButtons = ({ isSaving, onSave, onPublish }: PostSavePublish
       <button
         onClick={onPublish}
         disabled={isSaving}
-        className="button secondary-button publish-button"
+        className="button primary-button save-button"
       >
         {isSaving ? <CircularProgress size={24} /> : "Publish"}
       </button>

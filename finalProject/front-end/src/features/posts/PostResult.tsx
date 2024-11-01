@@ -69,7 +69,7 @@ const PostResult = (): JSX.Element | null => {
 
                 <button
                     onClick={handleDelete}
-                    className="button secondary-button publish-button"
+                    className="button primary-button save-button"
                 >
                     Delete
                 </button>

@@ -674,8 +674,8 @@ align-items: center; */
 /*User Info*/
 .user-info {
   position: absolute; 
-  bottom: 45px;
-  left: 200px;
+  bottom: 50px;
+  left: 164px;
   min-width: 340px; 
   background-color: white; 
   border: 1px solid rgb(241, 241, 241); 
@@ -697,11 +697,12 @@ align-items: center; */
 }
 
 .profile-user-data p {
-  padding: 3px ;
+  padding: 0;
   margin: 0;
 }
 .user-info-bottom {
   border-top:1px solid rgb(241, 241, 241);
+  
 }
 .user-info-bottom div {
   padding: 8px;
@@ -894,6 +895,83 @@ align-items: center; */
   border-radius: 5px; /* Немного округленные углы */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
   margin-bottom: 20px;
+}
+
+
+
+
+
+
+/* Кнопка настроек */
+.settings-button {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.settings-button:hover {
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+}
+
+/* Затемнение фона */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* Боковая панель */
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: -800px; /* Начальная позиция панели за пределами экрана */
+  width: 800px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  transition: right 0.3s ease;
+  box-sizing: border-box;
+
+}
+
+/* Позиция панели при открытии */
+.settings-panel.open {
+  right: 0; /* Панель выезжает на экран */
+  padding: 0;
+  color: #262324;
+}
+
+
+
+
+
+
+
+
+
+.settings-panel-nav {
+  display: flex;
+  border-bottom: 1px solid rgb(231, 231, 231);
+  list-style-type: none;
+  padding: 0;
+  margin: 0 24px;
+}
+.settings-panel-nav li {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.settings-panel-nav li:hover {
+  border-bottom: 2px solid black; /* При наведении становится видимым */
+
+  /* font-weight: 600; Делаем текст жирнее при наведении */
 }
 
 

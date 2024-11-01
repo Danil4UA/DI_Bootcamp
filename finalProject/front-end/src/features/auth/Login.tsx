@@ -15,7 +15,17 @@ const Login = (): JSX.Element => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const response = await axios.post("http://localhost:5001/api/users/login", { email, password });
-      setToken(response.data.accessToken);
+      const {accessToken, user} = response.data
+
+      setToken(accessToken);
+
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("userId", user.userid);
+        localStorage.setItem("userEmail", user.email);
+
+        console.log(localStorage)
+        console.log("Login successful and data saved to localStorage");
+
       navigate('/');
     } catch {
       setError("Login failed. Please try again.");

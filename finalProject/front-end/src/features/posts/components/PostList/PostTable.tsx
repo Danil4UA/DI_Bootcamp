@@ -23,12 +23,12 @@ const PostTable = ({ posts, selectedPosts, onSelectPost, onEditPost, onDeletePos
 
     return (
         <TableContainer component={Paper}>
-            <Table>
+            <Table size="small">
                 <TableHead>
                     <TableRow>
                         {showCheckboxes && <TableCell>Select</TableCell>}
                         <TableCell>Posts</TableCell>
-                        <TableCell>Date</TableCell>
+                        {/* <TableCell>Date</TableCell> */}
                         <TableCell></TableCell>
                         <TableCell align="right"></TableCell>
                     </TableRow>

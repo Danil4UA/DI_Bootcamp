@@ -23,35 +23,6 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 function App():ReactNode {
   const [token, setToken] = useState<string | null>(null);
 
-  // return (
-  //   <>
-  //     <AuthContext.Provider value={{token, setToken}}>
-  //       {/* {!token? <Header /> : null} */}
-  //         {/* <Header /> */}
-  //         {/* {token? <Header /> : null} */}
-
-  //         {/* {token? <Aside /> : null} */}
-
-         
-  //           {/* <Route path='/' element={<Auth><Dashboard/></Auth>} /> */}
-          
-  //         <Routes>
-  //           <Route path='/' element={<Auth><Layout/></Auth>} />
-
-  //             <Route index element={<Auth><Dashboard /></Auth>} />
-  //             <Route path='/login' element={<Login/>} />
-  //             <Route path='/register' element={<Register/>} />
-  //             <Route path='/about' element={<About/>} />
-  //             <Route path='/contact' element={<Auth><Contact/></Auth>} />
-  //             <Route path='/manage' element={<Auth><ManageAccount/></Auth>} />
-  //             <Route path="/edit-post/:postId" element={<Auth><PostEditor /></Auth>}/>
-  //         </Routes>
-  //     </AuthContext.Provider>
-      
-
-  //   </>
-  // )
-
   return (
     <AuthContext.Provider value={{ token, setToken }}>
       <Routes>

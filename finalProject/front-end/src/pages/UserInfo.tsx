@@ -1,15 +1,20 @@
 import Logout from "./Logout";
 import { useEffect, useRef } from "react";
+import AccountPanel from "./AccountPanel";
 
 interface UserInfoProps {
     onClose: ()=> void
+    firstName: string
+    lastName: string
 }
 
 
 
-const UserInfo = ({ onClose }: UserInfoProps): JSX.Element => {
-    
+const UserInfo = ({ onClose, firstName, lastName }: UserInfoProps): JSX.Element => {
     const userInfoRef = useRef<HTMLDivElement>(null);
+    const userEmail = localStorage.getItem("userEmail")
+
+
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -32,9 +37,8 @@ const UserInfo = ({ onClose }: UserInfoProps): JSX.Element => {
                 <div className="profile-picture"></div>
 
                 <div className="profile-user-data">
-                    <p>Daniil Kapkov</p>
-                    <p>danil.kapkov20@gmail.com</p>
-
+                    <p style={{marginBottom:"5px", fontWeight:"bold" }}>{firstName} {lastName}</p>
+                    <p>{userEmail}</p>
                 </div>
             </div>
             
@@ -42,11 +46,12 @@ const UserInfo = ({ onClose }: UserInfoProps): JSX.Element => {
 
 
             <div className="user-info-bottom">
-                <div>Account setting</div>
+                <AccountPanel/>
                 <Logout />
             </div>
-
+           
         </div>
+        
     );
 };
 
